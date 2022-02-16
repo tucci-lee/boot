@@ -5,6 +5,9 @@ import com.tuccicode.boot.sys.infrastructure.dataobject.SysResDO;
 
 import java.util.List;
 
+/**
+ * @author tucci.lee
+ */
 public interface SysResMapper extends BaseMapper<SysResDO> {
 
     SysResDO selectById(Long id);

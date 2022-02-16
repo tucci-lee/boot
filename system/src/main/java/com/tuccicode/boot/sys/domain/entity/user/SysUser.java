@@ -6,6 +6,9 @@ import lombok.experimental.Accessors;
 
 import java.util.List;
 
+/**
+ * @author tucci.lee
+ */
 @Data
 @Accessors(chain = true)
 public class SysUser extends DTO {

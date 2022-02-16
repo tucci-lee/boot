@@ -21,8 +21,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.HttpSession;
-
 /**
  * @author tucci.lee
  */
@@ -99,7 +97,7 @@ public class SysUserController {
     @Operate("修改用户锁定状态")
     @RequiresPermissions(value = {"sys:user:editLock"})
     @PutMapping("lock")
-    public Response editLock(@Validated @RequestBody SysUserEditLockBody body, HttpSession session) {
+    public Response editLock(@Validated @RequestBody SysUserEditLockBody body) {
         return sysUserApplicationService.editLock(body);
     }
 

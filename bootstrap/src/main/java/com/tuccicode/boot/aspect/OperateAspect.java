@@ -16,6 +16,8 @@ import org.springframework.stereotype.Component;
 
 /**
  * 操作日志记录
+ *
+ * @author tucci.lee
  */
 @Aspect
 @Component
@@ -42,7 +44,7 @@ public class OperateAspect {
 
         //获取参数, 只获取第一个参数
         String params = null;
-        if(operate.recordParams()) {
+        if (operate.recordParams()) {
             Object[] args = pjp.getArgs();
             params = JSON.toJSONString(args[0]);
         }

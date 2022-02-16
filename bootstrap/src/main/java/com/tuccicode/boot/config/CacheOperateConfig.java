@@ -6,12 +6,15 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.core.RedisTemplate;
 
+/**
+ * @author tucci.lee
+ */
 @Configuration
-public class CacheManagerConfig {
+public class CacheOperateConfig {
 
     private final RedisTemplate redisTemplate;
 
-    public CacheManagerConfig(RedisTemplate redisTemplate) {
+    public CacheOperateConfig(RedisTemplate redisTemplate) {
         this.redisTemplate = redisTemplate;
     }
 

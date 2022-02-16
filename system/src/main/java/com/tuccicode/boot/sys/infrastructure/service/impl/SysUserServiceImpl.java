@@ -68,7 +68,7 @@ public class SysUserServiceImpl implements SysUserService {
         return PageResponse.success(entities, (int) page.getTotal());
     }
 
-    @Transactional
+    @Transactional(rollbackFor = RuntimeException.class)
     @Override
     public void add(SysUser sysUser) {
         SysUserDO sysUserDO = SysUserConvertor.toAddDO(sysUser);
@@ -89,7 +89,7 @@ public class SysUserServiceImpl implements SysUserService {
         sysUserMapper.updateById(sysUserDO);
     }
 
-    @Transactional
+    @Transactional(rollbackFor = RuntimeException.class)
     @Override
     public void editPassword(SysUser sysUser) {
         // 如果是自己修改密码
@@ -102,7 +102,7 @@ public class SysUserServiceImpl implements SysUserService {
         sysLoginVersionService.save(sysUser.getUid());
     }
 
-    @Transactional
+    @Transactional(rollbackFor = RuntimeException.class)
     @Override
     public void editLock(SysUser sysUser) {
         SysUserDO sysUserDO = SysUserConvertor.toEditLockDO(sysUser);
@@ -110,7 +110,7 @@ public class SysUserServiceImpl implements SysUserService {
         sysLoginVersionService.save(sysUser.getUid());
     }
 
-    @Transactional
+    @Transactional(rollbackFor = RuntimeException.class)
     @Override
     public void delete(long uid) {
         SysUserDO sysUserDO = new SysUserDO()
@@ -121,7 +121,7 @@ public class SysUserServiceImpl implements SysUserService {
     }
 
     @CacheEvict(value = {CacheConst.USER_ROLE, CacheConst.USER_RES}, allEntries = true)
-    @Transactional
+    @Transactional(rollbackFor = RuntimeException.class)
     @Override
     public void editRole(SysUser sysUser) {
         synchronized (this) {

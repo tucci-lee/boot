@@ -10,6 +10,9 @@ import lombok.experimental.Accessors;
 
 import java.io.Serializable;
 
+/**
+ * @author tucci.lee
+ */
 @Data
 @Accessors(chain = true)
 @TableName("sys_dept")

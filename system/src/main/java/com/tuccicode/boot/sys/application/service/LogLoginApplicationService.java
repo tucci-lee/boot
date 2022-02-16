@@ -13,6 +13,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * @author tucci.lee
+ */
 @Service
 public class LogLoginApplicationService {
 

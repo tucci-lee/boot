@@ -12,6 +12,9 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
+/**
+ * @author tucci.lee
+ */
 @Service
 public class CaptchaApplicationService {
 

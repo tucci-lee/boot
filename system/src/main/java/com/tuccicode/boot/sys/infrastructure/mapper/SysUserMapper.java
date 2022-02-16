@@ -6,6 +6,9 @@ import com.tuccicode.boot.sys.domain.entity.user.SysUserQuery;
 import com.tuccicode.boot.sys.infrastructure.dataobject.SysUserDO;
 import org.apache.ibatis.annotations.Param;
 
+/**
+ * @author tucci.lee
+ */
 public interface SysUserMapper extends BaseMapper<SysUserDO> {
 
     int countByDeptId(Long deptId);

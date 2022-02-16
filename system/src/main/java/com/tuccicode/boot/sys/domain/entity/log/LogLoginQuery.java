@@ -3,6 +3,9 @@ package com.tuccicode.boot.sys.domain.entity.log;
 import com.tuccicode.boot.dto.PageQuery;
 import lombok.Data;
 
+/**
+ * @author tucci.lee
+ */
 @Data
 public class LogLoginQuery extends PageQuery {
 

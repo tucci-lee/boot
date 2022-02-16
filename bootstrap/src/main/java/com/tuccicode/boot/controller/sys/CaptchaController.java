@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
 
+/**
+ * @author tucci.lee
+ */
 @RestController
 @RequestMapping("captcha")
 public class CaptchaController {

@@ -51,7 +51,7 @@ public class SysRoleServiceImpl implements SysRoleService {
         return PageResponse.success(sysRoleList, (int) page.getTotal());
     }
 
-    @Transactional
+    @Transactional(rollbackFor = RuntimeException.class)
     @Override
     public void add(SysRole sysRole) {
         SysRoleDO addRole = SysRoleConvertor.toAddDO(sysRole);
@@ -89,7 +89,7 @@ public class SysRoleServiceImpl implements SysRoleService {
     }
 
     @CacheEvict(value = CacheConst.USER_ROLE, allEntries = true)
-    @Transactional
+    @Transactional(rollbackFor = RuntimeException.class)
     @Override
     public void editRes(SysRole sysRole) {
         synchronized (this) {
