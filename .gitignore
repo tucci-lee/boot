@@ -1,0 +1,17 @@
+### Mac ###
+.DS_Store
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### Java ###
+target/
+*.log
+
+### VUE ###
+node_modules
+dist
+package-lock.json
