@@ -16,11 +16,6 @@ public class CacheConst {
     public static final String LOGIN_VERSION = "login:version";
 
     /**
-     * 用户拥有的角色
-     */
-    public static final String USER_ROLE = "user:role";
-
-    /**
      * 用户拥有的资源
      */
     public static final String USER_RES = "user:res";

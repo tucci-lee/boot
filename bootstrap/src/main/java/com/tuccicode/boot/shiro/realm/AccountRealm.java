@@ -2,7 +2,6 @@ package com.tuccicode.boot.shiro.realm;
 
 import com.tuccicode.boot.shiro.credential.BCryptCredentialsMatcher;
 import com.tuccicode.boot.sys.domain.entity.res.SysRes;
-import com.tuccicode.boot.sys.domain.entity.role.SysRole;
 import com.tuccicode.boot.sys.domain.entity.user.SysUser;
 import com.tuccicode.boot.sys.domain.service.SysLoginVersionService;
 import com.tuccicode.boot.sys.domain.service.SysResService;
@@ -63,20 +62,13 @@ public class AccountRealm extends AuthorizingRealm {
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
 
         if (uid == AdminUtils.getUid()) {
-            info.addRole("admin");
             info.addStringPermission("*");
         } else {
-            //将用户所拥有的的角色字符和权限字符添加到SimpleAuthorizationInfo中
-            List<String> roleChars = sysRoleService.listByUid(uid)
-                    .stream()
-                    .map(SysRole::getRoleChar)
-                    .collect(Collectors.toList());
             List<String> resChars = sysResService.listByUid(uid)
                     .stream()
                     .filter(sysRes -> sysRes.getResChar() != null && !sysRes.getResChar().isEmpty())
                     .map(SysRes::getResChar)
                     .collect(Collectors.toList());
-            info.addRoles(roleChars);
             info.addStringPermissions(resChars);
         }
         return info;

@@ -120,7 +120,6 @@ public class SysUserServiceImpl implements SysUserService {
         sysLoginVersionService.save(uid);
     }
 
-    @CacheEvict(value = {CacheConst.USER_ROLE, CacheConst.USER_RES}, allEntries = true)
     @Transactional(rollbackFor = RuntimeException.class)
     @Override
     public void editRole(SysUser sysUser) {

@@ -65,7 +65,6 @@ public class SysRoleServiceImpl implements SysRoleService {
         sysRoleResMapper.insertList(addRole.getId(), sysRole.getResIds());
     }
 
-    @CacheEvict(value = CacheConst.USER_ROLE, allEntries = true)
     @Override
     public void edit(SysRole sysRole) {
         SysRoleDO editRole = SysRoleConvertor.toEditDO(sysRole);
@@ -88,7 +87,6 @@ public class SysRoleServiceImpl implements SysRoleService {
         sysRoleMapper.updateById(editRole);
     }
 
-    @CacheEvict(value = CacheConst.USER_ROLE, allEntries = true)
     @Transactional(rollbackFor = RuntimeException.class)
     @Override
     public void editRes(SysRole sysRole) {
@@ -101,7 +99,6 @@ public class SysRoleServiceImpl implements SysRoleService {
         }
     }
 
-    @Cacheable(value = CacheConst.USER_ROLE, key = "#p0")
     @Override
     public List<SysRole> listByUid(long uid) {
         List<SysRoleDO> sysRoleDOList = sysRoleMapper.selectByUid(uid);
