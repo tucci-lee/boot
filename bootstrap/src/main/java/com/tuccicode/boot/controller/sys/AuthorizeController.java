@@ -6,7 +6,7 @@ import com.tuccicode.boot.exception.ServiceException;
 import com.tuccicode.boot.shiro.PrincipalUtils;
 import com.tuccicode.boot.sys.application.dto.body.ChangePasswordBody;
 import com.tuccicode.boot.sys.application.dto.body.LoginBody;
-import com.tuccicode.boot.sys.application.service.LogLoginApplicationService;
+import com.tuccicode.boot.sys.application.service.SysLoginLogApplicationService;
 import com.tuccicode.boot.sys.application.service.SysUserApplicationService;
 import com.tuccicode.boot.sys.domain.entity.captcha.CaptchaType;
 import com.tuccicode.boot.sys.domain.service.ImageCaptchaService;
@@ -33,14 +33,14 @@ public class AuthorizeController {
 
     private final ImageCaptchaService imageCaptchaService;
 
-    private final LogLoginApplicationService logLoginApplicationService;
+    private final SysLoginLogApplicationService sysLoginLogApplicationService;
     private final SysUserApplicationService sysUserApplicationService;
 
     public AuthorizeController(ImageCaptchaService imageCaptchaService,
-                               LogLoginApplicationService logLoginApplicationService,
+                               SysLoginLogApplicationService sysLoginLogApplicationService,
                                SysUserApplicationService sysUserApplicationService) {
         this.imageCaptchaService = imageCaptchaService;
-        this.logLoginApplicationService = logLoginApplicationService;
+        this.sysLoginLogApplicationService = sysLoginLogApplicationService;
         this.sysUserApplicationService = sysUserApplicationService;
     }
 
@@ -77,7 +77,7 @@ public class AuthorizeController {
         } finally {
             String userAgent = WebUtils.getRequest().getHeader("User-Agent");
             String ip = WebUtils.getIp();
-            logLoginApplicationService.addLog(body.getUsername(), status, message, ip, userAgent);
+            sysLoginLogApplicationService.addLog(body.getUsername(), status, message, ip, userAgent);
         }
         return Response.success();
     }

@@ -3,9 +3,9 @@ package com.tuccicode.boot.aspect;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.tuccicode.boot.shiro.PrincipalUtils;
-import com.tuccicode.boot.sys.domain.entity.log.LogOperate;
+import com.tuccicode.boot.sys.domain.entity.log.SysOperateLog;
 import com.tuccicode.boot.sys.domain.entity.user.SysUser;
-import com.tuccicode.boot.sys.domain.service.LogOperateService;
+import com.tuccicode.boot.sys.domain.service.SysOperateLogService;
 import com.tuccicode.boot.util.WebUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;
@@ -23,9 +23,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class OperateAspect {
 
-    private final LogOperateService logOperateService;
+    private final SysOperateLogService logOperateService;
 
-    public OperateAspect(LogOperateService logOperateService) {
+    public OperateAspect(SysOperateLogService logOperateService) {
         this.logOperateService = logOperateService;
     }
 
@@ -49,7 +49,7 @@ public class OperateAspect {
             params = JSON.toJSONString(args[0]);
         }
 
-        LogOperate operationLog = new LogOperate()
+        SysOperateLog operationLog = new SysOperateLog()
                 .setUsername(user.getUsername())
                 .setIp(ip)
                 .setUrl(url)
@@ -69,7 +69,7 @@ public class OperateAspect {
     /**
      * 添加操作日志
      */
-    private void add(LogOperate operationLog, String result, String errMsg, boolean status) {
+    private void add(SysOperateLog operationLog, String result, String errMsg, boolean status) {
         operationLog.setResult(result)
                 .setStatus(status)
                 .setErrorMessage(errMsg);

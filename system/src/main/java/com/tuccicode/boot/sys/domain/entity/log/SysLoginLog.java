@@ -9,27 +9,22 @@ import lombok.experimental.Accessors;
  */
 @Data
 @Accessors(chain = true)
-public class LogOperate extends DTO {
+public class SysLoginLog extends DTO {
+
     private Long id;
 
     private String username;
 
+    private String os;
+
+    private String browser;
+
     private String ip;
-
-    private String url;
-
-    private String method;
-
-    private String params;
-
-    private String result;
-
-    private String description;
-
-    private String errorMessage;
-
-    private Long createTime;
 
     private Boolean status;
 
+    private String message;
+
+    private Long createTime;
 }
+

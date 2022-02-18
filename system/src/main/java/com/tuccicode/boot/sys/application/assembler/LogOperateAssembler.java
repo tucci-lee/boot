@@ -1,7 +1,7 @@
 package com.tuccicode.boot.sys.application.assembler;
 
-import com.tuccicode.boot.sys.application.dto.vo.LogOperateVO;
-import com.tuccicode.boot.sys.domain.entity.log.LogOperate;
+import com.tuccicode.boot.sys.application.dto.vo.SysOperateLogVO;
+import com.tuccicode.boot.sys.domain.entity.log.SysOperateLog;
 import org.springframework.beans.BeanUtils;
 
 /**
@@ -9,11 +9,11 @@ import org.springframework.beans.BeanUtils;
  */
 public class LogOperateAssembler {
 
-    public static LogOperateVO toVO(LogOperate entitiy) {
+    public static SysOperateLogVO toVO(SysOperateLog entitiy) {
         if(entitiy == null){
             return null;
         }
-        LogOperateVO vo = new LogOperateVO();
+        SysOperateLogVO vo = new SysOperateLogVO();
         BeanUtils.copyProperties(entitiy, vo);
         return vo;
     }

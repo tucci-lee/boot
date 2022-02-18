@@ -1,7 +1,7 @@
 package com.tuccicode.boot.sys.infrastructure.convertor;
 
-import com.tuccicode.boot.sys.domain.entity.log.LogOperate;
-import com.tuccicode.boot.sys.infrastructure.dataobject.LogOperateDO;
+import com.tuccicode.boot.sys.domain.entity.log.SysOperateLog;
+import com.tuccicode.boot.sys.infrastructure.dataobject.SysOperateLogDO;
 import org.springframework.beans.BeanUtils;
 
 /**
@@ -9,17 +9,17 @@ import org.springframework.beans.BeanUtils;
  */
 public class LogOperateConvertor {
 
-    public static LogOperate toEntity(LogOperateDO dataobject) {
+    public static SysOperateLog toEntity(SysOperateLogDO dataobject) {
         if (dataobject == null) {
             return null;
         }
-        LogOperate entity = new LogOperate();
+        SysOperateLog entity = new SysOperateLog();
         BeanUtils.copyProperties(dataobject, entity);
         return entity;
     }
 
-    public static LogOperateDO toAddDO(LogOperate entity) {
-        LogOperateDO dataobject = new LogOperateDO();
+    public static SysOperateLogDO toAddDO(SysOperateLog entity) {
+        SysOperateLogDO dataobject = new SysOperateLogDO();
         BeanUtils.copyProperties(entity, dataobject);
         return dataobject;
     }

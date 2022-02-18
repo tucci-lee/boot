@@ -7,7 +7,7 @@ import lombok.Data;
  * @author tucci.lee
  */
 @Data
-public class LogLoginQuery extends PageQuery {
+public class SysLoginLogQuery extends PageQuery {
 
     private String username;
 

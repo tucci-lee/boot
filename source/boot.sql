@@ -20,7 +20,7 @@ SET FOREIGN_KEY_CHECKS = 0;
 -- ----------------------------
 -- Table structure for log_login
 -- ----------------------------
-DROP TABLE IF EXISTS `log_login`;
+DROP TABLE IF EXISTS `sys_login_log`;
 CREATE TABLE `log_login` (
   `id` bigint(20) NOT NULL,
   `username` varchar(10) NOT NULL COMMENT '登录账号',
@@ -46,7 +46,7 @@ COMMIT;
 -- ----------------------------
 -- Table structure for log_operate
 -- ----------------------------
-DROP TABLE IF EXISTS `log_operate`;
+DROP TABLE IF EXISTS `sys_operate_log`;
 CREATE TABLE `log_operate` (
   `id` bigint(20) NOT NULL,
   `username` varchar(20) NOT NULL COMMENT '操作人账号',

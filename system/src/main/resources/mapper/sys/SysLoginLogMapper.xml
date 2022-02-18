@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.tuccicode.boot.sys.infrastructure.mapper.LogOperateMapper">
+<mapper namespace="com.tuccicode.boot.sys.infrastructure.mapper.SysLoginLogMapper">
 
     <sql id="ALL">
         id
-        , username, ip, url, method, params, result, description, error_message, create_time, status
+        , username, os, browser, ip, create_time, status, message
     </sql>
-    <select id="selectList" resultType="com.tuccicode.boot.sys.infrastructure.dataobject.LogOperateDO">
+    <select id="selectList" resultType="com.tuccicode.boot.sys.infrastructure.dataobject.SysLoginLogDO">
         SELECT
         <include refid="ALL"/>
         FROM
-        log_operate
+        log_login
         WHERE
         1 = 1
         <if test="q.username != null and q.username != ''">

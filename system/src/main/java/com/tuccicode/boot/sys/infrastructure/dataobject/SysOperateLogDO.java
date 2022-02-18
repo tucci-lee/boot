@@ -15,25 +15,31 @@ import java.io.Serializable;
  */
 @Data
 @Accessors(chain = true)
-@TableName("log_login")
-public class LogLoginDO implements Serializable {
+@TableName("sys_operate_log")
+public class SysOperateLogDO implements Serializable {
     @TableId(type = IdType.ASSIGN_ID)
     private Long id;
 
     private String username;
 
-    private String os;
-
-    private String browser;
-
     private String ip;
+
+    private String url;
+
+    private String method;
+
+    private String params;
+
+    private String result;
+
+    private String description;
+
+    private String errorMessage;
 
     @TableField(fill = FieldFill.INSERT)
     private Long createTime;
 
     private Boolean status;
-
-    private String message;
 
     private static final long serialVersionUID = 1L;
 }

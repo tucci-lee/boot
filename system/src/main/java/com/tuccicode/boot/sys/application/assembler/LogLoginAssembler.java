@@ -1,7 +1,7 @@
 package com.tuccicode.boot.sys.application.assembler;
 
-import com.tuccicode.boot.sys.application.dto.vo.LogLoginVO;
-import com.tuccicode.boot.sys.domain.entity.log.LogLogin;
+import com.tuccicode.boot.sys.application.dto.vo.SysLoginLogVO;
+import com.tuccicode.boot.sys.domain.entity.log.SysLoginLog;
 import org.springframework.beans.BeanUtils;
 
 /**
@@ -9,11 +9,11 @@ import org.springframework.beans.BeanUtils;
  */
 public class LogLoginAssembler {
 
-    public static LogLoginVO toVO(LogLogin entitiy) {
+    public static SysLoginLogVO toVO(SysLoginLog entitiy) {
         if(entitiy == null){
             return null;
         }
-        LogLoginVO vo = new LogLoginVO();
+        SysLoginLogVO vo = new SysLoginLogVO();
         BeanUtils.copyProperties(entitiy, vo);
         return vo;
     }

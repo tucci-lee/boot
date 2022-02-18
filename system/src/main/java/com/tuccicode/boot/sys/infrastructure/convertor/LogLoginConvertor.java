@@ -1,7 +1,7 @@
 package com.tuccicode.boot.sys.infrastructure.convertor;
 
-import com.tuccicode.boot.sys.domain.entity.log.LogLogin;
-import com.tuccicode.boot.sys.infrastructure.dataobject.LogLoginDO;
+import com.tuccicode.boot.sys.domain.entity.log.SysLoginLog;
+import com.tuccicode.boot.sys.infrastructure.dataobject.SysLoginLogDO;
 import org.springframework.beans.BeanUtils;
 
 /**
@@ -9,17 +9,17 @@ import org.springframework.beans.BeanUtils;
  */
 public class LogLoginConvertor {
 
-    public static LogLogin toEntity(LogLoginDO dataobject) {
+    public static SysLoginLog toEntity(SysLoginLogDO dataobject) {
         if (dataobject == null) {
             return null;
         }
-        LogLogin entity = new LogLogin();
+        SysLoginLog entity = new SysLoginLog();
         BeanUtils.copyProperties(dataobject, entity);
         return entity;
     }
 
-    public static LogLoginDO toAddDO(LogLogin entity) {
-        LogLoginDO dataobject = new LogLoginDO();
+    public static SysLoginLogDO toAddDO(SysLoginLog entity) {
+        SysLoginLogDO dataobject = new SysLoginLogDO();
         BeanUtils.copyProperties(entity, dataobject);
         return dataobject;
     }
