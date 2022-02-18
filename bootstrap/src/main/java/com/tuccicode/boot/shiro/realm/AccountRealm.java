@@ -5,7 +5,6 @@ import com.tuccicode.boot.sys.domain.entity.res.SysRes;
 import com.tuccicode.boot.sys.domain.entity.user.SysUser;
 import com.tuccicode.boot.sys.domain.service.SysLoginVersionService;
 import com.tuccicode.boot.sys.domain.service.SysResService;
-import com.tuccicode.boot.sys.domain.service.SysRoleService;
 import com.tuccicode.boot.sys.domain.service.SysUserService;
 import com.tuccicode.boot.sys.infrastructure.util.AdminUtils;
 import org.apache.shiro.authc.AuthenticationException;
@@ -33,16 +32,13 @@ import java.util.stream.Collectors;
 public class AccountRealm extends AuthorizingRealm {
 
     private final SysUserService sysUserService;
-    private final SysRoleService sysRoleService;
     private final SysResService sysResService;
     private final SysLoginVersionService sysLoginVersionService;
 
     public AccountRealm(SysUserService sysUserService,
-                        SysRoleService sysRoleService,
                         SysResService sysResService,
                         SysLoginVersionService sysLoginVersionService) {
         this.sysUserService = sysUserService;
-        this.sysRoleService = sysRoleService;
         this.sysResService = sysResService;
         this.sysLoginVersionService = sysLoginVersionService;
         // 凭证校验器
