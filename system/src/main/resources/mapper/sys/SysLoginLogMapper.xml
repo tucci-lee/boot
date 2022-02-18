@@ -10,7 +10,7 @@
         SELECT
         <include refid="ALL"/>
         FROM
-        log_login
+        sys_login_log
         WHERE
         1 = 1
         <if test="q.username != null and q.username != ''">
