@@ -51,7 +51,7 @@ public class SysUserServiceImpl implements SysUserService {
     @Override
     public PageResponse<SysUser> list(SysUserQuery query) {
         Page<SysUserDO> page = new Page<>(query.getPageNo(), query.getPageSize());
-        sysUserMapper.selectList(page, query);
+        sysUserMapper.selectPage(page, query);
 
         List<SysUser> entities = new ArrayList<>();
         page.getRecords().forEach(sysUserDO -> {
@@ -69,6 +69,7 @@ public class SysUserServiceImpl implements SysUserService {
     @Transactional(rollbackFor = RuntimeException.class)
     @Override
     public void add(SysUser sysUser) {
+        List<Long> roleIds = sysUser.getRoleIds();
         SysUserDO sysUserDO = SysUserConvertor.toAddDO(sysUser);
         synchronized (this) {
             SysUser queryUser = this.getByUsername(sysUserDO.getUsername());
@@ -76,9 +77,9 @@ public class SysUserServiceImpl implements SysUserService {
             sysUserMapper.insert(sysUserDO);
         }
         // 初始化登录版本号
-        sysLoginVersionService.save(sysUser.getUid());
+        sysLoginVersionService.save(sysUserDO.getUid());
         // 添加关联的角色信息
-        sysUserRoleMapper.insertList(sysUserDO.getUid(), sysUser.getRoleIds());
+        sysUserRoleMapper.insertList(sysUserDO.getUid(), roleIds);
     }
 
     @Override
@@ -97,7 +98,7 @@ public class SysUserServiceImpl implements SysUserService {
         }
         SysUserDO sysUserDO = SysUserConvertor.toEditPasswordDO(sysUser);
         sysUserMapper.updateById(sysUserDO);
-        sysLoginVersionService.save(sysUser.getUid());
+        sysLoginVersionService.save(sysUserDO.getUid());
     }
 
     @Transactional(rollbackFor = RuntimeException.class)
@@ -105,12 +106,12 @@ public class SysUserServiceImpl implements SysUserService {
     public void editLock(SysUser sysUser) {
         SysUserDO sysUserDO = SysUserConvertor.toEditLockDO(sysUser);
         sysUserMapper.updateById(sysUserDO);
-        sysLoginVersionService.save(sysUser.getUid());
+        sysLoginVersionService.save(sysUserDO.getUid());
     }
 
     @Transactional(rollbackFor = RuntimeException.class)
     @Override
-    public void delete(long uid) {
+    public void delete(Long uid) {
         SysUserDO sysUserDO = new SysUserDO()
                 .setUid(uid)
                 .setIsDeleted(true);

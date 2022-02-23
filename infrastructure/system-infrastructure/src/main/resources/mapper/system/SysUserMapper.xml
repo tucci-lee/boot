@@ -16,7 +16,7 @@
         WHERE is_deleted = FALSE
           AND dept_id = #{deptId}
     </select>
-    <select id="selectList" resultType="com.tuccicode.boot.system.infrastructure.dataobject.SysUserDO">
+    <select id="selectPage" resultType="com.tuccicode.boot.system.infrastructure.dataobject.SysUserDO">
         SELECT
         <include refid="BASE"/>
         FROM

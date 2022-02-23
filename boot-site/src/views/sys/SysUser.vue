@@ -48,6 +48,12 @@
         show-overflow-tooltip>
     </el-table-column>
     <el-table-column
+        prop="nickname"
+        label="昵称"
+        min-width="120"
+        show-overflow-tooltip>
+    </el-table-column>
+    <el-table-column
         prop="isLock"
         label="状态"
         min-width="80">
@@ -144,6 +150,9 @@
       <el-form-item label="邮箱" prop="email">
         <el-input v-model="body.add.email"></el-input>
       </el-form-item>
+      <el-form-item label="昵称" prop="nickname">
+        <el-input v-model="body.add.nickname"></el-input>
+      </el-form-item>
       <el-form-item label="备注" prop="remarks">
         <el-input v-model="body.add.remarks" type="textarea"></el-input>
       </el-form-item>
@@ -187,6 +196,9 @@
       </el-form-item>
       <el-form-item label="邮箱" prop="email">
         <el-input v-model="body.edit.email"></el-input>
+      </el-form-item>
+      <el-form-item label="昵称" prop="nickname">
+        <el-input v-model="body.edit.nickname"></el-input>
       </el-form-item>
       <el-form-item label="备注" prop="remarks">
         <el-input v-model="body.edit.remarks" type="textarea"></el-input>
@@ -276,14 +288,16 @@ export default {
             {min: 6, max: 32, message: '长度在6到32个字符', trigger: 'blur'}
           ],
           phone: [
-            {required: true, message: '请输入手机号', trigger: 'blur'},
             {pattern: '^[1][3-9][0-9]{9}$', message: '手机号格式不正确', trigger: 'blur'}
           ],
           email: [
             {type: 'email', message: '邮箱格式不正确', trigger: 'blur'}
           ],
+          nickname: [
+            {max: 20, message: '长度在20个字符', trigger: 'blur'}
+          ],
           remarks: [
-            {max: 200, message: '长度在 200 个字符', trigger: 'blur'}
+            {max: 200, message: '长度在200个字符', trigger: 'blur'}
           ],
           roleIds: [
             {required: true, message: '请选择角色', trigger: 'blur'},
@@ -291,11 +305,13 @@ export default {
         },
         edit: {
           phone: [
-            {required: true, message: '请输入手机号', trigger: 'blur'},
             {pattern: '^[1][3-9][0-9]{9}$', message: '手机号格式不正确', trigger: 'blur'}
           ],
           email: [
             {type: 'email', message: '邮箱格式不正确', trigger: 'blur'}
+          ],
+          nickname: [
+            {max: 20, message: '长度在20个字符', trigger: 'blur'}
           ],
           remarks: [
             {max: 200, message: '长度在 200 个字符', trigger: 'blur'}
@@ -368,9 +384,6 @@ export default {
     pageRole(pageNo) {
       this.role.query.pageNo = pageNo;
       this.loadRole();
-    },
-    aa(a) {
-      console.log(a)
     },
     loadRole() {
       this.$axios.get(roleListUrl, {

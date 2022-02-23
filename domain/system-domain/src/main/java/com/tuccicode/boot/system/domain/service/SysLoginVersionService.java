@@ -10,7 +10,7 @@ public interface SysLoginVersionService {
      *
      * @param uid uid
      */
-    void save(long uid);
+    void save(Long uid);
 
     /**
      * 获取用户登录的版本号
@@ -18,5 +18,5 @@ public interface SysLoginVersionService {
      * @param uid uid
      * @return 版本号
      */
-    int getVersionByUid(long uid);
+    int getVersionByUid(Long uid);
 }

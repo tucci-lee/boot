@@ -33,7 +33,7 @@ public class SysResApplicationService {
      * @param uid uid
      * @return List<SysResVO>
      */
-    public Response listMenuByUid(long uid) {
+    public Response listMenuByUid(Long uid) {
         List<SysRes> sysResList;
         // 如果是admin用户则返回所有菜单
         if (uid == AdminUtils.getUid()) {
@@ -85,7 +85,7 @@ public class SysResApplicationService {
      * @param id 资源id
      * @return Response
      */
-    public Response delete(long id) {
+    public Response delete(Long id) {
         sysResService.delete(id);
         return Response.success();
     }

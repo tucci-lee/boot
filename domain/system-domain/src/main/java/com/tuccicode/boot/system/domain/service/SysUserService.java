@@ -58,7 +58,7 @@ public interface SysUserService {
      *
      * @param uid uid
      */
-    void delete(long uid);
+    void delete(Long uid);
 
     /**
      * 修改用户关联的角色

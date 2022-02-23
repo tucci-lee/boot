@@ -19,17 +19,21 @@ public class SysDeptConvertor {
     }
 
     public static SysDeptDO toAddDO(SysDept entity) {
-        SysDeptDO dataobject = new SysDeptDO();
-        BeanUtils.copyProperties(entity, dataobject);
-        return dataobject;
+        return new SysDeptDO()
+                .setName(entity.getName())
+                .setPid(entity.getPid())
+                .setSeq(entity.getSeq())
+                .setManager(entity.getManager())
+                .setManagerPhone(entity.getManagerPhone());
     }
 
     public static SysDeptDO toEditDO(SysDept entity) {
-        SysDeptDO dataobject = new SysDeptDO();
-        BeanUtils.copyProperties(entity, dataobject);
-        if (dataobject.getPid() == null) {
-            dataobject.setPid(0L);
-        }
-        return dataobject;
+        return new SysDeptDO()
+                .setId(entity.getId())
+                .setName(entity.getName())
+                .setId(entity.getPid() == null ? 0L : entity.getPid())
+                .setSeq(entity.getSeq())
+                .setManager(entity.getManager())
+                .setManagerPhone(entity.getManagerPhone());
     }
 }

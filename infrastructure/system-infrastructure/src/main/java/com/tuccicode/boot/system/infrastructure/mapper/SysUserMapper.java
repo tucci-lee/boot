@@ -13,7 +13,7 @@ public interface SysUserMapper extends BaseMapper<SysUserDO> {
 
     int countByDeptId(Long deptId);
 
-    Page<SysUserDO> selectList(Page<?> page, @Param("q") SysUserQuery query);
+    Page<SysUserDO> selectPage(Page<?> page, @Param("q") SysUserQuery query);
 
     SysUserDO selectByUsername(String username);
 

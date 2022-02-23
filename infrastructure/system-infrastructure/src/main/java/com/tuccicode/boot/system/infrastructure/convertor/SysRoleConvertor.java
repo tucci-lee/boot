@@ -19,14 +19,17 @@ public class SysRoleConvertor {
     }
 
     public static SysRoleDO toAddDO(SysRole entity) {
-        SysRoleDO dataobject = new SysRoleDO();
-        BeanUtils.copyProperties(entity, dataobject);
-        return dataobject;
+        return new SysRoleDO()
+                .setName(entity.getName())
+                .setRoleChar(entity.getRoleChar())
+                .setRemarks(entity.getRemarks());
     }
 
     public static SysRoleDO toEditDO(SysRole entity) {
-        SysRoleDO dataobject = new SysRoleDO();
-        BeanUtils.copyProperties(entity, dataobject);
-        return dataobject;
+        return new SysRoleDO()
+                .setId(entity.getId())
+                .setName(entity.getName())
+                .setRoleChar(entity.getRoleChar())
+                .setRemarks(entity.getRemarks());
     }
 }

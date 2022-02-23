@@ -34,7 +34,7 @@ public class SysOperateLogServiceImpl implements SysOperateLogService {
     @Override
     public PageResponse<SysOperateLog> list(SysOperateLogQuery query) {
         Page<SysOperateLogDO> page = new Page<>(query.getPageNo(), query.getPageSize());
-        sysOperateLogMapper.selectList(page, query);
+        sysOperateLogMapper.selectPage(page, query);
         List<SysOperateLog> logOperateList = page.getRecords()
                 .stream()
                 .map(LogOperateConvertor::toEntity)

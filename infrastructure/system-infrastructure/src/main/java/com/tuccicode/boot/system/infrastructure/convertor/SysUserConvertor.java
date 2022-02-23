@@ -21,17 +21,24 @@ public class SysUserConvertor {
     }
 
     public static SysUserDO toAddDO(SysUser entity) {
-        SysUserDO dataobject = new SysUserDO();
-        BeanUtils.copyProperties(entity, dataobject);
-        dataobject.setUsername(entity.getUsername().toLowerCase());
-        dataobject.setPassword(BCrypt.hashpw(entity.getPassword(), BCrypt.gensalt()));
-        return dataobject;
+        return new SysUserDO()
+                .setUsername(entity.getUsername().toLowerCase())
+                .setPassword(BCrypt.hashpw(entity.getPassword(), BCrypt.gensalt()))
+                .setPhone(entity.getPhone())
+                .setEmail(entity.getEmail())
+                .setNickname(entity.getNickname())
+                .setRemarks(entity.getRemarks())
+                .setDeptId(entity.getDeptId());
     }
 
     public static SysUserDO toEditDO(SysUser entity) {
-        SysUserDO dataobject = new SysUserDO();
-        BeanUtils.copyProperties(entity, dataobject);
-        return dataobject;
+        return new SysUserDO()
+                .setUid(entity.getUid())
+                .setPhone(entity.getPhone())
+                .setEmail(entity.getEmail())
+                .setNickname(entity.getNickname())
+                .setRemarks(entity.getRemarks())
+                .setDeptId(entity.getDeptId());
     }
 
     public static SysUserDO toEditPasswordDO(SysUser entity) {

@@ -15,7 +15,7 @@ public interface SysResService {
      * @param uid uid
      * @return List<SysRes>
      */
-    List<SysRes> listByUid(long uid);
+    List<SysRes> listByUid(Long uid);
 
     /**
      * 查询所有的资源列表
@@ -36,7 +36,7 @@ public interface SysResService {
      *
      * @param id id
      */
-    void delete(long id);
+    void delete(Long id);
 
     /**
      * 修改资源
@@ -51,5 +51,5 @@ public interface SysResService {
      * @param roleId 角色id
      * @return SysRes
      */
-    List<SysRes> listByRoleId(long roleId);
+    List<SysRes> listByRoleId(Long roleId);
 }

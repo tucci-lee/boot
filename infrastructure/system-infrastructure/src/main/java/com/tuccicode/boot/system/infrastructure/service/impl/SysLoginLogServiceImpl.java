@@ -33,7 +33,7 @@ public class SysLoginLogServiceImpl implements SysLoginLogService {
     @Override
     public PageResponse<SysLoginLog> list(SysLoginLogQuery query) {
         Page<SysLoginLogDO> page = new Page<>(query.getPageNo(), query.getPageSize());
-        sysLoginLogMapper.selectList(page, query);
+        sysLoginLogMapper.selectPage(page, query);
         List<SysLoginLog> logLoginList = page.getRecords()
                 .stream()
                 .map(LogLoginConvertor::toEntity)

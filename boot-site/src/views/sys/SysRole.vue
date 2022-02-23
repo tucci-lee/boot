@@ -1,7 +1,7 @@
 <template>
   <el-form inline>
     <el-form-item label="搜索">
-      <el-input v-model="query.name" placeholder="角色名称" clearable></el-input>
+      <el-input v-model="role.query.name" placeholder="角色名称" clearable></el-input>
     </el-form-item>
     <el-form-item>
       <el-button type="primary" @click="queryRole">查询</el-button>
@@ -55,7 +55,7 @@
         background
         layout="prev, pager, next"
         :total="role.total"
-        :current-page="query.pageNo"
+        :current-page="role.query.pageNo"
         @current-change="pageRole">
     </el-pagination>
   </div>
@@ -147,13 +147,13 @@ export default {
       role: { // 角色数据
         data: [],
         total: 0,
+        query: {      // 查询数据
+          name: '',
+          pageNo: 1,
+        },
       },
       res: { // 资源
         data: []
-      },
-      query: {      // 查询数据
-        name: '',
-        pageNo: 1,
       },
       show: {     // 控制form显示
         add: false,
@@ -227,11 +227,11 @@ export default {
       })
     },
     pageRole(page) {
-      this.query.pageNo = page;
+      this.role.query.pageNo = page;
       this.loadRole();
     },
     queryRole() {
-      this.query.pageNo = 1;
+      this.role.query.pageNo = 1;
       this.loadRole();
     },
     loadRes() {

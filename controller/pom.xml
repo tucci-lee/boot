@@ -14,6 +14,7 @@
     <modules>
         <module>authorize-controller</module>
         <module>system-controller</module>
+        <module>task-controller</module>
     </modules>
 
     <dependencies>

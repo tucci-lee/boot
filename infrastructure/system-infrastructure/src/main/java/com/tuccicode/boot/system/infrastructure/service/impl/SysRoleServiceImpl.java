@@ -39,7 +39,7 @@ public class SysRoleServiceImpl implements SysRoleService {
     @Override
     public PageResponse<SysRole> list(SysRoleQuery query) {
         Page<SysRoleDO> page = new Page<>(query.getPageNo(), query.getPageSize());
-        sysRoleMapper.selectList(page, query);
+        sysRoleMapper.selectPage(page, query);
 
         List<SysRole> sysRoleList = page.getRecords()
                 .stream()
@@ -51,6 +51,7 @@ public class SysRoleServiceImpl implements SysRoleService {
     @Transactional(rollbackFor = RuntimeException.class)
     @Override
     public void add(SysRole sysRole) {
+        List<Long> resIds = sysRole.getResIds();
         SysRoleDO addRole = SysRoleConvertor.toAddDO(sysRole);
 
         // 校验角色名称是否有相同的
@@ -59,7 +60,7 @@ public class SysRoleServiceImpl implements SysRoleService {
             sysRoleMapper.insert(addRole);
         }
         // 添加关联的资源
-        sysRoleResMapper.insertList(addRole.getId(), sysRole.getResIds());
+        sysRoleResMapper.insertList(addRole.getId(), resIds);
     }
 
     @Override
@@ -67,14 +68,14 @@ public class SysRoleServiceImpl implements SysRoleService {
         SysRoleDO editRole = SysRoleConvertor.toEditDO(sysRole);
         // 校验角色名称是否有相同的
         synchronized (this) {
-            SysRoleDO queryRole = sysRoleMapper.selectByName(sysRole.getName());
+            SysRoleDO queryRole = sysRoleMapper.selectByName(editRole.getName());
             Assert.isTrue(queryRole == null || queryRole.getId().equals(editRole.getId()), SysBizCode.ROLE_NAME_EXIST);
             sysRoleMapper.updateById(editRole);
         }
     }
 
     @Override
-    public void delete(long id) {
+    public void delete(Long id) {
         int userCount = sysUserRoleMapper.countByRoleId(id);
         Assert.isTrue(userCount == 0, SysBizCode.ROLE_RELATED);
 
@@ -97,7 +98,7 @@ public class SysRoleServiceImpl implements SysRoleService {
     }
 
     @Override
-    public List<SysRole> listByUid(long uid) {
+    public List<SysRole> listByUid(Long uid) {
         List<SysRoleDO> sysRoleDOList = sysRoleMapper.selectByUid(uid);
         return sysRoleDOList.stream()
                 .map(SysRoleConvertor::toEntity)

@@ -11,5 +11,5 @@ import org.apache.ibatis.annotations.Param;
  */
 public interface SysOperateLogMapper extends BaseMapper<SysOperateLogDO> {
 
-    Page<SysOperateLogDO> selectList(Page<SysOperateLogDO> page, @Param("q") SysOperateLogQuery query);
+    Page<SysOperateLogDO> selectPage(Page<SysOperateLogDO> page, @Param("q") SysOperateLogQuery query);
 }

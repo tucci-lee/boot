@@ -19,17 +19,22 @@ public class SysResConvertor {
     }
 
     public static SysResDO toAddDO(SysRes entity) {
-        SysResDO dataobject = new SysResDO();
-        BeanUtils.copyProperties(entity, dataobject);
-        return dataobject;
+        return new SysResDO()
+                .setName(entity.getName())
+                .setType(entity.getType())
+                .setUrl(entity.getUrl())
+                .setPid(entity.getPid())
+                .setResChar(entity.getResChar())
+                .setSeq(entity.getSeq());
     }
 
     public static SysResDO toEditDO(SysRes entity) {
-        SysResDO dataobject = new SysResDO();
-        BeanUtils.copyProperties(entity, dataobject);
-        if (entity.getPid() == null) {
-            dataobject.setPid(0L);
-        }
-        return dataobject;
+        return new SysResDO()
+                .setId(entity.getId())
+                .setName(entity.getName())
+                .setUrl(entity.getUrl())
+                .setPid(entity.getPid() == null ? 0L : entity.getPid())
+                .setResChar(entity.getResChar())
+                .setSeq(entity.getSeq());
     }
 }

@@ -3,6 +3,8 @@ package com.tuccicode.boot.common.handler;
 import com.tuccicode.boot.dto.Response;
 import com.tuccicode.boot.exception.BizCode;
 import com.tuccicode.boot.exception.ServiceException;
+import com.tuccicode.boot.system.infrastructure.exception.SysBizCode;
+import org.apache.shiro.authz.UnauthorizedException;
 import org.hibernate.validator.internal.engine.path.PathImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,6 +38,17 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(ServiceException.class)
     public Response serviceExceptionHandler(ServiceException e) {
         return Response.failure(e.getCode(), e.getMessage());
+    }
+
+    /**
+     * shiro未授权
+     *
+     * @param e UnauthorizedException
+     * @return Response
+     */
+    @ExceptionHandler(UnauthorizedException.class)
+    public Response unauthorizedExceptionHandler(UnauthorizedException e) {
+        return Response.failure(SysBizCode.UNAUTHORIZED);
     }
 
     /**

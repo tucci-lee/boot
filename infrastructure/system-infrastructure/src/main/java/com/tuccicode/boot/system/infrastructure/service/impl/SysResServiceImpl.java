@@ -33,7 +33,7 @@ public class SysResServiceImpl implements SysResService {
 
     @Cacheable(value = CacheConst.USER_RES, key = "#p0")
     @Override
-    public List<SysRes> listByUid(long uid) {
+    public List<SysRes> listByUid(Long uid) {
         List<SysResDO> sysResDOList = sysResMapper.selectByUid(uid);
         return sysResDOList.stream()
                 .map(SysResConvertor::toEntity)
@@ -62,7 +62,7 @@ public class SysResServiceImpl implements SysResService {
     }
 
     @Override
-    public void delete(long id) {
+    public void delete(Long id) {
         int roleCount = sysRoleResMapper.countByResId(id);
         Assert.isTrue(roleCount == 0, SysBizCode.RES_RELATED);
 
@@ -97,7 +97,7 @@ public class SysResServiceImpl implements SysResService {
     }
 
     @Override
-    public List<SysRes> listByRoleId(long roleId) {
+    public List<SysRes> listByRoleId(Long roleId) {
         List<SysResDO> sysResDOList = sysResMapper.selectByRoleId(roleId);
         return sysResDOList.stream()
                 .map(SysResConvertor::toEntity)

@@ -19,8 +19,15 @@ public class LogOperateConvertor {
     }
 
     public static SysOperateLogDO toAddDO(SysOperateLog entity) {
-        SysOperateLogDO dataobject = new SysOperateLogDO();
-        BeanUtils.copyProperties(entity, dataobject);
-        return dataobject;
+        return new SysOperateLogDO()
+                .setUsername(entity.getUsername())
+                .setIp(entity.getIp())
+                .setUrl(entity.getUrl())
+                .setMethod(entity.getMethod())
+                .setParams(entity.getParams())
+                .setResult(entity.getResult())
+                .setDescription(entity.getDescription())
+                .setErrorMessage(entity.getErrorMessage())
+                .setStatus(entity.getStatus());
     }
 }

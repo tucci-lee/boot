@@ -9,12 +9,12 @@ import org.springframework.beans.BeanUtils;
  */
 public class LogOperateAssembler {
 
-    public static SysOperateLogVO toVO(SysOperateLog entitiy) {
-        if(entitiy == null){
+    public static SysOperateLogVO toVO(SysOperateLog entity) {
+        if(entity == null){
             return null;
         }
         SysOperateLogVO vo = new SysOperateLogVO();
-        BeanUtils.copyProperties(entitiy, vo);
+        BeanUtils.copyProperties(entity, vo);
         return vo;
     }
 }

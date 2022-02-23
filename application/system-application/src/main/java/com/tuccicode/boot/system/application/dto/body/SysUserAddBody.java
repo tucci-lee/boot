@@ -24,12 +24,14 @@ public class SysUserAddBody {
     @Length(min = 6, max = 32)
     private String password;
 
-    @NotBlank
     @Pattern(regexp = "^[1][3-9][0-9]{9}$")
     private String phone;
 
     @Email
     private String email;
+
+    @Size(max = 20)
+    private String nickname;
 
     @Size(max = 200)
     private String remarks;

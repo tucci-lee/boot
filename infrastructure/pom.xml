@@ -13,6 +13,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>system-infrastructure</module>
+        <module>task-infrastructure</module>
     </modules>
 
     <dependencies>

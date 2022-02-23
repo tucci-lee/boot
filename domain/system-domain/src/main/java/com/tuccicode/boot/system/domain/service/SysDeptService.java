@@ -29,7 +29,7 @@ public interface SysDeptService {
      *
      * @param id id
      */
-    void delete(long id);
+    void delete(Long id);
 
     /**
      * 修改部门

@@ -59,7 +59,7 @@ public class SysDeptApplicationService {
      * @param id 部门id
      * @return Response
      */
-    public Response delete(long id) {
+    public Response delete(Long id) {
         sysDeptService.delete(id);
         return Response.success();
     }

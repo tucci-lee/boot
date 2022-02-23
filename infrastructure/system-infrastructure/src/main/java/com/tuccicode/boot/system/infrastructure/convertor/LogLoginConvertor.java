@@ -19,8 +19,12 @@ public class LogLoginConvertor {
     }
 
     public static SysLoginLogDO toAddDO(SysLoginLog entity) {
-        SysLoginLogDO dataobject = new SysLoginLogDO();
-        BeanUtils.copyProperties(entity, dataobject);
-        return dataobject;
+        return new SysLoginLogDO()
+                .setUsername(entity.getUsername())
+                .setOs(entity.getOs())
+                .setBrowser(entity.getBrowser())
+                .setIp(entity.getIp())
+                .setStatus(entity.getStatus())
+                .setMessage(entity.getMessage());
     }
 }

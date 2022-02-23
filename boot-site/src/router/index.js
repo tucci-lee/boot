@@ -10,6 +10,7 @@ import LoginLog from "@/views/log/LoginLog";
 import Druid from "@/views/monitor/Druid";
 import OperateLog from "@/views/log/OperateLog";
 import NotFound from "@/views/error/NotFound";
+import Task from "@/views/monitor/Task";
 
 const routes = [
     {
@@ -62,6 +63,11 @@ const routes = [
                 path: '/monitor/druid',
                 name: 'Druid监控',
                 component: Druid
+            },
+            {
+                path: '/monitor/task',
+                name: '定时任务',
+                component: Task
             },
         ]
     },

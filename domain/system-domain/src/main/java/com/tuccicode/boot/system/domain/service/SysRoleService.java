@@ -38,7 +38,7 @@ public interface SysRoleService {
      *
      * @param id id
      */
-    void delete(long id);
+    void delete(Long id);
 
     /**
      * 修改角色关联的资源
@@ -53,5 +53,5 @@ public interface SysRoleService {
      * @param uid uid
      * @return SysRole
      */
-    List<SysRole> listByUid(long uid);
+    List<SysRole> listByUid(Long uid);
 }

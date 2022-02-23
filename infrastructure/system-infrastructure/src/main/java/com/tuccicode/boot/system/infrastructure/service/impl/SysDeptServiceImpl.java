@@ -57,7 +57,7 @@ public class SysDeptServiceImpl implements SysDeptService {
      * @param id id
      */
     @Override
-    public void delete(long id) {
+    public void delete(Long id) {
         int userCount = sysUserMapper.countByDeptId(id);
         Assert.isTrue(userCount == 0, SysBizCode.DEPT_RELATED);
 

@@ -24,6 +24,9 @@ public class SysUserEditBody {
     @Email
     private String email;
 
+    @Size(max = 20)
+    private String nickname;
+
     @Size(max = 200)
     private String remarks;
 

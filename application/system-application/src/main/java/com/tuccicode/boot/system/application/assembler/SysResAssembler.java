@@ -9,12 +9,12 @@ import org.springframework.beans.BeanUtils;
  */
 public class SysResAssembler {
 
-    public static SysResVO toVO(SysRes entitiy) {
-        if(entitiy == null){
+    public static SysResVO toVO(SysRes entity) {
+        if(entity == null){
             return null;
         }
         SysResVO vo = new SysResVO();
-        BeanUtils.copyProperties(entitiy, vo);
+        BeanUtils.copyProperties(entity, vo);
         return vo;
     }
 }

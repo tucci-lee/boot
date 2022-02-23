@@ -22,7 +22,7 @@ public class SysLoginVersionServiceImpl implements SysLoginVersionService {
 
     @CacheEvict(value = CacheConst.LOGIN_VERSION, key = "#p0")
     @Override
-    public void save(long uid) {
+    public void save(Long uid) {
         SysLoginVersionDO sysLoginVersionDO = sysLoginVersionMapper.selectById(uid);
         if (sysLoginVersionDO == null) {
             sysLoginVersionDO = new SysLoginVersionDO()
@@ -37,7 +37,7 @@ public class SysLoginVersionServiceImpl implements SysLoginVersionService {
 
     @Cacheable(value = CacheConst.LOGIN_VERSION, key = "#p0")
     @Override
-    public int getVersionByUid(long uid) {
+    public int getVersionByUid(Long uid) {
         SysLoginVersionDO sysLoginVersionDO = sysLoginVersionMapper.selectById(uid);
         return sysLoginVersionDO.getVersion();
     }

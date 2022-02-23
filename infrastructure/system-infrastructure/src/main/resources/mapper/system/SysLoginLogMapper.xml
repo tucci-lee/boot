@@ -6,7 +6,7 @@
         id
         , username, os, browser, ip, create_time, status, message
     </sql>
-    <select id="selectList" resultType="com.tuccicode.boot.system.infrastructure.dataobject.SysLoginLogDO">
+    <select id="selectPage" resultType="com.tuccicode.boot.system.infrastructure.dataobject.SysLoginLogDO">
         SELECT
         <include refid="ALL"/>
         FROM
