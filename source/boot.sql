@@ -3,74 +3,19 @@
 
  Source Server         : localhost
  Source Server Type    : MySQL
- Source Server Version : 50735
+ Source Server Version : 50737
  Source Host           : localhost:3306
  Source Schema         : boot
 
  Target Server Type    : MySQL
- Target Server Version : 50735
+ Target Server Version : 50737
  File Encoding         : 65001
 
- Date: 16/02/2022 09:38:46
+ Date: 23/02/2022 14:54:54
 */
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
-
--- ----------------------------
--- Table structure for log_login
--- ----------------------------
-DROP TABLE IF EXISTS `sys_login_log`;
-CREATE TABLE `log_login` (
-  `id` bigint(20) NOT NULL,
-  `username` varchar(10) NOT NULL COMMENT '登录账号',
-  `os` varchar(20) NOT NULL COMMENT '操作系统',
-  `browser` varchar(20) NOT NULL COMMENT '浏览器',
-  `ip` varchar(15) NOT NULL COMMENT 'ip地址',
-  `create_time` bigint(13) NOT NULL COMMENT '登录时间',
-  `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '登录状态\n0-失败\n1-成功',
-  `message` varchar(1000) DEFAULT NULL COMMENT '信息',
-  PRIMARY KEY (`id`) USING BTREE,
-  KEY `idx_username` (`username`),
-  KEY `idx_ip` (`ip`),
-  KEY `idx_status` (`status`),
-  KEY `idx_create_time` (`create_time`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='登录日志';
-
--- ----------------------------
--- Records of log_login
--- ----------------------------
-BEGIN;
-COMMIT;
-
--- ----------------------------
--- Table structure for log_operate
--- ----------------------------
-DROP TABLE IF EXISTS `sys_operate_log`;
-CREATE TABLE `log_operate` (
-  `id` bigint(20) NOT NULL,
-  `username` varchar(20) NOT NULL COMMENT '操作人账号',
-  `ip` varchar(15) NOT NULL COMMENT '用户ip',
-  `url` varchar(1000) NOT NULL COMMENT '请求URL',
-  `method` varchar(1000) NOT NULL COMMENT '执行方法',
-  `params` text COMMENT '参数',
-  `result` text COMMENT '执行成功后的返回信息',
-  `description` varchar(20) NOT NULL COMMENT '描述',
-  `error_message` text COMMENT '执行失败后的异常信息',
-  `create_time` bigint(13) NOT NULL COMMENT '创建时间',
-  `status` tinyint(1) NOT NULL COMMENT '执行状态\n0-失败\n1-成功',
-  PRIMARY KEY (`id`) USING BTREE,
-  KEY `idx_status` (`status`),
-  KEY `idx_username` (`username`),
-  KEY `idx_ip` (`ip`),
-  KEY `idx_create_time` (`create_time`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- ----------------------------
--- Records of log_operate
--- ----------------------------
-BEGIN;
-COMMIT;
 
 -- ----------------------------
 -- Table structure for sys_dept
@@ -99,6 +44,34 @@ INSERT INTO `sys_dept` VALUES (24169813928574976, '总部', 0, 0, 'Tucci', '1333
 COMMIT;
 
 -- ----------------------------
+-- Table structure for sys_login_log
+-- ----------------------------
+DROP TABLE IF EXISTS `sys_login_log`;
+CREATE TABLE `sys_login_log` (
+  `id` bigint(20) NOT NULL,
+  `username` varchar(10) NOT NULL COMMENT '登录账号',
+  `os` varchar(20) NOT NULL COMMENT '操作系统',
+  `browser` varchar(20) NOT NULL COMMENT '浏览器',
+  `ip` varchar(15) NOT NULL COMMENT 'ip地址',
+  `create_time` bigint(13) NOT NULL COMMENT '登录时间',
+  `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '登录状态\n0-失败\n1-成功',
+  `message` varchar(1000) DEFAULT NULL COMMENT '信息',
+  PRIMARY KEY (`id`) USING BTREE,
+  KEY `idx_username` (`username`),
+  KEY `idx_ip` (`ip`),
+  KEY `idx_status` (`status`),
+  KEY `idx_create_time` (`create_time`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='登录日志';
+
+-- ----------------------------
+-- Records of sys_login_log
+-- ----------------------------
+BEGIN;
+INSERT INTO `sys_login_log` VALUES (25975012993269760, 'admin', 'Mac OS X', 'Chrome 9', '39.65.235.63', 1644991091131, 1, '');
+INSERT INTO `sys_login_log` VALUES (26409697430994944, 'admin', 'Windows 10', 'Chrome 9', '121.225.44.3', 1645094727976, 1, '');
+COMMIT;
+
+-- ----------------------------
 -- Table structure for sys_login_version
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_login_version`;
@@ -115,6 +88,35 @@ CREATE TABLE `sys_login_version` (
 -- ----------------------------
 BEGIN;
 INSERT INTO `sys_login_version` VALUES (1, 0, 1609852591000, NULL);
+COMMIT;
+
+-- ----------------------------
+-- Table structure for sys_operate_log
+-- ----------------------------
+DROP TABLE IF EXISTS `sys_operate_log`;
+CREATE TABLE `sys_operate_log` (
+  `id` bigint(20) NOT NULL,
+  `username` varchar(20) NOT NULL COMMENT '操作人账号',
+  `ip` varchar(15) NOT NULL COMMENT '用户ip',
+  `url` varchar(1000) NOT NULL COMMENT '请求URL',
+  `method` varchar(1000) NOT NULL COMMENT '执行方法',
+  `params` text COMMENT '参数',
+  `result` text COMMENT '执行成功后的返回信息',
+  `description` varchar(20) NOT NULL COMMENT '描述',
+  `error_message` text COMMENT '执行失败后的异常信息',
+  `create_time` bigint(13) NOT NULL COMMENT '创建时间',
+  `status` tinyint(1) NOT NULL COMMENT '执行状态\n0-失败\n1-成功',
+  PRIMARY KEY (`id`) USING BTREE,
+  KEY `idx_status` (`status`),
+  KEY `idx_username` (`username`),
+  KEY `idx_ip` (`ip`),
+  KEY `idx_create_time` (`create_time`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
+-- Records of sys_operate_log
+-- ----------------------------
+BEGIN;
 COMMIT;
 
 -- ----------------------------
@@ -142,6 +144,13 @@ CREATE TABLE `sys_res` (
 -- Records of sys_res
 -- ----------------------------
 BEGIN;
+INSERT INTO `sys_res` VALUES (28174904473944064, '定时任务', 1, '/monitor/task', 113329647516647424, NULL, 0, 1645515586131, NULL, 0);
+INSERT INTO `sys_res` VALUES (28175098825408512, '定时任务查询', 2, NULL, 28174904473944064, 'task:list', 0, 1645515632468, NULL, 0);
+INSERT INTO `sys_res` VALUES (28516794918502401, '定时任务添加', 2, NULL, 28174904473944064, 'task:add', 0, 1645597099165, NULL, 0);
+INSERT INTO `sys_res` VALUES (28516877999276032, '定时任务修改', 2, NULL, 28174904473944064, 'task:edit', 0, 1645597118973, NULL, 0);
+INSERT INTO `sys_res` VALUES (28516935251525632, '定时任务删除', 2, NULL, 28174904473944064, 'task:delete', 0, 1645597132623, NULL, 0);
+INSERT INTO `sys_res` VALUES (28517012728709120, '定时任务状态', 2, NULL, 28174904473944064, 'task:editStatus', 0, 1645597151095, NULL, 0);
+INSERT INTO `sys_res` VALUES (28517103883517953, '定时任务执行', 2, NULL, 28174904473944064, 'task:start', 0, 1645597172828, NULL, 0);
 INSERT INTO `sys_res` VALUES (112063924660076544, '系统管理', 1, NULL, 0, NULL, 98, 1610292596000, 1644341004058, 0);
 INSERT INTO `sys_res` VALUES (112064419969630208, '资源管理', 1, '/sys/res', 112063924660076544, NULL, 2, 1610292714000, NULL, 0);
 INSERT INTO `sys_res` VALUES (112064548923506688, '角色管理', 1, '/sys/role', 112063924660076544, NULL, 1, 1610292745000, NULL, 0);
@@ -211,43 +220,50 @@ CREATE TABLE `sys_role_res` (
   UNIQUE KEY `uk_role_res` (`role_id`,`res_id`) USING BTREE,
   KEY `idx_res_id` (`res_id`) USING BTREE,
   KEY `idx_role_id` (`role_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=1153 DEFAULT CHARSET=utf8mb4 COMMENT='角色与资源关联表';
+) ENGINE=InnoDB AUTO_INCREMENT=1241 DEFAULT CHARSET=utf8mb4 COMMENT='角色与资源关联表';
 
 -- ----------------------------
 -- Records of sys_role_res
 -- ----------------------------
 BEGIN;
-INSERT INTO `sys_role_res` VALUES (1, 112650695508754432, 112063924660076544);
-INSERT INTO `sys_role_res` VALUES (2, 112650695508754432, 112064419969630208);
-INSERT INTO `sys_role_res` VALUES (3, 112650695508754432, 112064548923506688);
-INSERT INTO `sys_role_res` VALUES (4, 112650695508754432, 112065408583860224);
-INSERT INTO `sys_role_res` VALUES (5, 112650695508754432, 112304735788204032);
-INSERT INTO `sys_role_res` VALUES (6, 112650695508754432, 112304837034508288);
-INSERT INTO `sys_role_res` VALUES (7, 112650695508754432, 112304921109331968);
-INSERT INTO `sys_role_res` VALUES (8, 112650695508754432, 112305002013261824);
-INSERT INTO `sys_role_res` VALUES (9, 112650695508754432, 112766904753455104);
-INSERT INTO `sys_role_res` VALUES (10, 112650695508754432, 113296483343663104);
-INSERT INTO `sys_role_res` VALUES (11, 112650695508754432, 113296609537687552);
-INSERT INTO `sys_role_res` VALUES (12, 112650695508754432, 113296742077693952);
-INSERT INTO `sys_role_res` VALUES (13, 112650695508754432, 113296815033417728);
-INSERT INTO `sys_role_res` VALUES (14, 112650695508754432, 113296905349365760);
-INSERT INTO `sys_role_res` VALUES (15, 112650695508754432, 113297095770767360);
-INSERT INTO `sys_role_res` VALUES (16, 112650695508754432, 113297279363842048);
-INSERT INTO `sys_role_res` VALUES (17, 112650695508754432, 113297348314005504);
-INSERT INTO `sys_role_res` VALUES (18, 112650695508754432, 113297416005877760);
-INSERT INTO `sys_role_res` VALUES (19, 112650695508754432, 113297479004323840);
-INSERT INTO `sys_role_res` VALUES (20, 112650695508754432, 113297703277953024);
-INSERT INTO `sys_role_res` VALUES (21, 112650695508754432, 113297768126087168);
-INSERT INTO `sys_role_res` VALUES (22, 112650695508754432, 113297841698373632);
-INSERT INTO `sys_role_res` VALUES (23, 112650695508754432, 113297895578402816);
-INSERT INTO `sys_role_res` VALUES (24, 112650695508754432, 113326873903104000);
-INSERT INTO `sys_role_res` VALUES (25, 112650695508754432, 113327217995415552);
-INSERT INTO `sys_role_res` VALUES (26, 112650695508754432, 113328033569439744);
-INSERT INTO `sys_role_res` VALUES (27, 112650695508754432, 113329345681948672);
-INSERT INTO `sys_role_res` VALUES (28, 112650695508754432, 113329497700302848);
-INSERT INTO `sys_role_res` VALUES (29, 112650695508754432, 113329647516647424);
-INSERT INTO `sys_role_res` VALUES (30, 112650695508754432, 113329855000477696);
-INSERT INTO `sys_role_res` VALUES (31, 112650695508754432, 113329976727568384);
+INSERT INTO `sys_role_res` VALUES (1204, 112650695508754432, 28174904473944064);
+INSERT INTO `sys_role_res` VALUES (1205, 112650695508754432, 28175098825408512);
+INSERT INTO `sys_role_res` VALUES (1206, 112650695508754432, 28516794918502401);
+INSERT INTO `sys_role_res` VALUES (1207, 112650695508754432, 28516877999276032);
+INSERT INTO `sys_role_res` VALUES (1208, 112650695508754432, 28516935251525632);
+INSERT INTO `sys_role_res` VALUES (1209, 112650695508754432, 28517012728709120);
+INSERT INTO `sys_role_res` VALUES (1210, 112650695508754432, 28517103883517953);
+INSERT INTO `sys_role_res` VALUES (1213, 112650695508754432, 112063924660076544);
+INSERT INTO `sys_role_res` VALUES (1226, 112650695508754432, 112064419969630208);
+INSERT INTO `sys_role_res` VALUES (1221, 112650695508754432, 112064548923506688);
+INSERT INTO `sys_role_res` VALUES (1214, 112650695508754432, 112065408583860224);
+INSERT INTO `sys_role_res` VALUES (1227, 112650695508754432, 112304735788204032);
+INSERT INTO `sys_role_res` VALUES (1228, 112650695508754432, 112304837034508288);
+INSERT INTO `sys_role_res` VALUES (1229, 112650695508754432, 112304921109331968);
+INSERT INTO `sys_role_res` VALUES (1230, 112650695508754432, 112305002013261824);
+INSERT INTO `sys_role_res` VALUES (1231, 112650695508754432, 112766904753455104);
+INSERT INTO `sys_role_res` VALUES (1215, 112650695508754432, 113296483343663104);
+INSERT INTO `sys_role_res` VALUES (1216, 112650695508754432, 113296609537687552);
+INSERT INTO `sys_role_res` VALUES (1217, 112650695508754432, 113296742077693952);
+INSERT INTO `sys_role_res` VALUES (1218, 112650695508754432, 113296815033417728);
+INSERT INTO `sys_role_res` VALUES (1219, 112650695508754432, 113296905349365760);
+INSERT INTO `sys_role_res` VALUES (1220, 112650695508754432, 113297095770767360);
+INSERT INTO `sys_role_res` VALUES (1222, 112650695508754432, 113297279363842048);
+INSERT INTO `sys_role_res` VALUES (1223, 112650695508754432, 113297348314005504);
+INSERT INTO `sys_role_res` VALUES (1224, 112650695508754432, 113297416005877760);
+INSERT INTO `sys_role_res` VALUES (1225, 112650695508754432, 113297479004323840);
+INSERT INTO `sys_role_res` VALUES (1232, 112650695508754432, 113297703277953024);
+INSERT INTO `sys_role_res` VALUES (1233, 112650695508754432, 113297768126087168);
+INSERT INTO `sys_role_res` VALUES (1234, 112650695508754432, 113297841698373632);
+INSERT INTO `sys_role_res` VALUES (1235, 112650695508754432, 113297895578402816);
+INSERT INTO `sys_role_res` VALUES (1236, 112650695508754432, 113326873903104000);
+INSERT INTO `sys_role_res` VALUES (1237, 112650695508754432, 113327217995415552);
+INSERT INTO `sys_role_res` VALUES (1239, 112650695508754432, 113328033569439744);
+INSERT INTO `sys_role_res` VALUES (1238, 112650695508754432, 113329345681948672);
+INSERT INTO `sys_role_res` VALUES (1240, 112650695508754432, 113329497700302848);
+INSERT INTO `sys_role_res` VALUES (1203, 112650695508754432, 113329647516647424);
+INSERT INTO `sys_role_res` VALUES (1211, 112650695508754432, 113329855000477696);
+INSERT INTO `sys_role_res` VALUES (1212, 112650695508754432, 113329976727568384);
 COMMIT;
 
 -- ----------------------------
@@ -301,6 +317,56 @@ CREATE TABLE `sys_user_role` (
 -- ----------------------------
 BEGIN;
 INSERT INTO `sys_user_role` VALUES (1, 1, 112650695508754432);
+COMMIT;
+
+-- ----------------------------
+-- Table structure for task
+-- ----------------------------
+DROP TABLE IF EXISTS `task`;
+CREATE TABLE `task` (
+  `id` bigint(20) NOT NULL,
+  `name` varchar(20) NOT NULL COMMENT '任务名称',
+  `class_name` varchar(200) NOT NULL COMMENT '类名',
+  `cron` varchar(100) NOT NULL COMMENT 'cron表达式',
+  `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '任务状态\n0-未启动\n1-启动',
+  `remarks` varchar(200) DEFAULT NULL COMMENT '备注',
+  `create_time` bigint(13) NOT NULL COMMENT '创建时间',
+  `updated_time` bigint(13) DEFAULT NULL COMMENT '修改时间',
+  `is_deleted` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否删除\n0-未删除\n1-删除',
+  PRIMARY KEY (`id`) USING BTREE,
+  KEY `idx_is_deleted` (`is_deleted`),
+  KEY `idx_name` (`name`),
+  KEY `idx_status` (`status`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='定时任务';
+
+-- ----------------------------
+-- Records of task
+-- ----------------------------
+BEGIN;
+INSERT INTO `task` VALUES (28180210469830657, '测试', 'com.tuccicode.boot.task.application.job.TestJob', '*/5 * * * * ?', 0, NULL, 1645516851181, 1645596218393, 0);
+COMMIT;
+
+-- ----------------------------
+-- Table structure for task_log
+-- ----------------------------
+DROP TABLE IF EXISTS `task_log`;
+CREATE TABLE `task_log` (
+  `id` bigint(20) NOT NULL,
+  `task_id` bigint(20) NOT NULL COMMENT '定时任务id',
+  `status` int(1) DEFAULT NULL COMMENT '运行状态\nnull-运行中\n0-失败\n1-成功',
+  `message` text COMMENT '运行信息',
+  `start_time` bigint(13) NOT NULL COMMENT '开始时间',
+  `run_time` bigint(13) DEFAULT NULL COMMENT '运行时间',
+  `create_time` bigint(13) NOT NULL COMMENT '创建时间',
+  PRIMARY KEY (`id`) USING BTREE,
+  KEY `idx_task_id` (`task_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
+-- Records of task_log
+-- ----------------------------
+BEGIN;
+INSERT INTO `task_log` VALUES (28512568767152128, 28180210469830657, 1, '', 1645596091538, 110, 1645596091573);
 COMMIT;
 
 SET FOREIGN_KEY_CHECKS = 1;
