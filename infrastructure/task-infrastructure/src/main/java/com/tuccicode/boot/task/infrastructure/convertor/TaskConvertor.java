@@ -23,7 +23,7 @@ public class TaskConvertor {
                 .setName(entity.getName())
                 .setClassName(entity.getClassName())
                 .setCron(entity.getCron())
-                .setRemark(entity.getRemark());
+                .setRemarks(entity.getRemarks());
     }
 
     public static TaskDO toEditDO(Task entity) {
@@ -32,7 +32,7 @@ public class TaskConvertor {
                 .setName(entity.getName())
                 .setClassName(entity.getClassName())
                 .setCron(entity.getCron())
-                .setRemark(entity.getRemark());
+                .setRemarks(entity.getRemarks());
     }
 
     public static TaskDO toEditStatusDO(Task entity) {
