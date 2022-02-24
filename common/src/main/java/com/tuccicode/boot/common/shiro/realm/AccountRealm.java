@@ -79,7 +79,7 @@ public class AccountRealm extends AuthorizingRealm {
      */
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
-        SysUser sysUser = sysUserService.getByUsername((String) token.getPrincipal());
+        SysUser sysUser = sysUserService.getAllByUsername((String) token.getPrincipal());
         if (sysUser == null) {
             throw new UnknownAccountException();
         }

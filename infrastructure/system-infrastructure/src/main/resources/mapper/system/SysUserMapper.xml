@@ -37,7 +37,7 @@
         </if>
         ORDER BY uid DESC
     </select>
-    <select id="selectByUsername" resultType="com.tuccicode.boot.system.infrastructure.dataobject.SysUserDO">
+    <select id="selectAllByUsername" resultType="com.tuccicode.boot.system.infrastructure.dataobject.SysUserDO">
         SELECT
         <include refid="ALL"/>
         FROM
@@ -46,14 +46,13 @@
         is_deleted = FALSE
         AND username = #{username}
     </select>
-    <select id="selectByUid" resultType="com.tuccicode.boot.system.infrastructure.dataobject.SysUserDO">
+    <select id="selectPasswordByUid" resultType="java.lang.String">
         SELECT
-        <include refid="ALL"/>
+            password
         FROM
-        sys_user
+            sys_user
         WHERE
-        is_deleted = FALSE
-        AND uid = #{uid}
+            is_deleted = FALSE
+          AND uid = #{uid}
     </select>
-
 </mapper>

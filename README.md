@@ -26,3 +26,5 @@ application - DDD中应用层 \
 domain - DDD中的领域层
 infrastructure - DDD中的基础设施层 \
 
+- Application：对外暴露的是DTO，不能暴露 Entity 
+- Domain：对外暴露的是Entity，不能暴露 DO

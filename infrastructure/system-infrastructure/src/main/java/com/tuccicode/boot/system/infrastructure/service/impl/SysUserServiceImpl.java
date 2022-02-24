@@ -43,8 +43,8 @@ public class SysUserServiceImpl implements SysUserService {
     }
 
     @Override
-    public SysUser getByUsername(String username) {
-        SysUserDO sysUserDO = sysUserMapper.selectByUsername(username.toLowerCase());
+    public SysUser getAllByUsername(String username) {
+        SysUserDO sysUserDO = sysUserMapper.selectAllByUsername(username.toLowerCase());
         return SysUserConvertor.toEntity(sysUserDO, null);
     }
 
@@ -72,7 +72,7 @@ public class SysUserServiceImpl implements SysUserService {
         List<Long> roleIds = sysUser.getRoleIds();
         SysUserDO sysUserDO = SysUserConvertor.toAddDO(sysUser);
         synchronized (this) {
-            SysUser queryUser = this.getByUsername(sysUserDO.getUsername());
+            SysUser queryUser = this.getAllByUsername(sysUserDO.getUsername());
             Assert.isNull(queryUser, SysBizCode.USER_EXIST);
             sysUserMapper.insert(sysUserDO);
         }
@@ -93,8 +93,8 @@ public class SysUserServiceImpl implements SysUserService {
     public void editPassword(SysUser sysUser) {
         // 如果是自己修改密码
         if (sysUser.getOldPassword() != null) {
-            SysUserDO sysUserDO = sysUserMapper.selectByUid(sysUser.getUid());
-            Assert.isTrue(BCrypt.checkpw(sysUser.getOldPassword(), sysUserDO.getPassword()), SysBizCode.PASSWORD_ERROR);
+            String password = sysUserMapper.selectPasswordByUid(sysUser.getUid());
+            Assert.isTrue(BCrypt.checkpw(sysUser.getOldPassword(), password), SysBizCode.PASSWORD_ERROR);
         }
         SysUserDO sysUserDO = SysUserConvertor.toEditPasswordDO(sysUser);
         sysUserMapper.updateById(sysUserDO);

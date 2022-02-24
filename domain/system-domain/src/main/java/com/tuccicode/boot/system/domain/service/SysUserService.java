@@ -15,7 +15,7 @@ public interface SysUserService {
      * @param username 用户名
      * @return SysUser
      */
-    SysUser getByUsername(String username);
+    SysUser getAllByUsername(String username);
 
     /**
      * 条件查询用户信息

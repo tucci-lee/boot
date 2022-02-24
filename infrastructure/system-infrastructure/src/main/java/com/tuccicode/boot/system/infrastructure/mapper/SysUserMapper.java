@@ -15,7 +15,7 @@ public interface SysUserMapper extends BaseMapper<SysUserDO> {
 
     Page<SysUserDO> selectPage(Page<?> page, @Param("q") SysUserQuery query);
 
-    SysUserDO selectByUsername(String username);
+    SysUserDO selectAllByUsername(String username);
 
-    SysUserDO selectByUid(Long uid);
+    String selectPasswordByUid(Long uid);
 }
