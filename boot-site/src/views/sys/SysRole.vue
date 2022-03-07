@@ -216,7 +216,7 @@ export default {
       this.tableLoading = true;
 
       this.$axios.get(roleListUrl, {
-        params: this.query,
+        params: this.role.query,
       }).then(resp => {
         this.tableLoading = false;
         if (!resp.status) {
@@ -348,8 +348,6 @@ export default {
     deleteRole(data) {
       this.$confirm('此操作将永久删除该数据, 是否继续?', '提示', {
         type: 'warning',
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
         center: true
       }).then(() => {
         this.$axios.delete(roleDeleteUrl + data.id)

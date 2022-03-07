@@ -176,6 +176,16 @@
 
 <script>
 
+import {
+  taskAddUrl,
+  taskDeleteUrl,
+  taskEditStatusUrl,
+  taskEditUrl,
+  taskListUrl,
+  taskLogListUrl,
+  taskStartUrl
+} from "@/plugins/request";
+
 export default {
   name: "Task",
   data() {
@@ -233,7 +243,7 @@ export default {
   methods: {
     loadTask() {
       this.tableLoading = true;
-      this.$axios.get("/task", {
+      this.$axios.get(taskListUrl, {
         params: this.task.query,
       }).then(resp => {
         this.tableLoading = false;
@@ -263,7 +273,7 @@ export default {
         if (!valid) {
           return false;
         }
-        this.$axios.post("/task", this.body.add)
+        this.$axios.post(taskAddUrl, this.body.add)
             .then(resp => {
               if (!resp.status) {
                 return;
@@ -291,7 +301,7 @@ export default {
         if (!valid) {
           return false;
         }
-        this.$axios.put("task", this.body.edit)
+        this.$axios.put(taskEditUrl, this.body.edit)
             .then(resp => {
               if (!resp.status) {
                 return;
@@ -313,14 +323,12 @@ export default {
       }
       this.$confirm(msg, '提示', {
         type: 'warning',
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
         center: true
       }).then(() => {
         let body = {};
         body.id = task.id;
         body.status = !task.status;
-        this.$axios.put("/task/status", body)
+        this.$axios.put(taskEditStatusUrl, body)
             .then(resp => {
               if (!resp.status) {
                 return;
@@ -334,11 +342,9 @@ export default {
     deleteTask(data) {
       this.$confirm('此操作将永久删除该数据, 是否继续?', '提示', {
         type: 'warning',
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
         center: true
       }).then(() => {
-        this.$axios.delete("/task/" + data.id)
+        this.$axios.delete(taskDeleteUrl + data.id)
             .then(resp => {
               if (!resp.status) {
                 return;
@@ -349,7 +355,7 @@ export default {
       })
     },
     start(row) {
-      this.$axios.post("/task/start/" + row.id)
+      this.$axios.post(taskStartUrl + row.id)
           .then(resp => {
             if (!resp.status) {
               return;
@@ -365,7 +371,7 @@ export default {
     },
     loadLog() {
       this.logTableLoading = true;
-      this.$axios.get("/task/log", {
+      this.$axios.get(taskLogListUrl, {
         params: this.log.query,
       }).then(resp => {
         this.logTableLoading = false;

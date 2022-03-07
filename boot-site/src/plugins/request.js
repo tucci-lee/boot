@@ -27,6 +27,13 @@ const userEditLockUrl = "sys/user/lock";
 const userEditPasswordUrl = "sys/user/password";
 const loginLogListUrl = "log/login";
 const operateLogUrl = "log/operate";
+const taskListUrl = "task";
+const taskAddUrl = "task";
+const taskEditUrl = "task";
+const taskDeleteUrl = "task/";
+const taskStartUrl = "task/start/";
+const taskEditStatusUrl = "task/status";
+const taskLogListUrl = "task/log";
 
 export {
     loginUrl, imageCaptchaUrl, logoutUrl,
@@ -38,5 +45,7 @@ export {
     roleResEditUrl, userListUrl, userAddUrl,
     userEditUrl, userDeleteUrl, userRoleListUrl,
     userRoleEditUrl, userEditLockUrl, userEditPasswordUrl,
-    loginLogListUrl, operateLogUrl
+    loginLogListUrl, operateLogUrl, taskListUrl,
+    taskAddUrl, taskEditUrl, taskDeleteUrl,
+    taskStartUrl, taskEditStatusUrl, taskLogListUrl
 }

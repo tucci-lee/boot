@@ -224,8 +224,6 @@ export default {
     deleteDept(dept) {
       this.$confirm('此操作将永久删除该数据, 是否继续?', '提示', {
         type: 'warning',
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
         center: true
       }).then(() => {
         this.$axios.delete(deptDeleteUrl + dept.id)
