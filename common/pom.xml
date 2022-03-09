@@ -14,7 +14,7 @@
     <dependencies>
         <dependency>
             <groupId>com.tuccicode.boot</groupId>
-            <artifactId>system-infrastructure</artifactId>
+            <artifactId>system-domain</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>

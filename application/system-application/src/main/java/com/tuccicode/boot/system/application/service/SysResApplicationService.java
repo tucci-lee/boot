@@ -8,7 +8,7 @@ import com.tuccicode.boot.system.application.dto.body.SysResEditBody;
 import com.tuccicode.boot.system.application.dto.vo.SysResVO;
 import com.tuccicode.boot.system.domain.entity.res.SysRes;
 import com.tuccicode.boot.system.domain.service.SysResService;
-import com.tuccicode.boot.system.infrastructure.util.AdminUtils;
+import com.tuccicode.boot.system.domain.util.AdminUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 

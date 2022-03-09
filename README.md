@@ -16,15 +16,13 @@ springboot + shiro \
 8. 定时任务
 
 ### 项目架构
-基于[DDD](https://domain-driven-design.org/) \
+[DDD介绍](https://domain-driven-design.org): 项目基于[DDD的项目示例](https://github.com/domain-driven-design/ddd-lite-example) \
 boot-site - 前端 \
 core - 项目的重要组成 \
-common - controller层按实际情况引用（注意maven包的scope）\
+common - application层按实际情况引用（注意maven包的scope）\
 bootstrap - 启动包 \
-controller - DDD中的接口层 \
-application - DDD中应用层 \
-domain - DDD中的领域层
-infrastructure - DDD中的基础设施层 \
+application - DDD中的接口层和应用层 \
+domain - DDD中的领域层和基础设施层 \
 
-- Application：对外暴露的是DTO，不能暴露 Entity 
+- Application：对外暴露的是VO，不能暴露 Entity 
 - Domain：对外暴露的是Entity，不能暴露 DO

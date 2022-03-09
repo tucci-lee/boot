@@ -10,23 +10,18 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>bootstrap</artifactId>
-    <name>boot</name>
+    <name>bootstrap</name>
 
     <dependencies>
         <!-- 系统依赖 -->
         <dependency>
             <groupId>com.tuccicode.boot</groupId>
-            <artifactId>system-controller</artifactId>
+            <artifactId>system-application</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>com.tuccicode.boot</groupId>
-            <artifactId>authorize-controller</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.tuccicode.boot</groupId>
-            <artifactId>task-controller</artifactId>
+            <artifactId>task-application</artifactId>
             <version>${project.version}</version>
         </dependency>
 

@@ -11,10 +11,8 @@
     <modules>
         <module>core</module>
         <module>common</module>
-        <module>controller</module>
         <module>application</module>
         <module>domain</module>
-        <module>infrastructure</module>
         <module>bootstrap</module>
     </modules>
 

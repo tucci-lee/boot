@@ -6,7 +6,7 @@ import com.tuccicode.boot.system.domain.entity.user.SysUser;
 import com.tuccicode.boot.system.domain.service.SysLoginVersionService;
 import com.tuccicode.boot.system.domain.service.SysResService;
 import com.tuccicode.boot.system.domain.service.SysUserService;
-import com.tuccicode.boot.system.infrastructure.util.AdminUtils;
+import com.tuccicode.boot.system.domain.util.AdminUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;

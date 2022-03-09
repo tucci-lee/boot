@@ -4,8 +4,8 @@ import com.alibaba.fastjson.JSON;
 import com.tuccicode.boot.common.shiro.PrincipalUtils;
 import com.tuccicode.boot.dto.Response;
 import com.tuccicode.boot.system.domain.entity.user.SysUser;
+import com.tuccicode.boot.system.domain.exception.SysBizCode;
 import com.tuccicode.boot.system.domain.service.SysLoginVersionService;
-import com.tuccicode.boot.system.infrastructure.exception.SysBizCode;
 import org.apache.shiro.web.filter.AccessControlFilter;
 
 import javax.servlet.ServletRequest;

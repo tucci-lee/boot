@@ -3,7 +3,7 @@ package com.tuccicode.boot.common.handler;
 import com.tuccicode.boot.dto.Response;
 import com.tuccicode.boot.exception.BizCode;
 import com.tuccicode.boot.exception.ServiceException;
-import com.tuccicode.boot.system.infrastructure.exception.SysBizCode;
+import com.tuccicode.boot.system.domain.exception.SysBizCode;
 import org.apache.shiro.authz.UnauthorizedException;
 import org.hibernate.validator.internal.engine.path.PathImpl;
 import org.slf4j.Logger;
