@@ -2,7 +2,7 @@ package com.tuccicode.boot.common.aspect;
 
 import com.tuccicode.boot.common.util.WebUtils;
 import com.tuccicode.boot.exception.BizCode;
-import com.tuccicode.boot.exception.ServiceException;
+import com.tuccicode.boot.exception.BizException;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
@@ -72,7 +72,7 @@ public class LimitAspect {
         // 设置过期时间，redisson限流缓存是不过期参数。rateLimiter.tryAcquire()执行之后执行才能将所有缓存设置过期时间
         rateLimiter.expire(rateInterval, TimeUnit.SECONDS);
         if (!isPass) { // 禁止访问
-            throw new ServiceException(BizCode.FREQUENT_REQUESTS);
+            throw new BizException(BizCode.FREQUENT_REQUESTS);
         }
     }
 

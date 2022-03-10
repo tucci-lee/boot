@@ -2,7 +2,7 @@ package com.tuccicode.boot.system.domain.service.impl;
 
 import com.google.code.kaptcha.Producer;
 import com.tuccicode.boot.cache.CacheOperate;
-import com.tuccicode.boot.exception.ServiceException;
+import com.tuccicode.boot.exception.BizException;
 import com.tuccicode.boot.system.domain.constant.CacheConst;
 import com.tuccicode.boot.system.domain.entity.captcha.CaptchaType;
 import com.tuccicode.boot.system.domain.exception.SysBizCode;
@@ -37,7 +37,7 @@ public class ImageCaptchaServiceImpl implements ImageCaptchaService {
                 cacheOperate.set(CacheConst.LOGIN_IMAGE_CAPTCHA + key, captcha, 5, TimeUnit.MINUTES);
                 break;
             default:
-                throw new ServiceException(SysBizCode.CAPTCHA_TYPE_ERROR);
+                throw new BizException(SysBizCode.CAPTCHA_TYPE_ERROR);
         }
         return image;
     }
@@ -52,7 +52,7 @@ public class ImageCaptchaServiceImpl implements ImageCaptchaService {
                 cacheCaptcha = cacheOperate.get(cacheKey);
                 break;
             default:
-                throw new ServiceException(SysBizCode.CAPTCHA_TYPE_ERROR);
+                throw new BizException(SysBizCode.CAPTCHA_TYPE_ERROR);
         }
         boolean satisfiedBy = cacheCaptcha != null && cacheCaptcha.equals(captcha);
         Assert.isTrue(satisfiedBy, SysBizCode.IMAGE_CAPTCHA_ERROR);

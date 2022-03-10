@@ -11,9 +11,9 @@ public class PageQuery extends Query {
 
     private static final int DEFAULT_PAGE_SIZE = 10;
 
-    private int pageNo;
+    private int pageNo = 1;
 
-    private int pageSize;
+    private int pageSize = DEFAULT_PAGE_SIZE;
 
     private String orderBy;
 

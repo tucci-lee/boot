@@ -1,11 +1,11 @@
 package com.tuccicode.boot.task.domain.exception;
 
-import com.tuccicode.boot.exception.ErrorMessage;
+import com.tuccicode.boot.exception.ErrorCode;
 
 /**
  * @author tucci.lee
  */
-public enum TaskBizCode implements ErrorMessage {
+public enum TaskBizCode implements ErrorCode {
     TASK_NAME_EXIST(12001, "定时任务名称已经存在"),
     TASK_ADD_ERROR(12002, "定时任务添加错误"),
     TASK_DELETE_ERROR(12003, "定时任务删除错误"),

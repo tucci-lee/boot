@@ -1,7 +1,7 @@
 package com.tuccicode.boot.dto;
 
 
-import com.tuccicode.boot.exception.ErrorMessage;
+import com.tuccicode.boot.exception.ErrorCode;
 
 /**
  * @author tucci.lee
@@ -68,11 +68,11 @@ public class Response extends DTO {
         return response;
     }
 
-    public static Response failure(ErrorMessage errorMessage) {
+    public static Response failure(ErrorCode errorCode) {
         Response response = new Response();
         response.setStatus(FAILURE);
-        response.setCode(errorMessage.getCode());
-        response.setMessage(errorMessage.getMessage());
+        response.setCode(errorCode.getCode());
+        response.setMessage(errorCode.getMessage());
         return response;
     }
 }

@@ -3,7 +3,7 @@ package com.tuccicode.boot.exception;
 /**
  * @author tucci.lee
  */
-public enum BizCode implements ErrorMessage {
+public enum BizCode implements ErrorCode {
     /**
      * <p>
      * -1 服务器错误

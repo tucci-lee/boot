@@ -1,12 +1,12 @@
 package com.tuccicode.boot.system.domain.exception;
 
 
-import com.tuccicode.boot.exception.ErrorMessage;
+import com.tuccicode.boot.exception.ErrorCode;
 
 /**
  * @author tucci.lee
  */
-public enum SysBizCode implements ErrorMessage {
+public enum SysBizCode implements ErrorCode {
     UNAUTHENTICATED(10101, "未认证"),
     UNAUTHORIZED(10102, "未授权"),
 

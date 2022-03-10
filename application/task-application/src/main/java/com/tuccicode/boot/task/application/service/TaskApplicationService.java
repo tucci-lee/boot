@@ -2,7 +2,7 @@ package com.tuccicode.boot.task.application.service;
 
 import com.tuccicode.boot.dto.PageResponse;
 import com.tuccicode.boot.dto.Response;
-import com.tuccicode.boot.exception.ServiceException;
+import com.tuccicode.boot.exception.BizException;
 import com.tuccicode.boot.task.application.assembler.TaskAssembler;
 import com.tuccicode.boot.task.application.dto.body.TaskAddBody;
 import com.tuccicode.boot.task.application.dto.body.TaskEditBody;
@@ -153,7 +153,7 @@ public class TaskApplicationService {
             }
         } catch (Exception e) {
             logger.error("定时任务添加出错: " + task.getId(), e);
-            throw new ServiceException(TaskBizCode.TASK_ADD_ERROR);
+            throw new BizException(TaskBizCode.TASK_ADD_ERROR);
         }
     }
 
@@ -168,7 +168,7 @@ public class TaskApplicationService {
             scheduler.pauseJob(jobKey);
         } catch (SchedulerException e) {
             logger.error("定时任务暂停出错: " + jobName, e);
-            throw new ServiceException(TaskBizCode.TASK_PAUSE_ERROR);
+            throw new BizException(TaskBizCode.TASK_PAUSE_ERROR);
         }
     }
 
@@ -183,7 +183,7 @@ public class TaskApplicationService {
             scheduler.resumeJob(jobKey);
         } catch (SchedulerException e) {
             logger.error("定时任务恢复出错: " + jobName, e);
-            throw new ServiceException(TaskBizCode.TASK_RESUME_ERROR);
+            throw new BizException(TaskBizCode.TASK_RESUME_ERROR);
         }
     }
 
@@ -199,7 +199,7 @@ public class TaskApplicationService {
             scheduler.deleteJob(jobKey);
         } catch (SchedulerException e) {
             logger.error("定时任务删除出错: " + jobName, e);
-            throw new ServiceException(TaskBizCode.TASK_DELETE_ERROR);
+            throw new BizException(TaskBizCode.TASK_DELETE_ERROR);
         }
     }
 
@@ -214,7 +214,7 @@ public class TaskApplicationService {
             scheduler.triggerJob(jobKey);
         } catch (SchedulerException e) {
             logger.error("定时任务执行出错: " + jobName, e);
-            throw new ServiceException(TaskBizCode.TASK_START_ERROR);
+            throw new BizException(TaskBizCode.TASK_START_ERROR);
         }
     }
 }

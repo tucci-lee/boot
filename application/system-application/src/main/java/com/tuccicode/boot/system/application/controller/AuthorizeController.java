@@ -4,7 +4,7 @@ import com.tuccicode.boot.common.aspect.Limit;
 import com.tuccicode.boot.common.shiro.PrincipalUtils;
 import com.tuccicode.boot.common.util.WebUtils;
 import com.tuccicode.boot.dto.Response;
-import com.tuccicode.boot.exception.ServiceException;
+import com.tuccicode.boot.exception.BizException;
 import com.tuccicode.boot.system.application.dto.body.ChangePasswordBody;
 import com.tuccicode.boot.system.application.dto.body.LoginBody;
 import com.tuccicode.boot.system.application.service.SysLoginLogApplicationService;
@@ -66,9 +66,9 @@ public class AuthorizeController {
             try {
                 SecurityUtils.getSubject().login(token);
             } catch (UnknownAccountException | CredentialsException e) {
-                throw new ServiceException(SysBizCode.USERNAME_OR_PASSWORD_ERROR);
+                throw new BizException(SysBizCode.USERNAME_OR_PASSWORD_ERROR);
             } catch (LockedAccountException e) {
-                throw new ServiceException(SysBizCode.ACCOUNT_LOCK);
+                throw new BizException(SysBizCode.ACCOUNT_LOCK);
             }
         } catch (Exception e) {
             status = false;

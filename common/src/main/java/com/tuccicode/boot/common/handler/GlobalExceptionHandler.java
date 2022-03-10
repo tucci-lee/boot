@@ -2,7 +2,7 @@ package com.tuccicode.boot.common.handler;
 
 import com.tuccicode.boot.dto.Response;
 import com.tuccicode.boot.exception.BizCode;
-import com.tuccicode.boot.exception.ServiceException;
+import com.tuccicode.boot.exception.BizException;
 import com.tuccicode.boot.system.domain.exception.SysBizCode;
 import org.apache.shiro.authz.UnauthorizedException;
 import org.hibernate.validator.internal.engine.path.PathImpl;
@@ -35,8 +35,8 @@ public class GlobalExceptionHandler {
      * @param e ServiceException
      * @return Response
      */
-    @ExceptionHandler(ServiceException.class)
-    public Response serviceExceptionHandler(ServiceException e) {
+    @ExceptionHandler(BizException.class)
+    public Response serviceExceptionHandler(BizException e) {
         return Response.failure(e.getCode(), e.getMessage());
     }
 
