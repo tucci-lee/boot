@@ -281,7 +281,7 @@ export default {
         add: {
           username: [
             {required: true, message: '请输入账号', trigger: 'blur'},
-            {pattern: '^[a-zA-Z][a-zA-Z0-9]{5,19}$', message: '5到20位的字母或数字(字母开头)', trigger: 'blur'}
+            {pattern: '^[a-zA-Z][a-zA-Z0-9]{4,19}$', message: '5到20位的字母或数字(字母开头)', trigger: 'blur'}
           ],
           password: [
             {required: true, message: '请输入密码', trigger: 'blur'},

@@ -17,7 +17,6 @@ public class SysUserEditBody {
     @NotNull
     private Long uid;
 
-    @NotBlank
     @Pattern(regexp = "^[1][3-9][0-9]{9}$")
     private String phone;
 

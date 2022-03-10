@@ -4,8 +4,8 @@ import {ElMessage} from "element-plus";
 import 'element-plus/dist/index.css';
 
 axios.defaults.withCredentials = true;
-axios.defaults.baseURL = "http://localhost:8000"; // 开发使用
-// axios.defaults.baseURL = "http://boot.2cci.cn/api/"; // 线上
+// axios.defaults.baseURL = "http://localhost:8000"; // 开发使用
+axios.defaults.baseURL = "https://boot.2cci.cn/api/"; // 线上
 
 /**
  * axios拦截器，错误直接提示
