@@ -1,6 +1,6 @@
 package com.tuccicode.boot.system.domain.entity.role;
 
-import com.tuccicode.boot.dto.PageQuery;
+import com.tuccicode.raccoon.dto.PageQuery;
 import lombok.Data;
 
 /**

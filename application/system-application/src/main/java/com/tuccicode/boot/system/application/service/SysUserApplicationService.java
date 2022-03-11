@@ -1,7 +1,7 @@
 package com.tuccicode.boot.system.application.service;
 
-import com.tuccicode.boot.dto.PageResponse;
-import com.tuccicode.boot.dto.Response;
+import com.tuccicode.raccoon.dto.PageResponse;
+import com.tuccicode.raccoon.dto.Response;
 import com.tuccicode.boot.system.application.assembler.SysUserAssembler;
 import com.tuccicode.boot.system.application.dto.body.ChangePasswordBody;
 import com.tuccicode.boot.system.application.dto.body.SysUserAddBody;

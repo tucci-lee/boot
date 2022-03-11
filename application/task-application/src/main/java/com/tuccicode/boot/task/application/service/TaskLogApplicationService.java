@@ -1,7 +1,7 @@
 package com.tuccicode.boot.task.application.service;
 
-import com.tuccicode.boot.dto.PageResponse;
-import com.tuccicode.boot.dto.Response;
+import com.tuccicode.raccoon.dto.PageResponse;
+import com.tuccicode.raccoon.dto.Response;
 import com.tuccicode.boot.task.application.assembler.TaskLogAssembler;
 import com.tuccicode.boot.task.application.dto.vo.TaskLogVO;
 import com.tuccicode.boot.task.domain.entity.TaskLog;

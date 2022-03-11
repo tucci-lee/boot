@@ -1,7 +1,7 @@
 package com.tuccicode.boot.task.application.controller;
 
 import com.tuccicode.boot.common.aspect.Operate;
-import com.tuccicode.boot.dto.Response;
+import com.tuccicode.raccoon.dto.Response;
 import com.tuccicode.boot.task.application.dto.body.TaskAddBody;
 import com.tuccicode.boot.task.application.dto.body.TaskEditBody;
 import com.tuccicode.boot.task.application.dto.body.TaskEditStatusBody;

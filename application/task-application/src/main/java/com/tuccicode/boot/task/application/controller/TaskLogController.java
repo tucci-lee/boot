@@ -1,6 +1,6 @@
 package com.tuccicode.boot.task.application.controller;
 
-import com.tuccicode.boot.dto.Response;
+import com.tuccicode.raccoon.dto.Response;
 import com.tuccicode.boot.task.application.service.TaskLogApplicationService;
 import com.tuccicode.boot.task.domain.entity.TaskLogListQuery;
 import org.apache.shiro.authz.annotation.RequiresPermissions;

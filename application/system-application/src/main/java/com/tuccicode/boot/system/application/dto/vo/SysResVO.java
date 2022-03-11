@@ -1,5 +1,6 @@
 package com.tuccicode.boot.system.application.dto.vo;
 
+import com.tuccicode.raccoon.dto.DTO;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -8,7 +9,7 @@ import lombok.experimental.Accessors;
  */
 @Data
 @Accessors(chain = true)
-public class SysResVO {
+public class SysResVO extends DTO {
 
     private Long id;
 

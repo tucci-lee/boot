@@ -1,6 +1,6 @@
 package com.tuccicode.boot.system.application.dto.vo;
 
-import com.tuccicode.boot.dto.DTO;
+import com.tuccicode.raccoon.dto.DTO;
 import lombok.Data;
 import lombok.experimental.Accessors;
 

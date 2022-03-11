@@ -1,7 +1,7 @@
 package com.tuccicode.boot.task.domain.entity;
 
 import com.sun.org.apache.xpath.internal.operations.Bool;
-import com.tuccicode.boot.dto.DTO;
+import com.tuccicode.raccoon.dto.DTO;
 import lombok.Data;
 import lombok.experimental.Accessors;
 

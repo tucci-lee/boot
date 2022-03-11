@@ -1,7 +1,7 @@
 package com.tuccicode.boot.task.domain.service.impl;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.tuccicode.boot.dto.PageResponse;
+import com.tuccicode.raccoon.dto.PageResponse;
 import com.tuccicode.boot.task.domain.convertor.TaskLogConvertor;
 import com.tuccicode.boot.task.domain.dataobject.TaskLogDO;
 import com.tuccicode.boot.task.domain.entity.TaskLog;

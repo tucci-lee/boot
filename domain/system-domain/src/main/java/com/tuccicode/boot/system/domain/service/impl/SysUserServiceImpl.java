@@ -1,7 +1,7 @@
 package com.tuccicode.boot.system.domain.service.impl;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.tuccicode.boot.dto.PageResponse;
+import com.tuccicode.raccoon.dto.PageResponse;
 import com.tuccicode.boot.system.domain.convertor.SysUserConvertor;
 import com.tuccicode.boot.system.domain.dataobject.SysDeptDO;
 import com.tuccicode.boot.system.domain.dataobject.SysUserDO;
@@ -13,7 +13,7 @@ import com.tuccicode.boot.system.domain.mapper.SysUserMapper;
 import com.tuccicode.boot.system.domain.mapper.SysUserRoleMapper;
 import com.tuccicode.boot.system.domain.service.SysLoginVersionService;
 import com.tuccicode.boot.system.domain.service.SysUserService;
-import com.tuccicode.boot.util.Assert;
+import com.tuccicode.raccoon.exception.Assert;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

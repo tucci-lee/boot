@@ -2,7 +2,7 @@ package com.tuccicode.boot.common.shiro.filter;
 
 import com.alibaba.fastjson.JSON;
 import com.tuccicode.boot.common.shiro.PrincipalUtils;
-import com.tuccicode.boot.dto.Response;
+import com.tuccicode.raccoon.dto.Response;
 import com.tuccicode.boot.system.domain.entity.user.SysUser;
 import com.tuccicode.boot.system.domain.exception.SysBizCode;
 import com.tuccicode.boot.system.domain.service.SysLoginVersionService;
@@ -44,7 +44,7 @@ public class UserFilter extends AccessControlFilter {
     protected boolean onAccessDenied(ServletRequest request, ServletResponse response) throws Exception {
         HttpServletResponse res = (HttpServletResponse) response;
         res.setContentType("application/json;charset=UTF-8");
-        String result = JSON.toJSONString(Response.failure(SysBizCode.UNAUTHENTICATED));
+        String result = JSON.toJSONString(Response.failure(SysBizCode.UNAUTHENTICATED.getCode(), SysBizCode.UNAUTHENTICATED.getMessage()));
         res.getWriter().print(result);
         return false;
     }

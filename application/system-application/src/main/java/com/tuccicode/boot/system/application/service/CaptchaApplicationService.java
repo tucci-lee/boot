@@ -1,7 +1,7 @@
 package com.tuccicode.boot.system.application.service;
 
-import com.tuccicode.boot.dto.Response;
-import com.tuccicode.boot.dto.SingletonResponse;
+import com.tuccicode.raccoon.dto.Response;
+import com.tuccicode.raccoon.dto.SingletonResponse;
 import com.tuccicode.boot.system.application.dto.vo.ImageCaptchaVO;
 import com.tuccicode.boot.system.domain.entity.captcha.CaptchaType;
 import com.tuccicode.boot.system.domain.service.ImageCaptchaService;

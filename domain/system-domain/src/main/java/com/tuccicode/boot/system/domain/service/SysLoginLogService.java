@@ -1,7 +1,7 @@
 package com.tuccicode.boot.system.domain.service;
 
 
-import com.tuccicode.boot.dto.PageResponse;
+import com.tuccicode.raccoon.dto.PageResponse;
 import com.tuccicode.boot.system.domain.entity.log.SysLoginLog;
 import com.tuccicode.boot.system.domain.entity.log.SysLoginLogQuery;
 

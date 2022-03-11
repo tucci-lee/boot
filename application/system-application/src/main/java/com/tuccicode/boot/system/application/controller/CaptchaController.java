@@ -1,6 +1,6 @@
 package com.tuccicode.boot.system.application.controller;
 
-import com.tuccicode.boot.dto.Response;
+import com.tuccicode.raccoon.dto.Response;
 import com.tuccicode.boot.system.application.service.CaptchaApplicationService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

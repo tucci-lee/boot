@@ -1,5 +1,6 @@
 package com.tuccicode.boot.system.application.dto.body;
 
+import com.tuccicode.raccoon.dto.DTO;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 
@@ -14,7 +15,7 @@ import java.util.List;
  * @author tucci.lee
  */
 @Data
-public class SysUserAddBody {
+public class SysUserAddBody extends DTO {
 
     @NotBlank
     @Pattern(regexp = "^[a-zA-Z][a-zA-Z0-9]{3,9}$")

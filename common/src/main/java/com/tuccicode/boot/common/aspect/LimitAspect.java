@@ -1,8 +1,8 @@
 package com.tuccicode.boot.common.aspect;
 
 import com.tuccicode.boot.common.util.WebUtils;
-import com.tuccicode.boot.exception.BizCode;
-import com.tuccicode.boot.exception.BizException;
+import com.tuccicode.raccoon.exception.BizCode;
+import com.tuccicode.raccoon.exception.BizException;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;

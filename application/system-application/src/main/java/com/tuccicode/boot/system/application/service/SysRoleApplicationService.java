@@ -1,8 +1,8 @@
 package com.tuccicode.boot.system.application.service;
 
-import com.tuccicode.boot.dto.PageResponse;
-import com.tuccicode.boot.dto.Response;
-import com.tuccicode.boot.dto.SingletonResponse;
+import com.tuccicode.raccoon.dto.PageResponse;
+import com.tuccicode.raccoon.dto.Response;
+import com.tuccicode.raccoon.dto.SingletonResponse;
 import com.tuccicode.boot.system.application.assembler.SysRoleAssembler;
 import com.tuccicode.boot.system.application.dto.body.SysRoleAddBody;
 import com.tuccicode.boot.system.application.dto.body.SysRoleEditBody;

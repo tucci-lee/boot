@@ -1,6 +1,6 @@
 package com.tuccicode.boot.task.domain.service;
 
-import com.tuccicode.boot.dto.PageResponse;
+import com.tuccicode.raccoon.dto.PageResponse;
 import com.tuccicode.boot.task.domain.entity.Task;
 import com.tuccicode.boot.task.domain.entity.TaskListQuery;
 

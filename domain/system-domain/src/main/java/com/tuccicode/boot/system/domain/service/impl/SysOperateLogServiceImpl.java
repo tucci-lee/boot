@@ -1,7 +1,7 @@
 package com.tuccicode.boot.system.domain.service.impl;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.tuccicode.boot.dto.PageResponse;
+import com.tuccicode.raccoon.dto.PageResponse;
 import com.tuccicode.boot.system.domain.convertor.LogOperateConvertor;
 import com.tuccicode.boot.system.domain.dataobject.SysOperateLogDO;
 import com.tuccicode.boot.system.domain.entity.log.SysOperateLog;

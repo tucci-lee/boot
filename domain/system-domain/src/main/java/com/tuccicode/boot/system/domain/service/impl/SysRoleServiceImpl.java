@@ -1,7 +1,7 @@
 package com.tuccicode.boot.system.domain.service.impl;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.tuccicode.boot.dto.PageResponse;
+import com.tuccicode.raccoon.dto.PageResponse;
 import com.tuccicode.boot.system.domain.convertor.SysRoleConvertor;
 import com.tuccicode.boot.system.domain.dataobject.SysRoleDO;
 import com.tuccicode.boot.system.domain.entity.role.SysRole;
@@ -11,7 +11,7 @@ import com.tuccicode.boot.system.domain.mapper.SysRoleMapper;
 import com.tuccicode.boot.system.domain.mapper.SysRoleResMapper;
 import com.tuccicode.boot.system.domain.mapper.SysUserRoleMapper;
 import com.tuccicode.boot.system.domain.service.SysRoleService;
-import com.tuccicode.boot.util.Assert;
+import com.tuccicode.raccoon.exception.Assert;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

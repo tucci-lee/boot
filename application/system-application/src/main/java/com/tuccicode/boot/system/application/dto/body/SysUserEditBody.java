@@ -1,5 +1,6 @@
 package com.tuccicode.boot.system.application.dto.body;
 
+import com.tuccicode.raccoon.dto.DTO;
 import lombok.Data;
 
 import javax.validation.constraints.Email;
@@ -12,7 +13,7 @@ import javax.validation.constraints.Size;
  * @author tucci.lee
  */
 @Data
-public class SysUserEditBody {
+public class SysUserEditBody extends DTO {
 
     @NotNull
     private Long uid;

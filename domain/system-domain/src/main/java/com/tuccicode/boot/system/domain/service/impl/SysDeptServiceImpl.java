@@ -7,7 +7,7 @@ import com.tuccicode.boot.system.domain.exception.SysBizCode;
 import com.tuccicode.boot.system.domain.mapper.SysDeptMapper;
 import com.tuccicode.boot.system.domain.mapper.SysUserMapper;
 import com.tuccicode.boot.system.domain.service.SysDeptService;
-import com.tuccicode.boot.util.Assert;
+import com.tuccicode.raccoon.exception.Assert;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

@@ -1,7 +1,7 @@
 package com.tuccicode.boot.system.domain.exception;
 
 
-import com.tuccicode.boot.exception.ErrorCode;
+import com.tuccicode.raccoon.exception.ErrorCode;
 
 /**
  * @author tucci.lee

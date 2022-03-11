@@ -8,7 +8,7 @@ import com.tuccicode.boot.system.domain.exception.SysBizCode;
 import com.tuccicode.boot.system.domain.mapper.SysResMapper;
 import com.tuccicode.boot.system.domain.mapper.SysRoleResMapper;
 import com.tuccicode.boot.system.domain.service.SysResService;
-import com.tuccicode.boot.util.Assert;
+import com.tuccicode.raccoon.exception.Assert;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;

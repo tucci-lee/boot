@@ -1,6 +1,6 @@
 package com.tuccicode.boot.task.domain.entity;
 
-import com.tuccicode.boot.dto.PageQuery;
+import com.tuccicode.raccoon.dto.PageQuery;
 import lombok.Data;
 
 import javax.validation.constraints.NotNull;

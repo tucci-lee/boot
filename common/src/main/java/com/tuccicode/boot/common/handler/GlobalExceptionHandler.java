@@ -1,8 +1,8 @@
 package com.tuccicode.boot.common.handler;
 
-import com.tuccicode.boot.dto.Response;
-import com.tuccicode.boot.exception.BizCode;
-import com.tuccicode.boot.exception.BizException;
+import com.tuccicode.raccoon.dto.Response;
+import com.tuccicode.raccoon.exception.BizCode;
+import com.tuccicode.raccoon.exception.BizException;
 import com.tuccicode.boot.system.domain.exception.SysBizCode;
 import org.apache.shiro.authz.UnauthorizedException;
 import org.hibernate.validator.internal.engine.path.PathImpl;
@@ -48,7 +48,7 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(UnauthorizedException.class)
     public Response unauthorizedExceptionHandler(UnauthorizedException e) {
-        return Response.failure(SysBizCode.UNAUTHORIZED);
+        return Response.failure(SysBizCode.UNAUTHORIZED.getCode(), SysBizCode.UNAUTHORIZED.getMessage());
     }
 
     /**
@@ -122,6 +122,6 @@ public class GlobalExceptionHandler {
             bizCode = BizCode.SERVER_ERROR;
             log.error("未知异常", e);
         }
-        return Response.failure(bizCode);
+        return Response.failure(bizCode.getCode(), bizCode.getMessage());
     }
 }

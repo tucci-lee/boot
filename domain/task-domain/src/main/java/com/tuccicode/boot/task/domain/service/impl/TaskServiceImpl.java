@@ -1,7 +1,7 @@
 package com.tuccicode.boot.task.domain.service.impl;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.tuccicode.boot.dto.PageResponse;
+import com.tuccicode.raccoon.dto.PageResponse;
 import com.tuccicode.boot.task.domain.convertor.TaskConvertor;
 import com.tuccicode.boot.task.domain.dataobject.TaskDO;
 import com.tuccicode.boot.task.domain.entity.Task;
@@ -9,7 +9,7 @@ import com.tuccicode.boot.task.domain.entity.TaskListQuery;
 import com.tuccicode.boot.task.domain.exception.TaskBizCode;
 import com.tuccicode.boot.task.domain.mapper.TaskMapper;
 import com.tuccicode.boot.task.domain.service.TaskService;
-import com.tuccicode.boot.util.Assert;
+import com.tuccicode.raccoon.exception.Assert;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

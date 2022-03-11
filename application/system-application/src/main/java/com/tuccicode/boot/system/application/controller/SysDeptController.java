@@ -1,7 +1,7 @@
 package com.tuccicode.boot.system.application.controller;
 
 import com.tuccicode.boot.common.aspect.Operate;
-import com.tuccicode.boot.dto.Response;
+import com.tuccicode.raccoon.dto.Response;
 import com.tuccicode.boot.system.application.dto.body.SysDeptAddBody;
 import com.tuccicode.boot.system.application.dto.body.SysDeptEditBody;
 import com.tuccicode.boot.system.application.service.SysDeptApplicationService;

@@ -1,6 +1,6 @@
 package com.tuccicode.boot.system.application.controller;
 
-import com.tuccicode.boot.dto.Response;
+import com.tuccicode.raccoon.dto.Response;
 import com.tuccicode.boot.system.application.service.SysOperateLogApplicationService;
 import com.tuccicode.boot.system.domain.entity.log.SysOperateLogQuery;
 import org.apache.shiro.authz.annotation.RequiresPermissions;

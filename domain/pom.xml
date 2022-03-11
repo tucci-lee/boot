@@ -18,9 +18,8 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.tuccicode.boot</groupId>
-            <artifactId>core</artifactId>
-            <version>${project.version}</version>
+            <groupId>com.tuccicode</groupId>
+            <artifactId>raccoon-core</artifactId>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
