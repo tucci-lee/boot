@@ -1,7 +1,7 @@
 package com.tuccicode.boot.system.domain.service.impl;
 
 import com.google.code.kaptcha.Producer;
-import com.tuccicode.raccoon.cache.CacheOperate;
+import com.tuccicode.raccoon.cache.RedisCacheOperate;
 import com.tuccicode.raccoon.exception.BizException;
 import com.tuccicode.boot.system.domain.constant.CacheConst;
 import com.tuccicode.boot.system.domain.entity.captcha.CaptchaType;
@@ -20,12 +20,12 @@ import java.util.concurrent.TimeUnit;
 public class ImageCaptchaServiceImpl implements ImageCaptchaService {
 
     private final Producer producer;
-    private final CacheOperate cacheOperate;
+    private final RedisCacheOperate redisCacheOperate;
 
     public ImageCaptchaServiceImpl(Producer producer,
-                                   CacheOperate cacheOperate) {
+                                   RedisCacheOperate redisCacheOperate) {
         this.producer = producer;
-        this.cacheOperate = cacheOperate;
+        this.redisCacheOperate = redisCacheOperate;
     }
 
     @Override
@@ -34,7 +34,7 @@ public class ImageCaptchaServiceImpl implements ImageCaptchaService {
         BufferedImage image = producer.createImage(captcha);
         switch (type) {
             case LOGIN:
-                cacheOperate.set(CacheConst.LOGIN_IMAGE_CAPTCHA + key, captcha, 5, TimeUnit.MINUTES);
+                redisCacheOperate.set(CacheConst.LOGIN_IMAGE_CAPTCHA + key, captcha, 5, TimeUnit.MINUTES);
                 break;
             default:
                 throw new BizException(SysBizCode.CAPTCHA_TYPE_ERROR);
@@ -49,13 +49,13 @@ public class ImageCaptchaServiceImpl implements ImageCaptchaService {
         switch (type){
             case LOGIN:
                 cacheKey = CacheConst.LOGIN_IMAGE_CAPTCHA + key;
-                cacheCaptcha = cacheOperate.get(cacheKey);
+                cacheCaptcha = redisCacheOperate.get(cacheKey);
                 break;
             default:
                 throw new BizException(SysBizCode.CAPTCHA_TYPE_ERROR);
         }
         boolean satisfiedBy = cacheCaptcha != null && cacheCaptcha.equals(captcha);
         Assert.isTrue(satisfiedBy, SysBizCode.IMAGE_CAPTCHA_ERROR);
-        cacheOperate.delete(cacheKey);
+        redisCacheOperate.delete(cacheKey);
     }
 }

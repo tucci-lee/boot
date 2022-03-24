@@ -1,6 +1,7 @@
 package com.tuccicode.boot.config;
 
 import com.tuccicode.raccoon.cache.CacheOperate;
+import com.tuccicode.raccoon.cache.RedisCacheOperate;
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -22,11 +23,11 @@ public class CacheOperateConfig {
     }
 
     @Bean
-    public CacheOperate cacheOperate() {
+    public RedisCacheOperate cacheOperate() {
         return new RedisTemplateCacheOperate(redisTemplate);
     }
 
-    class RedisTemplateCacheOperate implements CacheOperate {
+    class RedisTemplateCacheOperate implements RedisCacheOperate {
 
         private final RedisTemplate redisTemplate;
 
@@ -45,6 +46,11 @@ public class CacheOperateConfig {
         }
 
         @Override
+        public Set<String> keys(String pattern) {
+            return redisTemplate.keys(pattern);
+        }
+
+        @Override
         public <T> T get(String key) {
             return (T) redisTemplate.opsForValue().get(key);
         }
@@ -56,7 +62,7 @@ public class CacheOperateConfig {
 
         @Override
         public void clean(String pattern) {
-            Set<String> keys = redisTemplate.keys(pattern);
+            Set<String> keys = this.keys(pattern);
             if (!CollectionUtils.isEmpty(keys)) {
                 redisTemplate.delete(keys);
             }
