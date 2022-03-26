@@ -18,7 +18,7 @@
 
     <properties>
         <spring-boot.version>2.3.7.RELEASE</spring-boot.version>
-        <raccoon.version>1.0.3</raccoon.version>
+        <raccoon.version>1.0.4</raccoon.version>
         <redisson.version>3.14.1</redisson.version>
         <druid.version>1.2.6</druid.version>
         <mybatis-plus.version>3.4.0</mybatis-plus.version>
