@@ -7,8 +7,6 @@ import com.tuccicode.boot.app.system.dto.body.SysRoleResEditBody;
 import com.tuccicode.boot.app.system.dto.query.SysRoleListQuery;
 import com.tuccicode.boot.app.system.service.SysResAppService;
 import com.tuccicode.boot.app.system.service.SysRoleAppService;
-import com.tuccicode.boot.app.util.DemoUtils;
-import com.tuccicode.boot.domain.system.entity.role.SysRoleQuery;
 import com.tuccicode.raccoon.dto.Response;
 import org.apache.shiro.authz.annotation.Logical;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -73,7 +71,6 @@ public class SysRoleController {
     @RequiresPermissions(value = {"sys:role:edit"})
     @PutMapping
     public Response edit(@Validated @RequestBody SysRoleEditBody body) {
-        DemoUtils.isSysRole(body.getId());
         return sysRoleAppService.edit(body);
     }
 
@@ -86,7 +83,6 @@ public class SysRoleController {
     @Operate("删除角色")
     @DeleteMapping("{id}")
     public Response delete(@PathVariable Long id) {
-        DemoUtils.isSysRole(id);
         return sysRoleAppService.delete(id);
     }
 
@@ -112,7 +108,6 @@ public class SysRoleController {
     @RequiresPermissions(value = {"sys:role:edit"})
     @PutMapping("res")
     public Response editRes(@Validated @RequestBody SysRoleResEditBody body) {
-        DemoUtils.isSysRole(body.getId());
         return sysRoleAppService.editRes(body);
     }
 }

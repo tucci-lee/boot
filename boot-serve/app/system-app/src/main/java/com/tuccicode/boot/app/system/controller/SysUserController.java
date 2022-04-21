@@ -9,8 +9,6 @@ import com.tuccicode.boot.app.system.dto.body.SysUserRoleEditBody;
 import com.tuccicode.boot.app.system.dto.query.SysUserListQuery;
 import com.tuccicode.boot.app.system.service.SysRoleAppService;
 import com.tuccicode.boot.app.system.service.SysUserAppService;
-import com.tuccicode.boot.app.util.DemoUtils;
-import com.tuccicode.boot.domain.system.entity.user.SysUserQuery;
 import com.tuccicode.raccoon.dto.Response;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.validation.annotation.Validated;
@@ -74,7 +72,6 @@ public class SysUserController {
     @RequiresPermissions(value = {"sys:user:edit"})
     @PutMapping
     public Response edit(@Validated @RequestBody SysUserEditBody body) {
-        DemoUtils.isAdminUser(body.getUid());
         return sysUserAppService.edit(body);
     }
 
@@ -88,7 +85,6 @@ public class SysUserController {
     @RequiresPermissions(value = {"sys:user:editPassword"})
     @PutMapping("password")
     public Response editPassword(@Validated @RequestBody SysUserEditPasswordBody body) {
-        DemoUtils.isAdminUser(body.getUid());
         return sysUserAppService.editPassword(body);
     }
 
@@ -102,7 +98,6 @@ public class SysUserController {
     @RequiresPermissions(value = {"sys:user:editLock"})
     @PutMapping("lock")
     public Response editLock(@Validated @RequestBody SysUserEditLockBody body) {
-        DemoUtils.isAdminUser(body.getUid());
         return sysUserAppService.editLock(body);
     }
 
@@ -116,7 +111,6 @@ public class SysUserController {
     @RequiresPermissions(value = {"sys:user:delete"})
     @DeleteMapping("{uid}")
     public Response delete(@PathVariable Long uid) {
-        DemoUtils.isAdminUser(uid);
         return sysUserAppService.delete(uid);
     }
 
@@ -142,7 +136,6 @@ public class SysUserController {
     @RequiresPermissions(value = {"sys:user:edit"})
     @PutMapping("role")
     public Response editRole(@Validated @RequestBody SysUserRoleEditBody body) {
-        DemoUtils.isAdminUser(body.getUid());
         return sysUserAppService.editRole(body);
     }
 }
