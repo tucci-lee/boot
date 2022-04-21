@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tuccicode.boot.domain.system.mapper.SysRoleMapper">
+
+    <sql id="ALL">
+        id
+        , role_char, `name`, remarks, create_time, updated_time, is_deleted
+    </sql>
+
+    <select id="selectPage" resultType="com.tuccicode.boot.domain.system.dataobject.SysRoleDO">
+        SELECT
+        <include refid="ALL"/>
+        FROM
+        sys_role
+        WHERE
+        is_deleted = FALSE
+        <if test="q.name != null and q.name != ''">
+            AND `name` LIKE CONCAT(#{q.name}, '%')
+        </if>
+        ORDER BY id DESC
+    </select>
+    <select id="selectByName" resultType="com.tuccicode.boot.domain.system.dataobject.SysRoleDO">
+        SELECT
+        <include refid="ALL"/>
+        FROM
+        sys_role
+        WHERE
+        is_deleted = FALSE
+        AND `name` = #{name}
+    </select>
+    <select id="selectByUid" resultType="com.tuccicode.boot.domain.system.dataobject.SysRoleDO">
+        SELECT t1.id,
+               t1.role_char,
+               t1.`name`,
+               t1.remarks,
+               t1.create_time,
+               t1.updated_time
+        FROM sys_role t1,
+             sys_user_role t2,
+             sys_user t3
+        WHERE t3.is_deleted = FALSE
+          AND t3.uid = #{uid}
+          AND t3.uid = t2.uid
+          AND t2.role_id = t1.id
+    </select>
+</mapper>
