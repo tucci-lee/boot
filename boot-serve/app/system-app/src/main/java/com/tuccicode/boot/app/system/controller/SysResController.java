@@ -5,6 +5,7 @@ import com.tuccicode.boot.app.shiro.PrincipalUtils;
 import com.tuccicode.boot.app.system.dto.body.SysResAddBody;
 import com.tuccicode.boot.app.system.dto.body.SysResEditBody;
 import com.tuccicode.boot.app.system.service.SysResAppService;
+import com.tuccicode.boot.app.util.DemoUtils;
 import com.tuccicode.raccoon.dto.Response;
 import org.apache.shiro.authz.annotation.Logical;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -75,6 +76,7 @@ public class SysResController {
     @RequiresPermissions(value = {"sys:res:delete"})
     @DeleteMapping("{id}")
     public Response delete(@PathVariable Long id) {
+        DemoUtils.isSysRes(id);
         return sysResAppService.delete(id);
     }
 
@@ -88,6 +90,7 @@ public class SysResController {
     @RequiresPermissions(value = {"sys:res:edit"})
     @PutMapping
     public Response edit(@Validated @RequestBody SysResEditBody body) {
+        DemoUtils.isSysRes(body.getId());
         return sysResAppService.edit(body);
     }
 

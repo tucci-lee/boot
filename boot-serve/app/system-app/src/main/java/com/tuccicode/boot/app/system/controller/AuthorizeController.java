@@ -6,6 +6,7 @@ import com.tuccicode.boot.app.system.dto.body.ChangePasswordBody;
 import com.tuccicode.boot.app.system.dto.body.LoginBody;
 import com.tuccicode.boot.app.system.service.SysLoginLogAppService;
 import com.tuccicode.boot.app.system.service.SysUserAppService;
+import com.tuccicode.boot.app.util.DemoUtils;
 import com.tuccicode.boot.app.util.WebUtils;
 import com.tuccicode.boot.domain.exception.BootBizCode;
 import com.tuccicode.boot.domain.system.entity.captcha.CaptchaType;
@@ -103,6 +104,7 @@ public class AuthorizeController {
     @PutMapping("change_password")
     public Response changePassword(@Validated @RequestBody ChangePasswordBody body) {
         Long uid = PrincipalUtils.getUid();
+        DemoUtils.isAdminUser(uid);
         return sysUserAppService.changePassword(body, uid);
     }
 }

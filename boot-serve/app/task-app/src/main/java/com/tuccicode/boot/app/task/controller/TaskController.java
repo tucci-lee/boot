@@ -5,6 +5,7 @@ import com.tuccicode.boot.app.task.dto.body.TaskAddBody;
 import com.tuccicode.boot.app.task.dto.body.TaskEditBody;
 import com.tuccicode.boot.app.task.dto.body.TaskEditStatusBody;
 import com.tuccicode.boot.app.task.service.TaskAppService;
+import com.tuccicode.boot.app.util.DemoUtils;
 import com.tuccicode.boot.domain.task.entity.TaskListQuery;
 import com.tuccicode.raccoon.dto.Response;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -53,6 +54,7 @@ public class TaskController {
     @RequiresPermissions(value = {"task:add"})
     @PostMapping
     public Response add(@Validated @RequestBody TaskAddBody body) {
+        DemoUtils.notOperateTask();
         return taskAppService.add(body);
     }
 
@@ -66,6 +68,7 @@ public class TaskController {
     @RequiresPermissions(value = {"task:edit"})
     @PutMapping
     public Response edit(@Validated @RequestBody TaskEditBody body){
+        DemoUtils.notOperateTask();
         return taskAppService.edit(body);
     }
 
@@ -79,6 +82,7 @@ public class TaskController {
     @RequiresPermissions(value = {"task:delete"})
     @DeleteMapping("{id}")
     public Response delete(@PathVariable Long id){
+        DemoUtils.notOperateTask();
         return taskAppService.delete(id);
     }
 
@@ -86,6 +90,7 @@ public class TaskController {
     @RequiresPermissions(value = {"task:editStatus"})
     @PutMapping("status")
     public Response editStatus(@Validated @RequestBody TaskEditStatusBody body) {
+        DemoUtils.notOperateTask();
         return taskAppService.editStatus(body);
     }
 
@@ -93,6 +98,7 @@ public class TaskController {
     @RequiresPermissions(value = {"task:start"})
     @PostMapping("start/{id}")
     public Response start(@PathVariable Long id){
+        DemoUtils.notOperateTask();
         return taskAppService.start(id);
     }
 }
