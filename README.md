@@ -17,11 +17,10 @@ springboot + shiro \
 
 ### 项目架构
 [DDD介绍](https://domain-driven-design.org): 项目基于[DDD的项目示例](https://github.com/domain-driven-design/ddd-lite-example) \
-boot-site - 前端 \
-core - 项目的重要组成 \
-common - application层按实际情况引用（注意maven包的scope）\
-bootstrap - 启动包 \
-application - DDD中的接口层和应用层 \
+boot-web - 前端 \
+boot-serve - 后端 \
+start - 启动包 \
+app - DDD中的接口层和应用层 \
 domain - DDD中的领域层和基础设施层 \
 
 - Application：对外暴露的是VO，不能暴露 Entity 
