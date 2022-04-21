@@ -71,7 +71,8 @@ public class TaskAppService implements InitializingBean {
 
     @Transactional(rollbackFor = RuntimeException.class)
     public Response add(TaskAddBody body) {
-        Task task = new Task();
+        Task task = new Task()
+                .setStatus(false);
         BeanUtils.copyProperties(body, task);
         Long id = taskService.add(task);
 
