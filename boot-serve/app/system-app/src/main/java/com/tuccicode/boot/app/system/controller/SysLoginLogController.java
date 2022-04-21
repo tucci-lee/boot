@@ -1,5 +1,6 @@
 package com.tuccicode.boot.app.system.controller;
 
+import com.tuccicode.boot.app.system.dto.query.SysLoginLogListQuery;
 import com.tuccicode.boot.app.system.service.SysLoginLogAppService;
 import com.tuccicode.boot.domain.system.entity.log.SysLoginLogQuery;
 import com.tuccicode.raccoon.dto.Response;
@@ -23,7 +24,7 @@ public class SysLoginLogController {
 
     @RequiresPermissions(value = {"log:login:list"})
     @GetMapping
-    public Response list(SysLoginLogQuery query){
+    public Response list(SysLoginLogListQuery query){
         return sysLoginLogAppService.list(query);
     }
 }

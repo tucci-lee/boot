@@ -1,7 +1,8 @@
 package com.tuccicode.boot.app.task.controller;
 
+import com.tuccicode.boot.app.task.dto.query.TaskLogListQuery;
 import com.tuccicode.boot.app.task.service.TaskLogAppService;
-import com.tuccicode.boot.domain.task.entity.TaskLogListQuery;
+import com.tuccicode.boot.domain.task.entity.TaskLogQuery;
 import com.tuccicode.raccoon.dto.Response;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.validation.annotation.Validated;

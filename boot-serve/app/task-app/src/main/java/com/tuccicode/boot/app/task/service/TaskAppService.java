@@ -4,11 +4,12 @@ import com.tuccicode.boot.app.task.assembler.TaskAssembler;
 import com.tuccicode.boot.app.task.dto.body.TaskAddBody;
 import com.tuccicode.boot.app.task.dto.body.TaskEditBody;
 import com.tuccicode.boot.app.task.dto.body.TaskEditStatusBody;
+import com.tuccicode.boot.app.task.dto.query.TaskListQuery;
 import com.tuccicode.boot.app.task.dto.vo.TaskVO;
 import com.tuccicode.boot.app.task.job.AbstractJob;
 import com.tuccicode.boot.domain.exception.BootBizCode;
 import com.tuccicode.boot.domain.task.entity.Task;
-import com.tuccicode.boot.domain.task.entity.TaskListQuery;
+import com.tuccicode.boot.domain.task.entity.TaskQuery;
 import com.tuccicode.boot.domain.task.service.TaskService;
 import com.tuccicode.raccoon.dto.PageResponse;
 import com.tuccicode.raccoon.dto.Response;
@@ -62,7 +63,9 @@ public class TaskAppService implements InitializingBean {
     }
 
     public Response list(TaskListQuery query) {
-        PageResponse<Task> page = taskService.list(query);
+        TaskQuery taskQuery = new TaskQuery();
+        BeanUtils.copyProperties(query, taskQuery);
+        PageResponse<Task> page = taskService.list(taskQuery);
         List<TaskVO> taskVOList = page.getData().stream()
                 .map(TaskAssembler::toVO)
                 .collect(Collectors.toList());

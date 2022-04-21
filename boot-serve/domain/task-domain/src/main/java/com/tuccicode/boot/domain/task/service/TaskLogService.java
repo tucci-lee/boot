@@ -1,7 +1,7 @@
 package com.tuccicode.boot.domain.task.service;
 
 import com.tuccicode.boot.domain.task.entity.TaskLog;
-import com.tuccicode.boot.domain.task.entity.TaskLogListQuery;
+import com.tuccicode.boot.domain.task.entity.TaskLogQuery;
 import com.tuccicode.raccoon.dto.PageResponse;
 
 /**
@@ -9,7 +9,7 @@ import com.tuccicode.raccoon.dto.PageResponse;
  */
 public interface TaskLogService {
 
-    PageResponse<TaskLog> list(TaskLogListQuery query);
+    PageResponse<TaskLog> list(TaskLogQuery query);
 
     Long add(TaskLog log);
 

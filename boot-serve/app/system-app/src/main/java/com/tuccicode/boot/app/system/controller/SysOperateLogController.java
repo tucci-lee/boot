@@ -1,5 +1,6 @@
 package com.tuccicode.boot.app.system.controller;
 
+import com.tuccicode.boot.app.system.dto.query.SysOperateLogListQuery;
 import com.tuccicode.boot.app.system.service.SysOperateLogAppService;
 import com.tuccicode.boot.domain.system.entity.log.SysOperateLogQuery;
 import com.tuccicode.raccoon.dto.Response;
@@ -23,7 +24,7 @@ public class SysOperateLogController {
 
     @RequiresPermissions(value = {"log:operate:list"})
     @GetMapping
-    public Response list(SysOperateLogQuery query){
+    public Response list(SysOperateLogListQuery query){
         return sysOperateLogAppService.list(query);
     }
 }

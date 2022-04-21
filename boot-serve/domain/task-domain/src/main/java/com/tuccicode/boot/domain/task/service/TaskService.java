@@ -1,6 +1,6 @@
 package com.tuccicode.boot.domain.task.service;
 
-import com.tuccicode.boot.domain.task.entity.TaskListQuery;
+import com.tuccicode.boot.domain.task.entity.TaskQuery;
 import com.tuccicode.boot.domain.task.entity.Task;
 import com.tuccicode.raccoon.dto.PageResponse;
 
@@ -24,7 +24,7 @@ public interface TaskService {
      * @param query 查询条件
      * @return Task
      */
-    PageResponse<Task> list(TaskListQuery query);
+    PageResponse<Task> list(TaskQuery query);
 
     /**
      * 查询所有的定时任务

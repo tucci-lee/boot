@@ -4,6 +4,7 @@ import com.tuccicode.boot.app.aspect.Operate;
 import com.tuccicode.boot.app.system.dto.body.SysRoleAddBody;
 import com.tuccicode.boot.app.system.dto.body.SysRoleEditBody;
 import com.tuccicode.boot.app.system.dto.body.SysRoleResEditBody;
+import com.tuccicode.boot.app.system.dto.query.SysRoleListQuery;
 import com.tuccicode.boot.app.system.service.SysResAppService;
 import com.tuccicode.boot.app.system.service.SysRoleAppService;
 import com.tuccicode.boot.app.util.DemoUtils;
@@ -45,7 +46,7 @@ public class SysRoleController {
      */
     @RequiresPermissions(value = {"sys:role:list", "sys:user:add", "sys:user:edit"}, logical = Logical.OR)
     @GetMapping
-    public Response list(SysRoleQuery query) {
+    public Response list(SysRoleListQuery query) {
         return sysRoleAppService.list(query);
     }
 

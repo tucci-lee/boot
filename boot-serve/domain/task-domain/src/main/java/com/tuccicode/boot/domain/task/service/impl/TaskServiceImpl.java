@@ -2,7 +2,7 @@ package com.tuccicode.boot.domain.task.service.impl;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.tuccicode.boot.domain.exception.BootBizCode;
-import com.tuccicode.boot.domain.task.entity.TaskListQuery;
+import com.tuccicode.boot.domain.task.entity.TaskQuery;
 import com.tuccicode.boot.domain.task.convertor.TaskConvertor;
 import com.tuccicode.boot.domain.task.dataobject.TaskDO;
 import com.tuccicode.boot.domain.task.entity.Task;
@@ -34,7 +34,7 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public PageResponse<Task> list(TaskListQuery query) {
+    public PageResponse<Task> list(TaskQuery query) {
         Page<TaskDO> page = new Page<>(query.getPageNo(), query.getPageSize());
         taskMapper.selectPage(page, query);
         List<Task> taskList = page.getRecords()

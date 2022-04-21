@@ -1,6 +1,7 @@
 package com.tuccicode.boot.app.system.service;
 
 import com.tuccicode.boot.app.system.assembler.LogLoginAssembler;
+import com.tuccicode.boot.app.system.dto.query.SysLoginLogListQuery;
 import com.tuccicode.boot.app.system.dto.vo.SysLoginLogVO;
 import com.tuccicode.boot.domain.system.entity.log.SysLoginLog;
 import com.tuccicode.boot.domain.system.entity.log.SysLoginLogQuery;
@@ -8,6 +9,7 @@ import com.tuccicode.boot.domain.system.service.SysLoginLogService;
 import com.tuccicode.raccoon.dto.PageResponse;
 import com.tuccicode.raccoon.dto.Response;
 import eu.bitwalker.useragentutils.UserAgent;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -49,8 +51,11 @@ public class SysLoginLogAppService {
         sysLoginLogService.add(log);
     }
 
-    public Response list(SysLoginLogQuery query) {
-        PageResponse<SysLoginLog> page = sysLoginLogService.list(query);
+    public Response list(SysLoginLogListQuery query) {
+        SysLoginLogQuery sysLoginLogQuery = new SysLoginLogQuery();
+        BeanUtils.copyProperties(query, sysLoginLogQuery);
+
+        PageResponse<SysLoginLog> page = sysLoginLogService.list(sysLoginLogQuery);
         List<SysLoginLogVO> sysLoginLogVOList = page.getData().stream()
                 .map(LogLoginAssembler::toVO)
                 .collect(Collectors.toList());

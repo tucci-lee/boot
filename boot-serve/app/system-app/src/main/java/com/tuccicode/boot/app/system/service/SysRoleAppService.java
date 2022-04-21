@@ -4,6 +4,7 @@ import com.tuccicode.boot.app.system.assembler.SysRoleAssembler;
 import com.tuccicode.boot.app.system.dto.body.SysRoleAddBody;
 import com.tuccicode.boot.app.system.dto.body.SysRoleEditBody;
 import com.tuccicode.boot.app.system.dto.body.SysRoleResEditBody;
+import com.tuccicode.boot.app.system.dto.query.SysRoleListQuery;
 import com.tuccicode.boot.app.system.dto.vo.SysRoleVO;
 import com.tuccicode.boot.domain.system.entity.role.SysRole;
 import com.tuccicode.boot.domain.system.entity.role.SysRoleQuery;
@@ -35,8 +36,10 @@ public class SysRoleAppService {
      * @param query 查询条件
      * @return 角色列表
      */
-    public Response list(SysRoleQuery query) {
-        PageResponse<SysRole> page = sysRoleService.list(query);
+    public Response list(SysRoleListQuery query) {
+        SysRoleQuery sysRoleQuery = new SysRoleQuery();
+        BeanUtils.copyProperties(query, sysRoleQuery);
+        PageResponse<SysRole> page = sysRoleService.list(sysRoleQuery);
         List<SysRoleVO> sysRoleVOList = page.getData().stream()
                 .map(SysRoleAssembler::toVO)
                 .collect(Collectors.toList());

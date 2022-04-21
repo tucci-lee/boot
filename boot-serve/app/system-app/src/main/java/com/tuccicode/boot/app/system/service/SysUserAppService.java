@@ -7,6 +7,7 @@ import com.tuccicode.boot.app.system.dto.body.SysUserEditBody;
 import com.tuccicode.boot.app.system.dto.body.SysUserEditLockBody;
 import com.tuccicode.boot.app.system.dto.body.SysUserEditPasswordBody;
 import com.tuccicode.boot.app.system.dto.body.SysUserRoleEditBody;
+import com.tuccicode.boot.app.system.dto.query.SysUserListQuery;
 import com.tuccicode.boot.app.system.dto.vo.SysUserVO;
 import com.tuccicode.boot.domain.system.entity.user.SysUser;
 import com.tuccicode.boot.domain.system.entity.user.SysUserQuery;
@@ -31,8 +32,10 @@ public class SysUserAppService {
         this.sysUserService = sysUserService;
     }
 
-    public Response list(SysUserQuery query) {
-        PageResponse<SysUser> page = sysUserService.list(query);
+    public Response list(SysUserListQuery query) {
+        SysUserQuery userQuery = new SysUserQuery();
+        BeanUtils.copyProperties(query, userQuery);
+        PageResponse<SysUser> page = sysUserService.list(userQuery);
         List<SysUserVO> sysUserVOList = page.getData().stream()
                 .map(SysUserAssembler::toVO)
                 .collect(Collectors.toList());

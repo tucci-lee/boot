@@ -6,6 +6,7 @@ import com.tuccicode.boot.app.system.dto.body.SysUserEditBody;
 import com.tuccicode.boot.app.system.dto.body.SysUserEditLockBody;
 import com.tuccicode.boot.app.system.dto.body.SysUserEditPasswordBody;
 import com.tuccicode.boot.app.system.dto.body.SysUserRoleEditBody;
+import com.tuccicode.boot.app.system.dto.query.SysUserListQuery;
 import com.tuccicode.boot.app.system.service.SysRoleAppService;
 import com.tuccicode.boot.app.system.service.SysUserAppService;
 import com.tuccicode.boot.app.util.DemoUtils;
@@ -46,7 +47,7 @@ public class SysUserController {
      */
     @RequiresPermissions(value = {"sys:user:list"})
     @GetMapping
-    public Response list(SysUserQuery query) {
+    public Response list(SysUserListQuery query) {
         return sysUserAppService.list(query);
     }
 
