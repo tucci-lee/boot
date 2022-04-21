@@ -343,7 +343,7 @@ CREATE TABLE `task` (
 -- Records of task
 -- ----------------------------
 BEGIN;
-INSERT INTO `task` VALUES (28180210469830657, '测试', 'com.tuccicode.boot.task.application.job.TestJob', '*/5 * * * * ?', 0, NULL, 1645516851181, 1645596218393, 0);
+INSERT INTO `task` VALUES (28180210469830657, '测试', 'com.tuccicode.boot.app.task.job.TestJob', '*/5 * * * * ?', 0, NULL, 1645516851181, 1645596218393, 0);
 COMMIT;
 
 -- ----------------------------

@@ -10,6 +10,7 @@
 ### Java ###
 target/
 *.log
+application-prod.yml
 
 ### VUE ###
 node_modules
