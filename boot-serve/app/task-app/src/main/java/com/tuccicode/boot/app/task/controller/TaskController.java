@@ -4,8 +4,8 @@ import com.tuccicode.boot.app.aspect.Operate;
 import com.tuccicode.boot.app.task.dto.body.TaskAddBody;
 import com.tuccicode.boot.app.task.dto.body.TaskEditBody;
 import com.tuccicode.boot.app.task.dto.body.TaskEditStatusBody;
-import com.tuccicode.boot.app.task.dto.query.TaskListQuery;
 import com.tuccicode.boot.app.task.service.TaskAppService;
+import com.tuccicode.boot.domain.task.entity.TaskQuery;
 import com.tuccicode.raccoon.dto.Response;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.validation.annotation.Validated;
@@ -39,7 +39,7 @@ public class TaskController {
      */
     @RequiresPermissions(value = {"task:list"})
     @GetMapping
-    public Response list(TaskListQuery query) {
+    public Response list(TaskQuery query) {
         return taskAppService.list(query);
     }
 

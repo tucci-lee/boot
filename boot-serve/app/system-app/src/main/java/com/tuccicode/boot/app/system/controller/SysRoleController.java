@@ -4,9 +4,9 @@ import com.tuccicode.boot.app.aspect.Operate;
 import com.tuccicode.boot.app.system.dto.body.SysRoleAddBody;
 import com.tuccicode.boot.app.system.dto.body.SysRoleEditBody;
 import com.tuccicode.boot.app.system.dto.body.SysRoleResEditBody;
-import com.tuccicode.boot.app.system.dto.query.SysRoleListQuery;
 import com.tuccicode.boot.app.system.service.SysResAppService;
 import com.tuccicode.boot.app.system.service.SysRoleAppService;
+import com.tuccicode.boot.domain.system.entity.role.SysRoleQuery;
 import com.tuccicode.raccoon.dto.Response;
 import org.apache.shiro.authz.annotation.Logical;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -44,7 +44,7 @@ public class SysRoleController {
      */
     @RequiresPermissions(value = {"sys:role:list", "sys:user:add", "sys:user:edit"}, logical = Logical.OR)
     @GetMapping
-    public Response list(SysRoleListQuery query) {
+    public Response list(SysRoleQuery query) {
         return sysRoleAppService.list(query);
     }
 

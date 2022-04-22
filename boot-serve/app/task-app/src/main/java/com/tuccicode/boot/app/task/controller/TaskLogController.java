@@ -1,6 +1,5 @@
 package com.tuccicode.boot.app.task.controller;
 
-import com.tuccicode.boot.app.task.dto.query.TaskLogListQuery;
 import com.tuccicode.boot.app.task.service.TaskLogAppService;
 import com.tuccicode.boot.domain.task.entity.TaskLogQuery;
 import com.tuccicode.raccoon.dto.Response;
@@ -25,7 +24,7 @@ public class TaskLogController {
 
     @RequiresPermissions(value = {"task:list"})
     @GetMapping
-    public Response list(@Validated TaskLogListQuery query){
+    public Response list(@Validated TaskLogQuery query){
         return taskLogAppService.list(query);
     }
 }

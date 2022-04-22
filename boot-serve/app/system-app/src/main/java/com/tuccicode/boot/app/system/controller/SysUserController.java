@@ -6,9 +6,9 @@ import com.tuccicode.boot.app.system.dto.body.SysUserEditBody;
 import com.tuccicode.boot.app.system.dto.body.SysUserEditLockBody;
 import com.tuccicode.boot.app.system.dto.body.SysUserEditPasswordBody;
 import com.tuccicode.boot.app.system.dto.body.SysUserRoleEditBody;
-import com.tuccicode.boot.app.system.dto.query.SysUserListQuery;
 import com.tuccicode.boot.app.system.service.SysRoleAppService;
 import com.tuccicode.boot.app.system.service.SysUserAppService;
+import com.tuccicode.boot.domain.system.entity.user.SysUserQuery;
 import com.tuccicode.raccoon.dto.Response;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.validation.annotation.Validated;
@@ -45,7 +45,7 @@ public class SysUserController {
      */
     @RequiresPermissions(value = {"sys:user:list"})
     @GetMapping
-    public Response list(SysUserListQuery query) {
+    public Response list(SysUserQuery query) {
         return sysUserAppService.list(query);
     }
 

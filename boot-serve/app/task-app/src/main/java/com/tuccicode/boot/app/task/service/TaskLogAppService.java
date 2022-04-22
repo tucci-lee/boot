@@ -1,14 +1,12 @@
 package com.tuccicode.boot.app.task.service;
 
 import com.tuccicode.boot.app.task.assembler.TaskLogAssembler;
-import com.tuccicode.boot.app.task.dto.query.TaskLogListQuery;
 import com.tuccicode.boot.app.task.dto.vo.TaskLogVO;
 import com.tuccicode.boot.domain.task.entity.TaskLog;
 import com.tuccicode.boot.domain.task.entity.TaskLogQuery;
 import com.tuccicode.boot.domain.task.service.TaskLogService;
 import com.tuccicode.raccoon.dto.PageResponse;
 import com.tuccicode.raccoon.dto.Response;
-import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,10 +24,8 @@ public class TaskLogAppService {
         this.taskLogService = taskLogService;
     }
 
-    public Response list(TaskLogListQuery query) {
-        TaskLogQuery logQuery = new TaskLogQuery();
-        BeanUtils.copyProperties(query, logQuery);
-        PageResponse<TaskLog> page = taskLogService.list(logQuery);
+    public Response list(TaskLogQuery query) {
+        PageResponse<TaskLog> page = taskLogService.list(query);
         List<TaskLogVO> taskLogVOList = page.getData()
                 .stream()
                 .map(TaskLogAssembler::toVO)
