@@ -1,8 +1,8 @@
 package com.tuccicode.boot.app.system.service;
 
 import com.tuccicode.boot.app.system.assembler.SysDeptAssembler;
-import com.tuccicode.boot.app.system.dto.body.SysDeptAddBody;
-import com.tuccicode.boot.app.system.dto.body.SysDeptEditBody;
+import com.tuccicode.boot.app.system.dto.body.SysDeptCreateBody;
+import com.tuccicode.boot.app.system.dto.body.SysDeptUpdateBody;
 import com.tuccicode.boot.app.system.dto.vo.SysDeptVO;
 import com.tuccicode.boot.domain.system.entity.dept.SysDept;
 import com.tuccicode.boot.domain.system.service.SysDeptService;
@@ -46,10 +46,10 @@ public class SysDeptAppService {
      * @param body 部门信息
      * @return Response
      */
-    public Response add(SysDeptAddBody body) {
+    public Response create(SysDeptCreateBody body) {
         SysDept dept = new SysDept();
         BeanUtils.copyProperties(body, dept);
-        sysDeptService.add(dept);
+        sysDeptService.create(dept);
         return Response.success();
     }
 
@@ -70,10 +70,10 @@ public class SysDeptAppService {
      * @param body 部门信息
      * @return Response
      */
-    public Response edit(SysDeptEditBody body) {
+    public Response update(SysDeptUpdateBody body) {
         SysDept dept = new SysDept();
         BeanUtils.copyProperties(body, dept);
-        sysDeptService.edit(dept);
+        sysDeptService.update(dept);
         return Response.success();
     }
 }

@@ -10,7 +10,7 @@ import com.tuccicode.raccoon.dto.PageResponse;
 public interface SysOperateLogService {
 
 
-    void add(SysOperateLog log);
+    void create(SysOperateLog log);
 
-    PageResponse<SysOperateLog> list(SysOperateLogQuery query);
+    PageResponse<SysOperateLog> page(SysOperateLogQuery query);
 }

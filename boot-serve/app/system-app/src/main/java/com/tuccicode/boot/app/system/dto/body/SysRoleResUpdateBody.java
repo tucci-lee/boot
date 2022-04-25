@@ -11,11 +11,11 @@ import java.util.List;
  * @author tucci.lee
  */
 @Data
-public class SysUserRoleEditBody extends DTO {
+public class SysRoleResUpdateBody extends DTO {
 
     @NotNull
-    private Long uid;
+    private Long id;
 
     @NotEmpty
-    private List<Long> roleIds;
+    private List<Long> resIds;
 }

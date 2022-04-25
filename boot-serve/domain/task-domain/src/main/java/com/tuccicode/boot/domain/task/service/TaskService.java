@@ -37,14 +37,14 @@ public interface TaskService {
      *
      * @param task 定时任务
      */
-    Long add(Task task);
+    Long create(Task task);
 
     /**
      * 修改定时任务信息
      *
      * @param task 定时任务信息
      */
-    void edit(Task task);
+    void update(Task task);
 
     /**
      * 删除定时任务
@@ -58,7 +58,7 @@ public interface TaskService {
      *
      * @param task 定时任务
      */
-    void editStatus(Task task);
+    void updateStatus(Task task);
 
 
 }

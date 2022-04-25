@@ -21,7 +21,7 @@ public interface SysDeptService {
      *
      * @param dept 部门信息
      */
-    void add(SysDept dept);
+    void create(SysDept dept);
 
     /**
      * 根据id删除部门
@@ -35,5 +35,5 @@ public interface SysDeptService {
      *
      * @param dept 部门信息
      */
-    void edit(SysDept dept);
+    void update(SysDept dept);
 }

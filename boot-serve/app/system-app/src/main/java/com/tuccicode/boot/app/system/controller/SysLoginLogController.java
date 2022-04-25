@@ -23,7 +23,7 @@ public class SysLoginLogController {
 
     @RequiresPermissions(value = {"log:login:list"})
     @GetMapping
-    public Response list(SysLoginLogQuery query){
-        return sysLoginLogAppService.list(query);
+    public Response page(SysLoginLogQuery query){
+        return sysLoginLogAppService.page(query);
     }
 }

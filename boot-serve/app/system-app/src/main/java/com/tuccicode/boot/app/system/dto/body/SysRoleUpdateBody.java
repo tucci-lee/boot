@@ -2,29 +2,28 @@ package com.tuccicode.boot.app.system.dto.body;
 
 import com.tuccicode.raccoon.dto.DTO;
 import lombok.Data;
-import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.List;
 
 /**
+ *
  * @author tucci.lee
  */
 @Data
-public class SysRoleAddBody extends DTO {
+public class SysRoleUpdateBody extends DTO {
+
+    @NotNull
+    private Long id;
 
     @NotBlank
-    @Length(max = 20)
+    @Size(max = 10)
     private String name;
 
-    @Size(max = 50)
+    @Size(max = 20)
     private String roleChar;
 
     @Size(max = 200)
     private String remarks;
-
-    @NotEmpty
-    private List<Long> resIds;
 }

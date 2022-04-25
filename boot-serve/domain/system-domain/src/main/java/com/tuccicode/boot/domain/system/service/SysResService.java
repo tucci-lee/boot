@@ -29,7 +29,7 @@ public interface SysResService {
      *
      * @param res 资源信息
      */
-    void add(SysRes res);
+    void create(SysRes res);
 
     /**
      * 根据id删除资源
@@ -43,7 +43,7 @@ public interface SysResService {
      *
      * @param res 资源信息
      */
-    void edit(SysRes res);
+    void update(SysRes res);
 
     /**
      * 根据角色id查询关联的资源

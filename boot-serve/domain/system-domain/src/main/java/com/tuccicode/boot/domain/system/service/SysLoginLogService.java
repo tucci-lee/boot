@@ -9,7 +9,7 @@ import com.tuccicode.raccoon.dto.PageResponse;
  */
 public interface SysLoginLogService {
 
-    void add(SysLoginLog log);
+    void create(SysLoginLog log);
 
-    PageResponse<SysLoginLog> list(SysLoginLogQuery query);
+    PageResponse<SysLoginLog> page(SysLoginLogQuery query);
 }

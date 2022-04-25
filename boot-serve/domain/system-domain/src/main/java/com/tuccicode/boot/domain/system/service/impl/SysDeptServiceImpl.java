@@ -38,15 +38,15 @@ public class SysDeptServiceImpl implements SysDeptService {
     }
 
     @Override
-    public void add(SysDept dept) {
+    public void create(SysDept dept) {
         this.verifyParent(dept.getPid());
 
-        SysDeptDO addDept = SysDeptConvertor.toAddDO(dept);
+        SysDeptDO createDept = SysDeptConvertor.toAddDO(dept);
 
         // 校验资源名称是否有相同的
         synchronized (this) {
-            Assert.isNull(sysDeptMapper.selectByName(addDept.getName()), BootBizCode.DEPT_NAME_EXIST);
-            sysDeptMapper.insert(addDept);
+            Assert.isNull(sysDeptMapper.selectByName(createDept.getName()), BootBizCode.DEPT_NAME_EXIST);
+            sysDeptMapper.insert(createDept);
         }
     }
 
@@ -64,10 +64,10 @@ public class SysDeptServiceImpl implements SysDeptService {
         int subDeptCount = sysDeptMapper.countByPid(id);
         Assert.isTrue(subDeptCount == 0, BootBizCode.DEPT_HAS_SUB);
 
-        SysDeptDO editRes = new SysDeptDO()
+        SysDeptDO updateRes = new SysDeptDO()
                 .setId(id)
                 .setIsDeleted(true);
-        sysDeptMapper.updateById(editRes);
+        sysDeptMapper.updateById(updateRes);
     }
 
     /**
@@ -79,17 +79,17 @@ public class SysDeptServiceImpl implements SysDeptService {
      * @param dept 资源信息
      */
     @Override
-    public void edit(SysDept dept) {
+    public void update(SysDept dept) {
         Assert.isTrue(!dept.getId().equals(dept.getPid()), BootBizCode.LEVEL_ERROR);
 
         this.verifyParent(dept.getPid());
 
-        SysDeptDO editDept = SysDeptConvertor.toEditDO(dept);
+        SysDeptDO updateDept = SysDeptConvertor.toEditDO(dept);
         synchronized (this) {
-            SysDeptDO queryRes = sysDeptMapper.selectByName(editDept.getName());
-            Assert.isTrue(queryRes == null || queryRes.getId().equals(editDept.getId()), BootBizCode.DEPT_NAME_EXIST);
+            SysDeptDO queryRes = sysDeptMapper.selectByName(updateDept.getName());
+            Assert.isTrue(queryRes == null || queryRes.getId().equals(updateDept.getId()), BootBizCode.DEPT_NAME_EXIST);
 
-            sysDeptMapper.updateById(editDept);
+            sysDeptMapper.updateById(updateDept);
         }
     }
 

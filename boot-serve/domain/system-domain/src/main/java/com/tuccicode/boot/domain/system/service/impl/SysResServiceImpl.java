@@ -49,15 +49,15 @@ public class SysResServiceImpl implements SysResService {
     }
 
     @Override
-    public void add(SysRes res) {
+    public void create(SysRes res) {
         this.verifyParent(res.getPid());
 
-        SysResDO addRes = SysResConvertor.toAddDO(res);
+        SysResDO createRes = SysResConvertor.toAddDO(res);
 
         // 校验资源名称是否有相同的
         synchronized (this) {
-            Assert.isNull(sysResMapper.selectByName(addRes.getName()), BootBizCode.RES_NAME_EXIST);
-            sysResMapper.insert(addRes);
+            Assert.isNull(sysResMapper.selectByName(createRes.getName()), BootBizCode.RES_NAME_EXIST);
+            sysResMapper.insert(createRes);
         }
     }
 
@@ -66,10 +66,10 @@ public class SysResServiceImpl implements SysResService {
         int roleCount = sysRoleResMapper.countByResId(id);
         Assert.isTrue(roleCount == 0, BootBizCode.RES_RELATED);
 
-        SysResDO editRes = new SysResDO()
+        SysResDO updateRes = new SysResDO()
                 .setId(id)
                 .setIsDeleted(true);
-        sysResMapper.updateById(editRes);
+        sysResMapper.updateById(updateRes);
     }
 
     /**
@@ -82,17 +82,17 @@ public class SysResServiceImpl implements SysResService {
      */
     @CacheEvict(value = CacheConst.USER_RES, allEntries = true)
     @Override
-    public void edit(SysRes res) {
+    public void update(SysRes res) {
         Assert.isTrue(!res.getId().equals(res.getPid()), BootBizCode.LEVEL_ERROR);
 
         this.verifyParent(res.getPid());
 
-        SysResDO editRes = SysResConvertor.toEditDO(res);
+        SysResDO updateRes = SysResConvertor.toEditDO(res);
         synchronized (this) {
-            SysResDO queryRes = sysResMapper.selectByName(editRes.getName());
-            Assert.isTrue(queryRes == null || queryRes.getId().equals(editRes.getId()), BootBizCode.RES_NAME_EXIST);
+            SysResDO queryRes = sysResMapper.selectByName(updateRes.getName());
+            Assert.isTrue(queryRes == null || queryRes.getId().equals(updateRes.getId()), BootBizCode.RES_NAME_EXIST);
 
-            sysResMapper.updateById(editRes);
+            sysResMapper.updateById(updateRes);
         }
     }
 

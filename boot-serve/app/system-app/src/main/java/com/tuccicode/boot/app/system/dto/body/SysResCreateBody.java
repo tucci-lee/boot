@@ -12,7 +12,7 @@ import javax.validation.constraints.Size;
  * @author tucci.lee
  */
 @Data
-public class SysResAddBody extends DTO {
+public class SysResCreateBody extends DTO {
     private Long pid;
 
     @NotBlank

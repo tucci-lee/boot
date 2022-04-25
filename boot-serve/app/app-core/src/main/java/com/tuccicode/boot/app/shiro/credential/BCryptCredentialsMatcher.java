@@ -1,5 +1,6 @@
 package com.tuccicode.boot.app.shiro.credential;
 
+import com.tuccicode.boot.domain.system.service.SysUserService;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.credential.CredentialsMatcher;
@@ -9,6 +10,13 @@ import org.springframework.security.crypto.bcrypt.BCrypt;
  * @author tucci.lee
  */
 public class BCryptCredentialsMatcher implements CredentialsMatcher {
+
+    private final SysUserService sysUserService;
+
+    public BCryptCredentialsMatcher(SysUserService sysUserService) {
+        this.sysUserService = sysUserService;
+    }
+
 
     /**
      * 校验密码是否正确
@@ -21,6 +29,6 @@ public class BCryptCredentialsMatcher implements CredentialsMatcher {
     public boolean doCredentialsMatch(AuthenticationToken token, AuthenticationInfo info) {
         String loginCredential = String.valueOf((char[]) token.getCredentials());
         String userCredential = (String) info.getCredentials();
-        return BCrypt.checkpw(loginCredential, userCredential);
+        return sysUserService.verifyPassword(loginCredential, userCredential);
     }
 }

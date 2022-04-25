@@ -24,8 +24,8 @@ public class SysOperateLogAppService {
         this.sysOperateLogService = sysOperateLogService;
     }
 
-    public Response list(SysOperateLogQuery query) {
-        PageResponse<SysOperateLog> page = sysOperateLogService.list(query);
+    public Response page(SysOperateLogQuery query) {
+        PageResponse<SysOperateLog> page = sysOperateLogService.page(query);
         List<SysOperateLogVO> sysOperateLogVOList = page.getData().stream()
                 .map(LogOperateAssembler::toVO)
                 .collect(Collectors.toList());

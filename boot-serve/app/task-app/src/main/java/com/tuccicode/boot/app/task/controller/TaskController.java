@@ -1,9 +1,9 @@
 package com.tuccicode.boot.app.task.controller;
 
 import com.tuccicode.boot.app.aspect.Operate;
-import com.tuccicode.boot.app.task.dto.body.TaskAddBody;
-import com.tuccicode.boot.app.task.dto.body.TaskEditBody;
-import com.tuccicode.boot.app.task.dto.body.TaskEditStatusBody;
+import com.tuccicode.boot.app.task.dto.body.TaskCreateBody;
+import com.tuccicode.boot.app.task.dto.body.TaskUpdateBody;
+import com.tuccicode.boot.app.task.dto.body.TaskUpdateStatusBody;
 import com.tuccicode.boot.app.task.service.TaskAppService;
 import com.tuccicode.boot.domain.task.entity.TaskQuery;
 import com.tuccicode.raccoon.dto.Response;
@@ -50,10 +50,10 @@ public class TaskController {
      * @return Response
      */
     @Operate("添加定时任务")
-    @RequiresPermissions(value = {"task:add"})
+    @RequiresPermissions(value = {"task:create"})
     @PostMapping
-    public Response add(@Validated @RequestBody TaskAddBody body) {
-        return taskAppService.add(body);
+    public Response create(@Validated @RequestBody TaskCreateBody body) {
+        return taskAppService.create(body);
     }
 
 
@@ -63,10 +63,10 @@ public class TaskController {
      * @return Response
      */
     @Operate("修改定时任务")
-    @RequiresPermissions(value = {"task:edit"})
+    @RequiresPermissions(value = {"task:update"})
     @PutMapping
-    public Response edit(@Validated @RequestBody TaskEditBody body){
-        return taskAppService.edit(body);
+    public Response update(@Validated @RequestBody TaskUpdateBody body){
+        return taskAppService.update(body);
     }
 
 
@@ -83,10 +83,10 @@ public class TaskController {
     }
 
     @Operate("编辑定时任务状态")
-    @RequiresPermissions(value = {"task:editStatus"})
+    @RequiresPermissions(value = {"task:update:status"})
     @PutMapping("status")
-    public Response editStatus(@Validated @RequestBody TaskEditStatusBody body) {
-        return taskAppService.editStatus(body);
+    public Response updateStatus(@Validated @RequestBody TaskUpdateStatusBody body) {
+        return taskAppService.updateStatus(body);
     }
 
     @Operate("执行定时任务状态")

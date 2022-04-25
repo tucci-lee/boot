@@ -58,10 +58,10 @@ public class OperateAspect {
                 .setDescription(value);
         try {
             Object result = pjp.proceed();
-            add(operationLog, JSONObject.toJSONString(result), null, true);
+            create(operationLog, JSONObject.toJSONString(result), null, true);
             return result;
         } catch (Throwable e) {
-            add(operationLog, null, e.getMessage(), false);
+            create(operationLog, null, e.getMessage(), false);
             throw e;
         }
     }
@@ -69,10 +69,10 @@ public class OperateAspect {
     /**
      * 添加操作日志
      */
-    private void add(SysOperateLog operationLog, String result, String errMsg, boolean status) {
+    private void create(SysOperateLog operationLog, String result, String errMsg, boolean status) {
         operationLog.setResult(result)
                 .setStatus(status)
                 .setErrorMessage(errMsg);
-        logOperateService.add(operationLog);
+        logOperateService.create(operationLog);
     }
 }

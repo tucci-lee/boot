@@ -23,7 +23,7 @@ public class SysOperateLogController {
 
     @RequiresPermissions(value = {"log:operate:list"})
     @GetMapping
-    public Response list(SysOperateLogQuery query){
-        return sysOperateLogAppService.list(query);
+    public Response page(SysOperateLogQuery query){
+        return sysOperateLogAppService.page(query);
     }
 }

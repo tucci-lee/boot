@@ -10,12 +10,20 @@ import com.tuccicode.raccoon.dto.PageResponse;
 public interface SysUserService {
 
     /**
-     * 根据用户名查询用户信息，包含密码等敏感信息。用于登录使用
+     * 根据用户名查询用户信息
      *
      * @param username 用户名
      * @return SysUser
      */
-    SysUser getAllByUsername(String username);
+    SysUser getByUsername(String username);
+
+    /**
+     * 根据uid查询用户信息
+     *
+     * @param uid uid
+     * @return SysUser
+     */
+    SysUser getByUid(Long uid);
 
     /**
      * 条件查询用户信息
@@ -23,35 +31,44 @@ public interface SysUserService {
      * @param query 查询条件
      * @return SysUser
      */
-    PageResponse<SysUser> list(SysUserQuery query);
+    PageResponse<SysUser> page(SysUserQuery query);
 
     /**
      * 添加用户
      *
      * @param sysUser 用户信息
      */
-    void add(SysUser sysUser);
+    void create(SysUser sysUser);
 
     /**
      * 修改用户
      *
      * @param sysUser 用户信息
      */
-    void edit(SysUser sysUser);
+    void update(SysUser sysUser);
 
     /**
      * 修改密码
      *
      * @param sysUser 密码信息
      */
-    void editPassword(SysUser sysUser);
+    void updatePassword(SysUser sysUser);
+
+    /**
+     * 校验密码是否正确
+     *
+     * @param plaintext  明文
+     * @param ciphertext 密文
+     * @return 是否正确
+     */
+    boolean verifyPassword(String plaintext, String ciphertext);
 
     /**
      * 修改锁定状态
      *
      * @param sysUser 锁定信息
      */
-    void editLock(SysUser sysUser);
+    void updateLock(SysUser sysUser);
 
     /**
      * 删除用户
@@ -65,6 +82,6 @@ public interface SysUserService {
      *
      * @param sysUser 角色信息
      */
-    void editRole(SysUser sysUser);
+    void updateRole(SysUser sysUser);
 
 }

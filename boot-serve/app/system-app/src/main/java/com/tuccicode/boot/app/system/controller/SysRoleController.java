@@ -1,9 +1,9 @@
 package com.tuccicode.boot.app.system.controller;
 
 import com.tuccicode.boot.app.aspect.Operate;
-import com.tuccicode.boot.app.system.dto.body.SysRoleAddBody;
-import com.tuccicode.boot.app.system.dto.body.SysRoleEditBody;
-import com.tuccicode.boot.app.system.dto.body.SysRoleResEditBody;
+import com.tuccicode.boot.app.system.dto.body.SysRoleCreateBody;
+import com.tuccicode.boot.app.system.dto.body.SysRoleUpdateBody;
+import com.tuccicode.boot.app.system.dto.body.SysRoleResUpdateBody;
 import com.tuccicode.boot.app.system.service.SysResAppService;
 import com.tuccicode.boot.app.system.service.SysRoleAppService;
 import com.tuccicode.boot.domain.system.entity.role.SysRoleQuery;
@@ -42,10 +42,10 @@ public class SysRoleController {
      * @param query 查询条件
      * @return 角色列表
      */
-    @RequiresPermissions(value = {"sys:role:list", "sys:user:add", "sys:user:edit"}, logical = Logical.OR)
+    @RequiresPermissions(value = {"sys:role:list", "sys:user:create", "sys:user:update"}, logical = Logical.OR)
     @GetMapping
-    public Response list(SysRoleQuery query) {
-        return sysRoleAppService.list(query);
+    public Response page(SysRoleQuery query) {
+        return sysRoleAppService.page(query);
     }
 
     /**
@@ -55,10 +55,10 @@ public class SysRoleController {
      * @return Response
      */
     @Operate("添加角色")
-    @RequiresPermissions(value = {"sys:role:add"})
+    @RequiresPermissions(value = {"sys:role:create"})
     @PostMapping
-    public Response add(@Validated @RequestBody SysRoleAddBody body) {
-        return sysRoleAppService.add(body);
+    public Response create(@Validated @RequestBody SysRoleCreateBody body) {
+        return sysRoleAppService.create(body);
     }
 
     /**
@@ -68,10 +68,10 @@ public class SysRoleController {
      * @return Response
      */
     @Operate("修改角色")
-    @RequiresPermissions(value = {"sys:role:edit"})
+    @RequiresPermissions(value = {"sys:role:update"})
     @PutMapping
-    public Response edit(@Validated @RequestBody SysRoleEditBody body) {
-        return sysRoleAppService.edit(body);
+    public Response update(@Validated @RequestBody SysRoleUpdateBody body) {
+        return sysRoleAppService.update(body);
     }
 
     /**
@@ -105,9 +105,9 @@ public class SysRoleController {
      * @return Response
      */
     @Operate("修改角色关联的资源")
-    @RequiresPermissions(value = {"sys:role:edit"})
+    @RequiresPermissions(value = {"sys:role:update"})
     @PutMapping("res")
-    public Response editRes(@Validated @RequestBody SysRoleResEditBody body) {
-        return sysRoleAppService.editRes(body);
+    public Response updateRes(@Validated @RequestBody SysRoleResUpdateBody body) {
+        return sysRoleAppService.updateRes(body);
     }
 }

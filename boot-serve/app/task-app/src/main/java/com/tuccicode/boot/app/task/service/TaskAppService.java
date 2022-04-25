@@ -1,9 +1,9 @@
 package com.tuccicode.boot.app.task.service;
 
 import com.tuccicode.boot.app.task.assembler.TaskAssembler;
-import com.tuccicode.boot.app.task.dto.body.TaskAddBody;
-import com.tuccicode.boot.app.task.dto.body.TaskEditBody;
-import com.tuccicode.boot.app.task.dto.body.TaskEditStatusBody;
+import com.tuccicode.boot.app.task.dto.body.TaskCreateBody;
+import com.tuccicode.boot.app.task.dto.body.TaskUpdateBody;
+import com.tuccicode.boot.app.task.dto.body.TaskUpdateStatusBody;
 import com.tuccicode.boot.app.task.dto.vo.TaskVO;
 import com.tuccicode.boot.app.task.job.AbstractJob;
 import com.tuccicode.boot.domain.exception.BootBizCode;
@@ -57,7 +57,7 @@ public class TaskAppService implements InitializingBean {
     public void afterPropertiesSet() throws Exception {
         List<Task> tasks = taskService.list();
         for (Task task : tasks) {
-            this.addJob(task);
+            this.createJob(task);
         }
     }
 
@@ -70,29 +70,29 @@ public class TaskAppService implements InitializingBean {
     }
 
     @Transactional(rollbackFor = RuntimeException.class)
-    public Response add(TaskAddBody body) {
+    public Response create(TaskCreateBody body) {
         Task task = new Task()
                 .setStatus(false);
         BeanUtils.copyProperties(body, task);
-        Long id = taskService.add(task);
+        Long id = taskService.create(task);
 
         task.setId(id);
-        this.addJob(task);
+        this.createJob(task);
 
         return Response.success();
     }
 
     @Transactional(rollbackFor = RuntimeException.class)
-    public Response edit(TaskEditBody body) {
+    public Response update(TaskUpdateBody body) {
         Task oldTask = taskService.getById(body.getId());
 
         Task task = new Task();
         BeanUtils.copyProperties(body, task);
-        taskService.edit(task);
+        taskService.update(task);
 
         task.setStatus(oldTask.getStatus());
         this.deleteJob(body.getId().toString());
-        this.addJob(task);
+        this.createJob(task);
 
         return Response.success();
     }
@@ -105,10 +105,10 @@ public class TaskAppService implements InitializingBean {
     }
 
     @Transactional(rollbackFor = RuntimeException.class)
-    public Response editStatus(TaskEditStatusBody body) {
+    public Response updateStatus(TaskUpdateStatusBody body) {
         Task task = new Task();
         BeanUtils.copyProperties(body, task);
-        taskService.editStatus(task);
+        taskService.updateStatus(task);
 
         if (task.getStatus()) {
             this.resumeJob(body.getId().toString());
@@ -129,7 +129,7 @@ public class TaskAppService implements InitializingBean {
      *
      * @param task 定时任务
      */
-    protected void addJob(Task task) {
+    protected void createJob(Task task) {
         if (ObjectUtils.isEmpty(task)) {
             return;
         }

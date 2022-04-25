@@ -1,8 +1,8 @@
 package com.tuccicode.boot.app.system.controller;
 
 import com.tuccicode.boot.app.aspect.Operate;
-import com.tuccicode.boot.app.system.dto.body.SysDeptAddBody;
-import com.tuccicode.boot.app.system.dto.body.SysDeptEditBody;
+import com.tuccicode.boot.app.system.dto.body.SysDeptCreateBody;
+import com.tuccicode.boot.app.system.dto.body.SysDeptUpdateBody;
 import com.tuccicode.boot.app.system.service.SysDeptAppService;
 import com.tuccicode.raccoon.dto.Response;
 import org.apache.shiro.authz.annotation.Logical;
@@ -48,10 +48,10 @@ public class SysDeptController {
      * @return Response
      */
     @Operate("添加部门")
-    @RequiresPermissions(value = {"sys:dept:add"})
+    @RequiresPermissions(value = {"sys:dept:create"})
     @PostMapping
-    public Response add(@Validated @RequestBody SysDeptAddBody body) {
-        return sysDeptAppService.add(body);
+    public Response create(@Validated @RequestBody SysDeptCreateBody body) {
+        return sysDeptAppService.create(body);
     }
 
     /**
@@ -73,10 +73,10 @@ public class SysDeptController {
      * @return Response
      */
     @Operate("修改部门")
-    @RequiresPermissions(value = {"sys:dept:edit"})
+    @RequiresPermissions(value = {"sys:dept:update"})
     @PutMapping
-    public Response edit(@Validated @RequestBody SysDeptEditBody body) {
-        return sysDeptAppService.edit(body);
+    public Response update(@Validated @RequestBody SysDeptUpdateBody body) {
+        return sysDeptAppService.update(body);
     }
 
 }

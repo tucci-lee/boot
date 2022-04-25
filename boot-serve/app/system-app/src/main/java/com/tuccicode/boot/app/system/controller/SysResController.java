@@ -2,8 +2,8 @@ package com.tuccicode.boot.app.system.controller;
 
 import com.tuccicode.boot.app.aspect.Operate;
 import com.tuccicode.boot.app.shiro.PrincipalUtils;
-import com.tuccicode.boot.app.system.dto.body.SysResAddBody;
-import com.tuccicode.boot.app.system.dto.body.SysResEditBody;
+import com.tuccicode.boot.app.system.dto.body.SysResCreateBody;
+import com.tuccicode.boot.app.system.dto.body.SysResUpdateBody;
 import com.tuccicode.boot.app.system.service.SysResAppService;
 import com.tuccicode.raccoon.dto.Response;
 import org.apache.shiro.authz.annotation.Logical;
@@ -60,10 +60,10 @@ public class SysResController {
      * @return Response
      */
     @Operate("添加资源")
-    @RequiresPermissions(value = {"sys:res:add"})
+    @RequiresPermissions(value = {"sys:res:create"})
     @PostMapping
-    public Response add(@Validated @RequestBody SysResAddBody body) {
-        return sysResAppService.add(body);
+    public Response create(@Validated @RequestBody SysResCreateBody body) {
+        return sysResAppService.create(body);
     }
 
     /**
@@ -85,10 +85,10 @@ public class SysResController {
      * @return Response
      */
     @Operate("修改资源")
-    @RequiresPermissions(value = {"sys:res:edit"})
+    @RequiresPermissions(value = {"sys:res:update"})
     @PutMapping
-    public Response edit(@Validated @RequestBody SysResEditBody body) {
-        return sysResAppService.edit(body);
+    public Response update(@Validated @RequestBody SysResUpdateBody body) {
+        return sysResAppService.update(body);
     }
 
 }

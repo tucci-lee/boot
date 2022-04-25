@@ -1,9 +1,9 @@
 package com.tuccicode.boot.app.system.service;
 
 import com.tuccicode.boot.app.system.assembler.SysRoleAssembler;
-import com.tuccicode.boot.app.system.dto.body.SysRoleAddBody;
-import com.tuccicode.boot.app.system.dto.body.SysRoleEditBody;
-import com.tuccicode.boot.app.system.dto.body.SysRoleResEditBody;
+import com.tuccicode.boot.app.system.dto.body.SysRoleCreateBody;
+import com.tuccicode.boot.app.system.dto.body.SysRoleUpdateBody;
+import com.tuccicode.boot.app.system.dto.body.SysRoleResUpdateBody;
 import com.tuccicode.boot.app.system.dto.vo.SysRoleVO;
 import com.tuccicode.boot.domain.system.entity.role.SysRole;
 import com.tuccicode.boot.domain.system.entity.role.SysRoleQuery;
@@ -35,8 +35,8 @@ public class SysRoleAppService {
      * @param query 查询条件
      * @return 角色列表
      */
-    public Response list(SysRoleQuery query) {
-        PageResponse<SysRole> page = sysRoleService.list(query);
+    public Response page(SysRoleQuery query) {
+        PageResponse<SysRole> page = sysRoleService.page(query);
         List<SysRoleVO> sysRoleVOList = page.getData().stream()
                 .map(SysRoleAssembler::toVO)
                 .collect(Collectors.toList());
@@ -49,10 +49,10 @@ public class SysRoleAppService {
      * @param body 角色信息
      * @return Response
      */
-    public Response add(SysRoleAddBody body) {
+    public Response create(SysRoleCreateBody body) {
         SysRole sysRole = new SysRole();
         BeanUtils.copyProperties(body, sysRole);
-        sysRoleService.add(sysRole);
+        sysRoleService.create(sysRole);
         return Response.success();
     }
 
@@ -62,10 +62,10 @@ public class SysRoleAppService {
      * @param body 角色信息
      * @return Response
      */
-    public Response edit(SysRoleEditBody body) {
+    public Response update(SysRoleUpdateBody body) {
         SysRole sysRole = new SysRole();
         BeanUtils.copyProperties(body, sysRole);
-        sysRoleService.edit(sysRole);
+        sysRoleService.update(sysRole);
         return Response.success();
     }
 
@@ -86,10 +86,10 @@ public class SysRoleAppService {
      * @param body 修改信息
      * @return Response
      */
-    public Response editRes(SysRoleResEditBody body) {
+    public Response updateRes(SysRoleResUpdateBody body) {
         SysRole sysRole = new SysRole();
         BeanUtils.copyProperties(body, sysRole);
-        sysRoleService.editRes(sysRole);
+        sysRoleService.updateRes(sysRole);
         return Response.success();
     }
 

@@ -2,18 +2,21 @@ package com.tuccicode.boot.app.system.service;
 
 import com.tuccicode.boot.app.system.assembler.SysUserAssembler;
 import com.tuccicode.boot.app.system.dto.body.ChangePasswordBody;
-import com.tuccicode.boot.app.system.dto.body.SysUserAddBody;
-import com.tuccicode.boot.app.system.dto.body.SysUserEditBody;
-import com.tuccicode.boot.app.system.dto.body.SysUserEditLockBody;
-import com.tuccicode.boot.app.system.dto.body.SysUserEditPasswordBody;
-import com.tuccicode.boot.app.system.dto.body.SysUserRoleEditBody;
+import com.tuccicode.boot.app.system.dto.body.SysUserCreateBody;
+import com.tuccicode.boot.app.system.dto.body.SysUserUpdateBody;
+import com.tuccicode.boot.app.system.dto.body.SysUserUpdateLockBody;
+import com.tuccicode.boot.app.system.dto.body.SysUserUpdatePasswordBody;
+import com.tuccicode.boot.app.system.dto.body.SysUserRoleUpdateBody;
 import com.tuccicode.boot.app.system.dto.vo.SysUserVO;
+import com.tuccicode.boot.domain.exception.BootBizCode;
 import com.tuccicode.boot.domain.system.entity.user.SysUser;
 import com.tuccicode.boot.domain.system.entity.user.SysUserQuery;
 import com.tuccicode.boot.domain.system.service.SysUserService;
 import com.tuccicode.raccoon.dto.PageResponse;
 import com.tuccicode.raccoon.dto.Response;
+import com.tuccicode.raccoon.exception.Assert;
 import org.springframework.beans.BeanUtils;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -31,39 +34,39 @@ public class SysUserAppService {
         this.sysUserService = sysUserService;
     }
 
-    public Response list(SysUserQuery query) {
-        PageResponse<SysUser> page = sysUserService.list(query);
+    public Response page(SysUserQuery query) {
+        PageResponse<SysUser> page = sysUserService.page(query);
         List<SysUserVO> sysUserVOList = page.getData().stream()
                 .map(SysUserAssembler::toVO)
                 .collect(Collectors.toList());
         return PageResponse.success(sysUserVOList, page.getTotal());
     }
 
-    public Response add(SysUserAddBody body) {
+    public Response create(SysUserCreateBody body) {
         SysUser sysUser = new SysUser();
         BeanUtils.copyProperties(body, sysUser);
-        sysUserService.add(sysUser);
+        sysUserService.create(sysUser);
         return Response.success();
     }
 
-    public Response edit(SysUserEditBody body) {
+    public Response update(SysUserUpdateBody body) {
         SysUser sysUser = new SysUser();
         BeanUtils.copyProperties(body, sysUser);
-        sysUserService.edit(sysUser);
+        sysUserService.update(sysUser);
         return Response.success();
     }
 
-    public Response editPassword(SysUserEditPasswordBody body) {
+    public Response updatePassword(SysUserUpdatePasswordBody body) {
         SysUser sysUser = new SysUser();
         BeanUtils.copyProperties(body, sysUser);
-        sysUserService.editPassword(sysUser);
+        sysUserService.updatePassword(sysUser);
         return Response.success();
     }
 
-    public Response editLock(SysUserEditLockBody body) {
+    public Response updateLock(SysUserUpdateLockBody body) {
         SysUser sysUser = new SysUser();
         BeanUtils.copyProperties(body, sysUser);
-        sysUserService.editLock(sysUser);
+        sysUserService.updateLock(sysUser);
         return Response.success();
     }
 
@@ -72,19 +75,21 @@ public class SysUserAppService {
         return Response.success();
     }
 
-    public Response editRole(SysUserRoleEditBody body) {
+    public Response updateRole(SysUserRoleUpdateBody body) {
         SysUser sysUser = new SysUser();
         BeanUtils.copyProperties(body, sysUser);
-        sysUserService.editRole(sysUser);
+        sysUserService.updateRole(sysUser);
         return Response.success();
     }
 
     public Response changePassword(ChangePasswordBody body, Long uid) {
-        SysUser editUser = new SysUser()
+        SysUser sysUser = sysUserService.getByUid(uid);
+        Assert.isTrue(sysUserService.verifyPassword(body.getOldPassword(), sysUser.getPassword()), BootBizCode.PASSWORD_ERROR);
+
+        SysUser updateUser = new SysUser()
                 .setUid(uid)
-                .setPassword(body.getPassword())
-                .setOldPassword(body.getOldPassword());
-        sysUserService.editPassword(editUser);
+                .setPassword(body.getPassword());
+        sysUserService.updatePassword(updateUser);
         return Response.success();
     }
 }

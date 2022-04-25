@@ -43,13 +43,19 @@ public class SysUserServiceImpl implements SysUserService {
     }
 
     @Override
-    public SysUser getAllByUsername(String username) {
-        SysUserDO sysUserDO = sysUserMapper.selectAllByUsername(username.toLowerCase());
+    public SysUser getByUsername(String username) {
+        SysUserDO sysUserDO = sysUserMapper.selectByUsername(username.toLowerCase());
         return SysUserConvertor.toEntity(sysUserDO, null);
     }
 
     @Override
-    public PageResponse<SysUser> list(SysUserQuery query) {
+    public SysUser getByUid(Long uid) {
+        SysUserDO sysUserDO = sysUserMapper.selectByUid(uid);
+        return SysUserConvertor.toEntity(sysUserDO, null);
+    }
+
+    @Override
+    public PageResponse<SysUser> page(SysUserQuery query) {
         Page<SysUserDO> page = new Page<>(query.getPageNo(), query.getPageSize());
         sysUserMapper.selectPage(page, query);
 
@@ -68,11 +74,11 @@ public class SysUserServiceImpl implements SysUserService {
 
     @Transactional(rollbackFor = RuntimeException.class)
     @Override
-    public void add(SysUser sysUser) {
+    public void create(SysUser sysUser) {
         List<Long> roleIds = sysUser.getRoleIds();
         SysUserDO sysUserDO = SysUserConvertor.toAddDO(sysUser);
         synchronized (this) {
-            SysUser queryUser = this.getAllByUsername(sysUserDO.getUsername());
+            SysUser queryUser = this.getByUsername(sysUserDO.getUsername());
             Assert.isNull(queryUser, BootBizCode.ACCOUNT_EXIST);
             sysUserMapper.insert(sysUserDO);
         }
@@ -83,27 +89,31 @@ public class SysUserServiceImpl implements SysUserService {
     }
 
     @Override
-    public void edit(SysUser sysUser) {
+    public void update(SysUser sysUser) {
         SysUserDO sysUserDO = SysUserConvertor.toEditDO(sysUser);
         sysUserMapper.updateById(sysUserDO);
     }
 
     @Transactional(rollbackFor = RuntimeException.class)
     @Override
-    public void editPassword(SysUser sysUser) {
-        // 如果是自己修改密码
-        if (sysUser.getOldPassword() != null) {
-            String password = sysUserMapper.selectPasswordByUid(sysUser.getUid());
-            Assert.isTrue(BCrypt.checkpw(sysUser.getOldPassword(), password), BootBizCode.PASSWORD_ERROR);
-        }
+    public void updatePassword(SysUser sysUser) {
         SysUserDO sysUserDO = SysUserConvertor.toEditPasswordDO(sysUser);
         sysUserMapper.updateById(sysUserDO);
         sysLoginVersionService.save(sysUserDO.getUid());
     }
 
+    @Override
+    public boolean verifyPassword(String plaintext, String ciphertext) {
+        try {
+            return BCrypt.checkpw(plaintext, ciphertext);
+        } catch (RuntimeException e) {
+            return false;
+        }
+    }
+
     @Transactional(rollbackFor = RuntimeException.class)
     @Override
-    public void editLock(SysUser sysUser) {
+    public void updateLock(SysUser sysUser) {
         SysUserDO sysUserDO = SysUserConvertor.toEditLockDO(sysUser);
         sysUserMapper.updateById(sysUserDO);
         sysLoginVersionService.save(sysUserDO.getUid());
@@ -121,7 +131,7 @@ public class SysUserServiceImpl implements SysUserService {
 
     @Transactional(rollbackFor = RuntimeException.class)
     @Override
-    public void editRole(SysUser sysUser) {
+    public void updateRole(SysUser sysUser) {
         synchronized (this) {
             // 删除之前绑定的角色
             sysUserRoleMapper.deleteByUid(sysUser.getUid());

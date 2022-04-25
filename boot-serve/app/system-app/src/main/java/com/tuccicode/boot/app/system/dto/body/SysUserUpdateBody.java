@@ -2,28 +2,20 @@ package com.tuccicode.boot.app.system.dto.body;
 
 import com.tuccicode.raccoon.dto.DTO;
 import lombok.Data;
-import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
-import java.util.List;
 
 /**
  * @author tucci.lee
  */
 @Data
-public class SysUserAddBody extends DTO {
+public class SysUserUpdateBody extends DTO {
 
-    @NotBlank
-    @Pattern(regexp = "^[a-zA-Z][a-zA-Z0-9]{3,9}$")
-    private String username;
-
-    @NotBlank
-    @Length(min = 6, max = 32)
-    private String password;
+    @NotNull
+    private Long uid;
 
     @Pattern(regexp = "^[1][3-9][0-9]{9}$")
     private String phone;
@@ -38,7 +30,4 @@ public class SysUserAddBody extends DTO {
     private String remarks;
 
     private Long deptId;
-
-    @NotEmpty
-    private List<Long> roleIds;
 }

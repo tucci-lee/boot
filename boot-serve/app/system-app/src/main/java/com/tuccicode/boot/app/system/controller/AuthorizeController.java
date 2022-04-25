@@ -77,7 +77,7 @@ public class AuthorizeController {
         } finally {
             String userAgent = WebUtils.getRequest().getHeader("User-Agent");
             String ip = WebUtils.getIp();
-            sysLoginLogAppService.addLog(body.getUsername(), status, message, ip, userAgent);
+            sysLoginLogAppService.create(body.getUsername(), status, message, ip, userAgent);
         }
         return Response.success();
     }

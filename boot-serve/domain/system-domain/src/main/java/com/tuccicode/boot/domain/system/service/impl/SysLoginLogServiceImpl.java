@@ -25,13 +25,13 @@ public class SysLoginLogServiceImpl implements SysLoginLogService {
     }
 
     @Override
-    public void add(SysLoginLog log) {
+    public void create(SysLoginLog log) {
         SysLoginLogDO logLoginDO = LogLoginConvertor.toAddDO(log);
         sysLoginLogMapper.insert(logLoginDO);
     }
 
     @Override
-    public PageResponse<SysLoginLog> list(SysLoginLogQuery query) {
+    public PageResponse<SysLoginLog> page(SysLoginLogQuery query) {
         Page<SysLoginLogDO> page = new Page<>(query.getPageNo(), query.getPageSize());
         sysLoginLogMapper.selectPage(page, query);
         List<SysLoginLog> logLoginList = page.getRecords()

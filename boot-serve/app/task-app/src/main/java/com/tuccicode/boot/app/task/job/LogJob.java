@@ -29,7 +29,7 @@ public abstract class LogJob extends AbstractJob {
         TaskLog log = new TaskLog()
                 .setTaskId(taskId)
                 .setStartTime(startTime);
-        Long id = taskLogService.add(log);
+        Long id = taskLogService.create(log);
         context.setResult(id);
     }
 
@@ -48,7 +48,7 @@ public abstract class LogJob extends AbstractJob {
             log.setStatus(false)
                     .setMessage(e.getMessage());
         }
-        taskLogService.edit(log);
+        taskLogService.update(log);
     }
 
 }

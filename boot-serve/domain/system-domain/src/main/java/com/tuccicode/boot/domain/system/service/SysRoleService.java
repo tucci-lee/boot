@@ -17,21 +17,21 @@ public interface SysRoleService {
      * @param query 查询条件
      * @return Page
      */
-    PageResponse<SysRole> list(SysRoleQuery query);
+    PageResponse<SysRole> page(SysRoleQuery query);
 
     /**
      * 添加角色
      *
      * @param sysRole 角色信息
      */
-    void add(SysRole sysRole);
+    void create(SysRole sysRole);
 
     /**
      * 修改角色
      *
      * @param sysRole 角色信息
      */
-    void edit(SysRole sysRole);
+    void update(SysRole sysRole);
 
     /**
      * 根绝id删除角色
@@ -45,7 +45,7 @@ public interface SysRoleService {
      *
      * @param sysRole 角色信息
      */
-    void editRes(SysRole sysRole);
+    void updateRes(SysRole sysRole);
 
     /**
      * 根据uid查询关联的角色

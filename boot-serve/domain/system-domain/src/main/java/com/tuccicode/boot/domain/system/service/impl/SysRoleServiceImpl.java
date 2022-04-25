@@ -37,7 +37,7 @@ public class SysRoleServiceImpl implements SysRoleService {
     }
 
     @Override
-    public PageResponse<SysRole> list(SysRoleQuery query) {
+    public PageResponse<SysRole> page(SysRoleQuery query) {
         Page<SysRoleDO> page = new Page<>(query.getPageNo(), query.getPageSize());
         sysRoleMapper.selectPage(page, query);
 
@@ -50,27 +50,27 @@ public class SysRoleServiceImpl implements SysRoleService {
 
     @Transactional(rollbackFor = RuntimeException.class)
     @Override
-    public void add(SysRole sysRole) {
+    public void create(SysRole sysRole) {
         List<Long> resIds = sysRole.getResIds();
-        SysRoleDO addRole = SysRoleConvertor.toAddDO(sysRole);
+        SysRoleDO createRole = SysRoleConvertor.toAddDO(sysRole);
 
         // 校验角色名称是否有相同的
         synchronized (this) {
-            Assert.isNull(sysRoleMapper.selectByName(addRole.getName()), BootBizCode.ROLE_NAME_EXIST);
-            sysRoleMapper.insert(addRole);
+            Assert.isNull(sysRoleMapper.selectByName(createRole.getName()), BootBizCode.ROLE_NAME_EXIST);
+            sysRoleMapper.insert(createRole);
         }
         // 添加关联的资源
-        sysRoleResMapper.insertList(addRole.getId(), resIds);
+        sysRoleResMapper.insertList(createRole.getId(), resIds);
     }
 
     @Override
-    public void edit(SysRole sysRole) {
-        SysRoleDO editRole = SysRoleConvertor.toEditDO(sysRole);
+    public void update(SysRole sysRole) {
+        SysRoleDO updateRole = SysRoleConvertor.toEditDO(sysRole);
         // 校验角色名称是否有相同的
         synchronized (this) {
-            SysRoleDO queryRole = sysRoleMapper.selectByName(editRole.getName());
-            Assert.isTrue(queryRole == null || queryRole.getId().equals(editRole.getId()), BootBizCode.ROLE_NAME_EXIST);
-            sysRoleMapper.updateById(editRole);
+            SysRoleDO queryRole = sysRoleMapper.selectByName(updateRole.getName());
+            Assert.isTrue(queryRole == null || queryRole.getId().equals(updateRole.getId()), BootBizCode.ROLE_NAME_EXIST);
+            sysRoleMapper.updateById(updateRole);
         }
     }
 
@@ -79,15 +79,15 @@ public class SysRoleServiceImpl implements SysRoleService {
         int userCount = sysUserRoleMapper.countByRoleId(id);
         Assert.isTrue(userCount == 0, BootBizCode.ROLE_RELATED);
 
-        SysRoleDO editRole = new SysRoleDO()
+        SysRoleDO updateRole = new SysRoleDO()
                 .setId(id)
                 .setIsDeleted(true);
-        sysRoleMapper.updateById(editRole);
+        sysRoleMapper.updateById(updateRole);
     }
 
     @Transactional(rollbackFor = RuntimeException.class)
     @Override
-    public void editRes(SysRole sysRole) {
+    public void updateRes(SysRole sysRole) {
         synchronized (this) {
             // 删除之前绑定的资源
             sysRoleResMapper.deleteByRoleId(sysRole.getId());

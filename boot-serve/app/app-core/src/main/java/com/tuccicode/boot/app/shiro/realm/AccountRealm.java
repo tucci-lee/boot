@@ -42,7 +42,7 @@ public class AccountRealm extends AuthorizingRealm {
         this.sysResService = sysResService;
         this.sysLoginVersionService = sysLoginVersionService;
         // 凭证校验器
-        this.setCredentialsMatcher(new BCryptCredentialsMatcher());
+        this.setCredentialsMatcher(new BCryptCredentialsMatcher(sysUserService));
     }
 
     /**
@@ -79,7 +79,7 @@ public class AccountRealm extends AuthorizingRealm {
      */
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
-        SysUser sysUser = sysUserService.getAllByUsername((String) token.getPrincipal());
+        SysUser sysUser = sysUserService.getByUsername((String) token.getPrincipal());
         if (sysUser == null) {
             throw new UnknownAccountException();
         }

@@ -53,36 +53,36 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public Long add(Task task) {
-        TaskDO addTask = TaskConvertor.toAddDO(task);
+    public Long create(Task task) {
+        TaskDO createTask = TaskConvertor.toAddDO(task);
         synchronized (this) {
-            Assert.isNull(taskMapper.selectByName(addTask.getName()), BootBizCode.TASK_NAME_EXIST);
-            taskMapper.insert(addTask);
+            Assert.isNull(taskMapper.selectByName(createTask.getName()), BootBizCode.TASK_NAME_EXIST);
+            taskMapper.insert(createTask);
         }
-        return addTask.getId();
+        return createTask.getId();
     }
 
     @Override
-    public void edit(Task task) {
-        TaskDO editTask = TaskConvertor.toEditDO(task);
+    public void update(Task task) {
+        TaskDO updateTask = TaskConvertor.toEditDO(task);
         synchronized (this) {
-            TaskDO queryTask = taskMapper.selectByName(editTask.getName());
-            Assert.isTrue(queryTask == null || queryTask.getId().equals(editTask.getId()), BootBizCode.TASK_NAME_EXIST);
-            taskMapper.updateById(editTask);
+            TaskDO queryTask = taskMapper.selectByName(updateTask.getName());
+            Assert.isTrue(queryTask == null || queryTask.getId().equals(updateTask.getId()), BootBizCode.TASK_NAME_EXIST);
+            taskMapper.updateById(updateTask);
         }
     }
 
     @Override
     public void delete(Long id) {
-        TaskDO editTask = new TaskDO()
+        TaskDO updateTask = new TaskDO()
                 .setId(id)
                 .setIsDeleted(true);
-        taskMapper.updateById(editTask);
+        taskMapper.updateById(updateTask);
     }
 
     @Override
-    public void editStatus(Task task) {
-        TaskDO editTask = TaskConvertor.toEditStatusDO(task);
-        taskMapper.updateById(editTask);
+    public void updateStatus(Task task) {
+        TaskDO updateTask = TaskConvertor.toEditStatusDO(task);
+        taskMapper.updateById(updateTask);
     }
 }

@@ -11,7 +11,7 @@ public interface TaskLogService {
 
     PageResponse<TaskLog> list(TaskLogQuery query);
 
-    Long add(TaskLog log);
+    Long create(TaskLog log);
 
-    void edit(TaskLog log);
+    void update(TaskLog log);
 }

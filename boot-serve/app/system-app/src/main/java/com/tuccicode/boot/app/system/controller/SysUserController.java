@@ -1,11 +1,11 @@
 package com.tuccicode.boot.app.system.controller;
 
 import com.tuccicode.boot.app.aspect.Operate;
-import com.tuccicode.boot.app.system.dto.body.SysUserAddBody;
-import com.tuccicode.boot.app.system.dto.body.SysUserEditBody;
-import com.tuccicode.boot.app.system.dto.body.SysUserEditLockBody;
-import com.tuccicode.boot.app.system.dto.body.SysUserEditPasswordBody;
-import com.tuccicode.boot.app.system.dto.body.SysUserRoleEditBody;
+import com.tuccicode.boot.app.system.dto.body.SysUserCreateBody;
+import com.tuccicode.boot.app.system.dto.body.SysUserUpdateBody;
+import com.tuccicode.boot.app.system.dto.body.SysUserUpdateLockBody;
+import com.tuccicode.boot.app.system.dto.body.SysUserUpdatePasswordBody;
+import com.tuccicode.boot.app.system.dto.body.SysUserRoleUpdateBody;
 import com.tuccicode.boot.app.system.service.SysRoleAppService;
 import com.tuccicode.boot.app.system.service.SysUserAppService;
 import com.tuccicode.boot.domain.system.entity.user.SysUserQuery;
@@ -45,8 +45,8 @@ public class SysUserController {
      */
     @RequiresPermissions(value = {"sys:user:list"})
     @GetMapping
-    public Response list(SysUserQuery query) {
-        return sysUserAppService.list(query);
+    public Response page(SysUserQuery query) {
+        return sysUserAppService.page(query);
     }
 
     /**
@@ -56,10 +56,10 @@ public class SysUserController {
      * @return Response
      */
     @Operate("添加用户")
-    @RequiresPermissions(value = {"sys:user:add"})
+    @RequiresPermissions(value = {"sys:user:create"})
     @PostMapping
-    public Response add(@Validated @RequestBody SysUserAddBody body) {
-        return sysUserAppService.add(body);
+    public Response create(@Validated @RequestBody SysUserCreateBody body) {
+        return sysUserAppService.create(body);
     }
 
     /**
@@ -69,10 +69,10 @@ public class SysUserController {
      * @return Response
      */
     @Operate("修改用户")
-    @RequiresPermissions(value = {"sys:user:edit"})
+    @RequiresPermissions(value = {"sys:user:update"})
     @PutMapping
-    public Response edit(@Validated @RequestBody SysUserEditBody body) {
-        return sysUserAppService.edit(body);
+    public Response update(@Validated @RequestBody SysUserUpdateBody body) {
+        return sysUserAppService.update(body);
     }
 
     /**
@@ -82,10 +82,10 @@ public class SysUserController {
      * @return Response
      */
     @Operate("修改用户密码")
-    @RequiresPermissions(value = {"sys:user:editPassword"})
+    @RequiresPermissions(value = {"sys:user:update:password"})
     @PutMapping("password")
-    public Response editPassword(@Validated @RequestBody SysUserEditPasswordBody body) {
-        return sysUserAppService.editPassword(body);
+    public Response updatePassword(@Validated @RequestBody SysUserUpdatePasswordBody body) {
+        return sysUserAppService.updatePassword(body);
     }
 
     /**
@@ -95,10 +95,10 @@ public class SysUserController {
      * @return Response
      */
     @Operate("修改用户锁定状态")
-    @RequiresPermissions(value = {"sys:user:editLock"})
+    @RequiresPermissions(value = {"sys:user:update:lock"})
     @PutMapping("lock")
-    public Response editLock(@Validated @RequestBody SysUserEditLockBody body) {
-        return sysUserAppService.editLock(body);
+    public Response updateLock(@Validated @RequestBody SysUserUpdateLockBody body) {
+        return sysUserAppService.updateLock(body);
     }
 
     /**
@@ -133,9 +133,9 @@ public class SysUserController {
      * @return Response
      */
     @Operate("修改用户关联的角色")
-    @RequiresPermissions(value = {"sys:user:edit"})
+    @RequiresPermissions(value = {"sys:user:update"})
     @PutMapping("role")
-    public Response editRole(@Validated @RequestBody SysUserRoleEditBody body) {
-        return sysUserAppService.editRole(body);
+    public Response updateRole(@Validated @RequestBody SysUserRoleUpdateBody body) {
+        return sysUserAppService.updateRole(body);
     }
 }

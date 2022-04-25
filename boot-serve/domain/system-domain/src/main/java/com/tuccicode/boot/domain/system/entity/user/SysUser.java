@@ -40,6 +40,4 @@ public class SysUser extends DTO {
     private List<Long> roleIds;
 
     private Integer loginVersion;
-
-    private String oldPassword;
 }

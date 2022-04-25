@@ -34,7 +34,7 @@ public class SysLoginLogAppService {
      * @param ip           ip
      * @param userAgentStr userAgent
      */
-    public void addLog(String username, boolean status, String message, String ip, String userAgentStr) {
+    public void create(String username, boolean status, String message, String ip, String userAgentStr) {
         // 获取浏览器信息（操作系统，浏览器）
         UserAgent userAgent = UserAgent.parseUserAgentString(userAgentStr);
         String os = userAgent.getOperatingSystem().getName();
@@ -46,11 +46,11 @@ public class SysLoginLogAppService {
                 .setStatus(status)
                 .setMessage(message)
                 .setIp(ip);
-        sysLoginLogService.add(log);
+        sysLoginLogService.create(log);
     }
 
-    public Response list(SysLoginLogQuery query) {
-        PageResponse<SysLoginLog> page = sysLoginLogService.list(query);
+    public Response page(SysLoginLogQuery query) {
+        PageResponse<SysLoginLog> page = sysLoginLogService.page(query);
         List<SysLoginLogVO> sysLoginLogVOList = page.getData().stream()
                 .map(LogLoginAssembler::toVO)
                 .collect(Collectors.toList());

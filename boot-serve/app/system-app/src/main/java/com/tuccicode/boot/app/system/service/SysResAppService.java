@@ -1,8 +1,8 @@
 package com.tuccicode.boot.app.system.service;
 
 import com.tuccicode.boot.app.system.assembler.SysResAssembler;
-import com.tuccicode.boot.app.system.dto.body.SysResAddBody;
-import com.tuccicode.boot.app.system.dto.body.SysResEditBody;
+import com.tuccicode.boot.app.system.dto.body.SysResCreateBody;
+import com.tuccicode.boot.app.system.dto.body.SysResUpdateBody;
 import com.tuccicode.boot.app.system.dto.vo.SysResVO;
 import com.tuccicode.boot.domain.system.entity.res.SysRes;
 import com.tuccicode.boot.domain.system.service.SysResService;
@@ -72,10 +72,10 @@ public class SysResAppService {
      * @param body 资源信息
      * @return Response
      */
-    public Response add(SysResAddBody body) {
+    public Response create(SysResCreateBody body) {
         SysRes res = new SysRes();
         BeanUtils.copyProperties(body, res);
-        sysResService.add(res);
+        sysResService.create(res);
         return Response.success();
     }
 
@@ -96,10 +96,10 @@ public class SysResAppService {
      * @param body 资源信息
      * @return Response
      */
-    public Response edit(SysResEditBody body) {
+    public Response update(SysResUpdateBody body) {
         SysRes res = new SysRes();
         BeanUtils.copyProperties(body, res);
-        sysResService.edit(res);
+        sysResService.update(res);
         return Response.success();
     }
 

@@ -23,13 +23,13 @@ public class SysLoginVersionServiceImpl implements SysLoginVersionService {
     @CacheEvict(value = CacheConst.LOGIN_VERSION, key = "#p0")
     @Override
     public void save(Long uid) {
-        SysLoginVersionDO sysLoginVersionDO = sysLoginVersionMapper.selectById(uid);
-        if (sysLoginVersionDO == null) {
-            sysLoginVersionDO = new SysLoginVersionDO()
-                    .setUid(uid);
-            sysLoginVersionMapper.insert(sysLoginVersionDO);
-        } else {
-            synchronized (this) {
+        synchronized (this) {
+            SysLoginVersionDO sysLoginVersionDO = sysLoginVersionMapper.selectById(uid);
+            if (sysLoginVersionDO == null) {
+                sysLoginVersionDO = new SysLoginVersionDO()
+                        .setUid(uid);
+                sysLoginVersionMapper.insert(sysLoginVersionDO);
+            } else {
                 sysLoginVersionMapper.updateVersion(uid);
             }
         }
