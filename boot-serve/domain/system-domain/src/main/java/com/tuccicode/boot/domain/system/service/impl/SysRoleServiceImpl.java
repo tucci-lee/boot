@@ -52,7 +52,7 @@ public class SysRoleServiceImpl implements SysRoleService {
     @Override
     public void create(SysRole sysRole) {
         List<Long> resIds = sysRole.getResIds();
-        SysRoleDO createRole = SysRoleConvertor.toAddDO(sysRole);
+        SysRoleDO createRole = SysRoleConvertor.toCreateDO(sysRole);
 
         // 校验角色名称是否有相同的
         synchronized (this) {
@@ -65,7 +65,7 @@ public class SysRoleServiceImpl implements SysRoleService {
 
     @Override
     public void update(SysRole sysRole) {
-        SysRoleDO updateRole = SysRoleConvertor.toEditDO(sysRole);
+        SysRoleDO updateRole = SysRoleConvertor.toUpdateDO(sysRole);
         // 校验角色名称是否有相同的
         synchronized (this) {
             SysRoleDO queryRole = sysRoleMapper.selectByName(updateRole.getName());

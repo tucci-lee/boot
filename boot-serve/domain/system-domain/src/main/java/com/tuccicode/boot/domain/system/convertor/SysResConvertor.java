@@ -18,7 +18,7 @@ public class SysResConvertor {
         return entity;
     }
 
-    public static SysResDO toAddDO(SysRes entity) {
+    public static SysResDO toCreateDO(SysRes entity) {
         return new SysResDO()
                 .setName(entity.getName())
                 .setType(entity.getType())
@@ -28,7 +28,7 @@ public class SysResConvertor {
                 .setSeq(entity.getSeq());
     }
 
-    public static SysResDO toEditDO(SysRes entity) {
+    public static SysResDO toUpdateDO(SysRes entity) {
         return new SysResDO()
                 .setId(entity.getId())
                 .setName(entity.getName())

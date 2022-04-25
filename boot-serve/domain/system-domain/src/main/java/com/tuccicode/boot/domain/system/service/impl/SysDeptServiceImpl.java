@@ -41,7 +41,7 @@ public class SysDeptServiceImpl implements SysDeptService {
     public void create(SysDept dept) {
         this.verifyParent(dept.getPid());
 
-        SysDeptDO createDept = SysDeptConvertor.toAddDO(dept);
+        SysDeptDO createDept = SysDeptConvertor.toCreateDO(dept);
 
         // 校验资源名称是否有相同的
         synchronized (this) {
@@ -84,7 +84,7 @@ public class SysDeptServiceImpl implements SysDeptService {
 
         this.verifyParent(dept.getPid());
 
-        SysDeptDO updateDept = SysDeptConvertor.toEditDO(dept);
+        SysDeptDO updateDept = SysDeptConvertor.toUpdateDO(dept);
         synchronized (this) {
             SysDeptDO queryRes = sysDeptMapper.selectByName(updateDept.getName());
             Assert.isTrue(queryRes == null || queryRes.getId().equals(updateDept.getId()), BootBizCode.DEPT_NAME_EXIST);

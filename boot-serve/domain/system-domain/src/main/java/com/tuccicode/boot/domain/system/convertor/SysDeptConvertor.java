@@ -18,7 +18,7 @@ public class SysDeptConvertor {
         return entity;
     }
 
-    public static SysDeptDO toAddDO(SysDept entity) {
+    public static SysDeptDO toCreateDO(SysDept entity) {
         return new SysDeptDO()
                 .setName(entity.getName())
                 .setPid(entity.getPid())
@@ -27,7 +27,7 @@ public class SysDeptConvertor {
                 .setManagerPhone(entity.getManagerPhone());
     }
 
-    public static SysDeptDO toEditDO(SysDept entity) {
+    public static SysDeptDO toUpdateDO(SysDept entity) {
         return new SysDeptDO()
                 .setId(entity.getId())
                 .setName(entity.getName())

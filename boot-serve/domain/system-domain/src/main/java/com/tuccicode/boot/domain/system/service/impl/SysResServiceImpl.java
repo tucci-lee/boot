@@ -52,7 +52,7 @@ public class SysResServiceImpl implements SysResService {
     public void create(SysRes res) {
         this.verifyParent(res.getPid());
 
-        SysResDO createRes = SysResConvertor.toAddDO(res);
+        SysResDO createRes = SysResConvertor.toCreateDO(res);
 
         // 校验资源名称是否有相同的
         synchronized (this) {
@@ -87,7 +87,7 @@ public class SysResServiceImpl implements SysResService {
 
         this.verifyParent(res.getPid());
 
-        SysResDO updateRes = SysResConvertor.toEditDO(res);
+        SysResDO updateRes = SysResConvertor.toUpdateDO(res);
         synchronized (this) {
             SysResDO queryRes = sysResMapper.selectByName(updateRes.getName());
             Assert.isTrue(queryRes == null || queryRes.getId().equals(updateRes.getId()), BootBizCode.RES_NAME_EXIST);

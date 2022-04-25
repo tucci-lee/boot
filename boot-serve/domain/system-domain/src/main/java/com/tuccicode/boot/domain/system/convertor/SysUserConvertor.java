@@ -20,7 +20,7 @@ public class SysUserConvertor {
         return sysUser;
     }
 
-    public static SysUserDO toAddDO(SysUser entity) {
+    public static SysUserDO toCreateDO(SysUser entity) {
         return new SysUserDO()
                 .setUsername(entity.getUsername().toLowerCase())
                 .setPassword(BCrypt.hashpw(entity.getPassword(), BCrypt.gensalt()))
@@ -31,7 +31,7 @@ public class SysUserConvertor {
                 .setDeptId(entity.getDeptId());
     }
 
-    public static SysUserDO toEditDO(SysUser entity) {
+    public static SysUserDO toUpdateDO(SysUser entity) {
         return new SysUserDO()
                 .setUid(entity.getUid())
                 .setPhone(entity.getPhone())
@@ -41,13 +41,13 @@ public class SysUserConvertor {
                 .setDeptId(entity.getDeptId());
     }
 
-    public static SysUserDO toEditPasswordDO(SysUser entity) {
+    public static SysUserDO toUpdatePasswordDO(SysUser entity) {
         return new SysUserDO()
                 .setUid(entity.getUid())
                 .setPassword(BCrypt.hashpw(entity.getPassword(), BCrypt.gensalt()));
     }
 
-    public static SysUserDO toEditLockDO(SysUser entity) {
+    public static SysUserDO toUpdateLockDO(SysUser entity) {
         return new SysUserDO()
                 .setUid(entity.getUid())
                 .setIsLock(entity.getIsLock());

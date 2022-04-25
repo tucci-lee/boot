@@ -18,7 +18,7 @@ public class LogOperateConvertor {
         return entity;
     }
 
-    public static SysOperateLogDO toAddDO(SysOperateLog entity) {
+    public static SysOperateLogDO toCreateDO(SysOperateLog entity) {
         return new SysOperateLogDO()
                 .setUsername(entity.getUsername())
                 .setIp(entity.getIp())

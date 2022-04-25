@@ -38,14 +38,14 @@ public class TaskLogServiceImpl implements TaskLogService {
 
     @Override
     public Long create(TaskLog log) {
-        TaskLogDO taskLogDO = TaskLogConvertor.toAddDO(log);
+        TaskLogDO taskLogDO = TaskLogConvertor.toCreateDO(log);
         taskLogMapper.insert(taskLogDO);
         return taskLogDO.getId();
     }
 
     @Override
     public void update(TaskLog log) {
-        TaskLogDO taskLogDO = TaskLogConvertor.toEditDO(log);
+        TaskLogDO taskLogDO = TaskLogConvertor.toUpdateDO(log);
         taskLogMapper.updateById(taskLogDO);
     }
 }

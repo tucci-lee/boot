@@ -18,7 +18,7 @@ public class LogLoginConvertor {
         return entity;
     }
 
-    public static SysLoginLogDO toAddDO(SysLoginLog entity) {
+    public static SysLoginLogDO toCreateDO(SysLoginLog entity) {
         return new SysLoginLogDO()
                 .setUsername(entity.getUsername())
                 .setOs(entity.getOs())

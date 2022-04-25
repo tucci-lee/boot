@@ -76,7 +76,7 @@ public class SysUserServiceImpl implements SysUserService {
     @Override
     public void create(SysUser sysUser) {
         List<Long> roleIds = sysUser.getRoleIds();
-        SysUserDO sysUserDO = SysUserConvertor.toAddDO(sysUser);
+        SysUserDO sysUserDO = SysUserConvertor.toCreateDO(sysUser);
         synchronized (this) {
             SysUser queryUser = this.getByUsername(sysUserDO.getUsername());
             Assert.isNull(queryUser, BootBizCode.ACCOUNT_EXIST);
@@ -90,14 +90,14 @@ public class SysUserServiceImpl implements SysUserService {
 
     @Override
     public void update(SysUser sysUser) {
-        SysUserDO sysUserDO = SysUserConvertor.toEditDO(sysUser);
+        SysUserDO sysUserDO = SysUserConvertor.toUpdateDO(sysUser);
         sysUserMapper.updateById(sysUserDO);
     }
 
     @Transactional(rollbackFor = RuntimeException.class)
     @Override
     public void updatePassword(SysUser sysUser) {
-        SysUserDO sysUserDO = SysUserConvertor.toEditPasswordDO(sysUser);
+        SysUserDO sysUserDO = SysUserConvertor.toUpdatePasswordDO(sysUser);
         sysUserMapper.updateById(sysUserDO);
         sysLoginVersionService.save(sysUserDO.getUid());
     }
@@ -114,7 +114,7 @@ public class SysUserServiceImpl implements SysUserService {
     @Transactional(rollbackFor = RuntimeException.class)
     @Override
     public void updateLock(SysUser sysUser) {
-        SysUserDO sysUserDO = SysUserConvertor.toEditLockDO(sysUser);
+        SysUserDO sysUserDO = SysUserConvertor.toUpdateLockDO(sysUser);
         sysUserMapper.updateById(sysUserDO);
         sysLoginVersionService.save(sysUserDO.getUid());
     }

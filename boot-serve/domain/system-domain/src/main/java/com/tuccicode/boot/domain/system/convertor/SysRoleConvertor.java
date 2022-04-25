@@ -18,14 +18,14 @@ public class SysRoleConvertor {
         return entity;
     }
 
-    public static SysRoleDO toAddDO(SysRole entity) {
+    public static SysRoleDO toCreateDO(SysRole entity) {
         return new SysRoleDO()
                 .setName(entity.getName())
                 .setRoleChar(entity.getRoleChar())
                 .setRemarks(entity.getRemarks());
     }
 
-    public static SysRoleDO toEditDO(SysRole entity) {
+    public static SysRoleDO toUpdateDO(SysRole entity) {
         return new SysRoleDO()
                 .setId(entity.getId())
                 .setName(entity.getName())

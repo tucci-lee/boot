@@ -18,13 +18,13 @@ public class TaskLogConvertor {
         return entity;
     }
 
-    public static TaskLogDO toAddDO(TaskLog entity) {
+    public static TaskLogDO toCreateDO(TaskLog entity) {
         return new TaskLogDO()
                 .setTaskId(entity.getTaskId())
                 .setStartTime(entity.getStartTime());
     }
 
-    public static TaskLogDO toEditDO(TaskLog entity) {
+    public static TaskLogDO toUpdateDO(TaskLog entity) {
         return new TaskLogDO()
                 .setId(entity.getId())
                 .setStatus(entity.getStatus())

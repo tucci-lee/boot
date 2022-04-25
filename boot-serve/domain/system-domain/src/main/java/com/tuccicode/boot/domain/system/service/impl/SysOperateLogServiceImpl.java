@@ -27,7 +27,7 @@ public class SysOperateLogServiceImpl implements SysOperateLogService {
 
     @Override
     public void create(SysOperateLog log) {
-        SysOperateLogDO logOperateDO = LogOperateConvertor.toAddDO(log);
+        SysOperateLogDO logOperateDO = LogOperateConvertor.toCreateDO(log);
         sysOperateLogMapper.insert(logOperateDO);
     }
 

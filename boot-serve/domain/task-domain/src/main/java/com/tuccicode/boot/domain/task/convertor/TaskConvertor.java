@@ -18,7 +18,7 @@ public class TaskConvertor {
         return entity;
     }
 
-    public static TaskDO toAddDO(Task entity) {
+    public static TaskDO toCreateDO(Task entity) {
         return new TaskDO()
                 .setName(entity.getName())
                 .setClassName(entity.getClassName())
@@ -26,7 +26,7 @@ public class TaskConvertor {
                 .setRemarks(entity.getRemarks());
     }
 
-    public static TaskDO toEditDO(Task entity) {
+    public static TaskDO toUpdateDO(Task entity) {
         return new TaskDO()
                 .setId(entity.getId())
                 .setName(entity.getName())
@@ -35,7 +35,7 @@ public class TaskConvertor {
                 .setRemarks(entity.getRemarks());
     }
 
-    public static TaskDO toEditStatusDO(Task entity) {
+    public static TaskDO toUpdateStatusDO(Task entity) {
         return new TaskDO()
                 .setId(entity.getId())
                 .setStatus(entity.getStatus());

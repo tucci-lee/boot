@@ -54,7 +54,7 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public Long create(Task task) {
-        TaskDO createTask = TaskConvertor.toAddDO(task);
+        TaskDO createTask = TaskConvertor.toCreateDO(task);
         synchronized (this) {
             Assert.isNull(taskMapper.selectByName(createTask.getName()), BootBizCode.TASK_NAME_EXIST);
             taskMapper.insert(createTask);
@@ -64,7 +64,7 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public void update(Task task) {
-        TaskDO updateTask = TaskConvertor.toEditDO(task);
+        TaskDO updateTask = TaskConvertor.toUpdateDO(task);
         synchronized (this) {
             TaskDO queryTask = taskMapper.selectByName(updateTask.getName());
             Assert.isTrue(queryTask == null || queryTask.getId().equals(updateTask.getId()), BootBizCode.TASK_NAME_EXIST);
@@ -82,7 +82,7 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public void updateStatus(Task task) {
-        TaskDO updateTask = TaskConvertor.toEditStatusDO(task);
+        TaskDO updateTask = TaskConvertor.toUpdateStatusDO(task);
         taskMapper.updateById(updateTask);
     }
 }

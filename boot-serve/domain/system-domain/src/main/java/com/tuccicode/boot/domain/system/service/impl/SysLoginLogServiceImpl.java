@@ -26,7 +26,7 @@ public class SysLoginLogServiceImpl implements SysLoginLogService {
 
     @Override
     public void create(SysLoginLog log) {
-        SysLoginLogDO logLoginDO = LogLoginConvertor.toAddDO(log);
+        SysLoginLogDO logLoginDO = LogLoginConvertor.toCreateDO(log);
         sysLoginLogMapper.insert(logLoginDO);
     }
 
