@@ -2,6 +2,7 @@ package com.tuccicode.boot.domain.system.service.impl;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.tuccicode.boot.domain.exception.BootBizCode;
+import com.tuccicode.boot.domain.system.constant.CacheConst;
 import com.tuccicode.boot.domain.system.convertor.SysUserConvertor;
 import com.tuccicode.boot.domain.system.dataobject.SysDeptDO;
 import com.tuccicode.boot.domain.system.dataobject.SysUserDO;
@@ -14,6 +15,7 @@ import com.tuccicode.boot.domain.system.service.SysLoginVersionService;
 import com.tuccicode.boot.domain.system.service.SysUserService;
 import com.tuccicode.raccoon.dto.PageResponse;
 import com.tuccicode.raccoon.exception.Assert;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -90,6 +92,7 @@ public class SysUserServiceImpl implements SysUserService {
         }
     }
 
+    @CacheEvict(value = CacheConst.USER_RES, key = "#p0.uid",allEntries = true)
     @Transactional(rollbackFor = RuntimeException.class)
     @Override
     public void updateLock(SysUser sysUser) {
@@ -98,6 +101,7 @@ public class SysUserServiceImpl implements SysUserService {
         sysLoginVersionService.save(sysUserDO.getUid());
     }
 
+    @CacheEvict(value = CacheConst.USER_RES, key = "#p0",allEntries = true)
     @Transactional(rollbackFor = RuntimeException.class)
     @Override
     public void delete(Long uid) {
@@ -108,6 +112,7 @@ public class SysUserServiceImpl implements SysUserService {
         sysLoginVersionService.save(uid);
     }
 
+    @CacheEvict(value = CacheConst.USER_RES, key = "#p0.uid",allEntries = true)
     @Transactional(rollbackFor = RuntimeException.class)
     @Override
     public void updateRole(SysUser sysUser) {
