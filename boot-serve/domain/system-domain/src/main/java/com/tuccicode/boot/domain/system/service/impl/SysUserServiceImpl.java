@@ -28,16 +28,13 @@ import java.util.List;
 public class SysUserServiceImpl implements SysUserService {
 
     private final SysUserMapper sysUserMapper;
-    private final SysDeptMapper sysDeptMapper;
     private final SysUserRoleMapper sysUserRoleMapper;
     private final SysLoginVersionService sysLoginVersionService;
 
     public SysUserServiceImpl(SysUserMapper sysUserMapper,
-                              SysDeptMapper sysDeptMapper,
                               SysUserRoleMapper sysUserRoleMapper,
                               SysLoginVersionService sysLoginVersionService) {
         this.sysUserMapper = sysUserMapper;
-        this.sysDeptMapper = sysDeptMapper;
         this.sysUserRoleMapper = sysUserRoleMapper;
         this.sysLoginVersionService = sysLoginVersionService;
     }
@@ -45,31 +42,13 @@ public class SysUserServiceImpl implements SysUserService {
     @Override
     public SysUser getByUsername(String username) {
         SysUserDO sysUserDO = sysUserMapper.selectByUsername(username.toLowerCase());
-        return SysUserConvertor.toEntity(sysUserDO, null);
+        return SysUserConvertor.toEntity(sysUserDO);
     }
 
     @Override
     public SysUser getByUid(Long uid) {
         SysUserDO sysUserDO = sysUserMapper.selectByUid(uid);
-        return SysUserConvertor.toEntity(sysUserDO, null);
-    }
-
-    @Override
-    public PageResponse<SysUser> page(SysUserQuery query) {
-        Page<SysUserDO> page = new Page<>(query.getPageNo(), query.getPageSize());
-        sysUserMapper.selectPage(page, query);
-
-        List<SysUser> entities = new ArrayList<>();
-        page.getRecords().forEach(sysUserDO -> {
-            SysDeptDO sysDeptDO = new SysDeptDO();
-            if (sysUserDO.getDeptId() != null) {
-                sysDeptDO = sysDeptMapper.selectById(sysUserDO.getDeptId());
-            }
-            SysUser sysUser = SysUserConvertor.toEntity(sysUserDO, sysDeptDO.getName());
-            entities.add(sysUser);
-        });
-
-        return PageResponse.success(entities, (int) page.getTotal());
+        return SysUserConvertor.toEntity(sysUserDO);
     }
 
     @Transactional(rollbackFor = RuntimeException.class)

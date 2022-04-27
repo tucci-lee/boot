@@ -26,17 +26,6 @@ public class TaskLogServiceImpl implements TaskLogService {
     }
 
     @Override
-    public PageResponse<TaskLog> list(TaskLogQuery query) {
-        Page<TaskLogDO> page = new Page<>(query.getPageNo(), query.getPageSize());
-        taskLogMapper.selectPage(page, query);
-        List<TaskLog> taskLogList = page.getRecords()
-                .stream()
-                .map(TaskLogConvertor::toEntity)
-                .collect(Collectors.toList());
-        return PageResponse.success(taskLogList, (int) page.getTotal());
-    }
-
-    @Override
     public Long create(TaskLog log) {
         TaskLogDO taskLogDO = TaskLogConvertor.toCreateDO(log);
         taskLogMapper.insert(taskLogDO);

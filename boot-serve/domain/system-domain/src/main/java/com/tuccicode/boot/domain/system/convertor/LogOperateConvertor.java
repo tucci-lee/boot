@@ -9,15 +9,6 @@ import org.springframework.beans.BeanUtils;
  */
 public class LogOperateConvertor {
 
-    public static SysOperateLog toEntity(SysOperateLogDO dataobject) {
-        if (dataobject == null) {
-            return null;
-        }
-        SysOperateLog entity = new SysOperateLog();
-        BeanUtils.copyProperties(dataobject, entity);
-        return entity;
-    }
-
     public static SysOperateLogDO toCreateDO(SysOperateLog entity) {
         return new SysOperateLogDO()
                 .setUsername(entity.getUsername())
@@ -28,6 +19,7 @@ public class LogOperateConvertor {
                 .setResult(entity.getResult())
                 .setDescription(entity.getDescription())
                 .setErrorMessage(entity.getErrorMessage())
-                .setStatus(entity.getStatus());
+                .setStatus(entity.getStatus())
+                .setCreateTime(System.currentTimeMillis());
     }
 }

@@ -1,10 +1,13 @@
 package com.tuccicode.boot.app.system.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.tuccicode.boot.app.system.assembler.LogOperateAssembler;
 import com.tuccicode.boot.app.system.dto.vo.SysOperateLogVO;
+import com.tuccicode.boot.domain.system.dataobject.SysOperateLogDO;
+import com.tuccicode.boot.domain.system.dataobject.SysUserDO;
 import com.tuccicode.boot.domain.system.entity.log.SysOperateLog;
 import com.tuccicode.boot.domain.system.entity.log.SysOperateLogQuery;
-import com.tuccicode.boot.domain.system.service.SysOperateLogService;
+import com.tuccicode.boot.domain.system.mapper.SysOperateLogMapper;
 import com.tuccicode.raccoon.dto.PageResponse;
 import com.tuccicode.raccoon.dto.Response;
 import org.springframework.stereotype.Service;
@@ -18,17 +21,18 @@ import java.util.stream.Collectors;
 @Service
 public class SysOperateLogAppService {
 
-    private final SysOperateLogService sysOperateLogService;
+    private final SysOperateLogMapper sysOperateLogMapper;
 
-    public SysOperateLogAppService(SysOperateLogService sysOperateLogService) {
-        this.sysOperateLogService = sysOperateLogService;
+    public SysOperateLogAppService(SysOperateLogMapper sysOperateLogMapper) {
+        this.sysOperateLogMapper = sysOperateLogMapper;
     }
 
     public Response page(SysOperateLogQuery query) {
-        PageResponse<SysOperateLog> page = sysOperateLogService.page(query);
-        List<SysOperateLogVO> sysOperateLogVOList = page.getData().stream()
+        Page<SysOperateLogDO> page = new Page<>(query.getPageNo(), query.getPageSize());
+        sysOperateLogMapper.selectPage(page, query);
+        List<SysOperateLogVO> sysOperateLogVOList = page.getRecords().stream()
                 .map(LogOperateAssembler::toVO)
                 .collect(Collectors.toList());
-        return PageResponse.success(sysOperateLogVOList, page.getTotal());
+        return PageResponse.success(sysOperateLogVOList, (int) page.getTotal());
     }
 }

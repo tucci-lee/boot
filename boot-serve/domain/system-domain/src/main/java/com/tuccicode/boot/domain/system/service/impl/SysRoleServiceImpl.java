@@ -36,18 +36,6 @@ public class SysRoleServiceImpl implements SysRoleService {
         this.sysUserRoleMapper = sysUserRoleMapper;
     }
 
-    @Override
-    public PageResponse<SysRole> page(SysRoleQuery query) {
-        Page<SysRoleDO> page = new Page<>(query.getPageNo(), query.getPageSize());
-        sysRoleMapper.selectPage(page, query);
-
-        List<SysRole> sysRoleList = page.getRecords()
-                .stream()
-                .map(SysRoleConvertor::toEntity)
-                .collect(Collectors.toList());
-        return PageResponse.success(sysRoleList, (int) page.getTotal());
-    }
-
     @Transactional(rollbackFor = RuntimeException.class)
     @Override
     public void create(SysRole sysRole) {

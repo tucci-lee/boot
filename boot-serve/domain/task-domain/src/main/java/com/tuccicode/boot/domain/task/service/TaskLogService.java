@@ -9,8 +9,6 @@ import com.tuccicode.raccoon.dto.PageResponse;
  */
 public interface TaskLogService {
 
-    PageResponse<TaskLog> list(TaskLogQuery query);
-
     Long create(TaskLog log);
 
     void update(TaskLog log);

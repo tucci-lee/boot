@@ -26,14 +26,6 @@ public interface SysUserService {
     SysUser getByUid(Long uid);
 
     /**
-     * 条件查询用户信息
-     *
-     * @param query 查询条件
-     * @return SysUser
-     */
-    PageResponse<SysUser> page(SysUserQuery query);
-
-    /**
      * 添加用户
      *
      * @param sysUser 用户信息

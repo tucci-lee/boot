@@ -1,5 +1,6 @@
 package com.tuccicode.boot.app.task.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.tuccicode.boot.app.task.assembler.TaskAssembler;
 import com.tuccicode.boot.app.task.dto.body.TaskCreateBody;
 import com.tuccicode.boot.app.task.dto.body.TaskUpdateBody;
@@ -7,8 +8,10 @@ import com.tuccicode.boot.app.task.dto.body.TaskUpdateStatusBody;
 import com.tuccicode.boot.app.task.dto.vo.TaskVO;
 import com.tuccicode.boot.app.task.job.AbstractJob;
 import com.tuccicode.boot.domain.exception.BootBizCode;
+import com.tuccicode.boot.domain.task.dataobject.TaskDO;
 import com.tuccicode.boot.domain.task.entity.Task;
 import com.tuccicode.boot.domain.task.entity.TaskQuery;
+import com.tuccicode.boot.domain.task.mapper.TaskMapper;
 import com.tuccicode.boot.domain.task.service.TaskService;
 import com.tuccicode.raccoon.dto.PageResponse;
 import com.tuccicode.raccoon.dto.Response;
@@ -43,11 +46,14 @@ public class TaskAppService implements InitializingBean {
 
     private final Scheduler scheduler;
     private final TaskService taskService;
+    private final TaskMapper taskMapper;
 
     public TaskAppService(Scheduler scheduler,
-                          TaskService taskService) {
+                          TaskService taskService,
+                          TaskMapper taskMapper) {
         this.scheduler = scheduler;
         this.taskService = taskService;
+        this.taskMapper = taskMapper;
     }
 
     /**
@@ -62,11 +68,12 @@ public class TaskAppService implements InitializingBean {
     }
 
     public Response list(TaskQuery query) {
-        PageResponse<Task> page = taskService.list(query);
-        List<TaskVO> taskVOList = page.getData().stream()
+        Page<TaskDO> page = new Page<>(query.getPageNo(), query.getPageSize());
+        taskMapper.selectPage(page, query);
+        List<TaskVO> taskVOList = page.getRecords().stream()
                 .map(TaskAssembler::toVO)
                 .collect(Collectors.toList());
-        return PageResponse.success(taskVOList, page.getTotal());
+        return PageResponse.success(taskVOList, (int) page.getTotal());
     }
 
     @Transactional(rollbackFor = RuntimeException.class)

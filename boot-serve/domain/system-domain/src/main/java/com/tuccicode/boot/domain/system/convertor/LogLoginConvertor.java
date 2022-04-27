@@ -9,15 +9,6 @@ import org.springframework.beans.BeanUtils;
  */
 public class LogLoginConvertor {
 
-    public static SysLoginLog toEntity(SysLoginLogDO dataobject) {
-        if (dataobject == null) {
-            return null;
-        }
-        SysLoginLog entity = new SysLoginLog();
-        BeanUtils.copyProperties(dataobject, entity);
-        return entity;
-    }
-
     public static SysLoginLogDO toCreateDO(SysLoginLog entity) {
         return new SysLoginLogDO()
                 .setUsername(entity.getUsername())
@@ -25,6 +16,7 @@ public class LogLoginConvertor {
                 .setBrowser(entity.getBrowser())
                 .setIp(entity.getIp())
                 .setStatus(entity.getStatus())
-                .setMessage(entity.getMessage());
+                .setMessage(entity.getMessage())
+                .setCreateTime(System.currentTimeMillis());
     }
 }

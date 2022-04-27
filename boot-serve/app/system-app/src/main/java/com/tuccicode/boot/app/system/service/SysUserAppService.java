@@ -1,5 +1,6 @@
 package com.tuccicode.boot.app.system.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.tuccicode.boot.app.system.assembler.SysUserAssembler;
 import com.tuccicode.boot.app.system.dto.body.ChangePasswordBody;
 import com.tuccicode.boot.app.system.dto.body.SysUserCreateBody;
@@ -9,14 +10,17 @@ import com.tuccicode.boot.app.system.dto.body.SysUserUpdatePasswordBody;
 import com.tuccicode.boot.app.system.dto.body.SysUserRoleUpdateBody;
 import com.tuccicode.boot.app.system.dto.vo.SysUserVO;
 import com.tuccicode.boot.domain.exception.BootBizCode;
+import com.tuccicode.boot.domain.system.dataobject.SysUserDO;
+import com.tuccicode.boot.domain.system.entity.dept.SysDept;
 import com.tuccicode.boot.domain.system.entity.user.SysUser;
 import com.tuccicode.boot.domain.system.entity.user.SysUserQuery;
+import com.tuccicode.boot.domain.system.mapper.SysUserMapper;
+import com.tuccicode.boot.domain.system.service.SysDeptService;
 import com.tuccicode.boot.domain.system.service.SysUserService;
 import com.tuccicode.raccoon.dto.PageResponse;
 import com.tuccicode.raccoon.dto.Response;
 import com.tuccicode.raccoon.exception.Assert;
 import org.springframework.beans.BeanUtils;
-import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,17 +33,30 @@ import java.util.stream.Collectors;
 public class SysUserAppService {
 
     private final SysUserService sysUserService;
+    private final SysUserMapper userMapper;
+    private final SysDeptService sysDeptService;
 
-    public SysUserAppService(SysUserService sysUserService) {
+    public SysUserAppService(SysUserService sysUserService,
+                             SysUserMapper userMapper,
+                             SysDeptService sysDeptService) {
         this.sysUserService = sysUserService;
+        this.userMapper = userMapper;
+        this.sysDeptService = sysDeptService;
     }
 
     public Response page(SysUserQuery query) {
-        PageResponse<SysUser> page = sysUserService.page(query);
-        List<SysUserVO> sysUserVOList = page.getData().stream()
-                .map(SysUserAssembler::toVO)
-                .collect(Collectors.toList());
-        return PageResponse.success(sysUserVOList, page.getTotal());
+        Page<SysUserDO> page = new Page<>(query.getPageNo(), query.getPageSize());
+        userMapper.selectPage(page, query);
+
+        List<SysUserVO> sysUserVoList = page.getRecords().stream().map(sysUserDO -> {
+            String deptName = null;
+            if (sysUserDO.getDeptId() != null) {
+                SysDept sysDept = sysDeptService.getById(sysUserDO.getDeptId());
+                deptName = sysDept == null ? null : sysDept.getName();
+            }
+            return SysUserAssembler.toVO(sysUserDO, deptName);
+        }).collect(Collectors.toList());
+        return PageResponse.success(sysUserVoList, (int) page.getTotal());
     }
 
     public Response create(SysUserCreateBody body) {

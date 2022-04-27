@@ -10,13 +10,12 @@ import org.springframework.security.crypto.bcrypt.BCrypt;
  */
 public class SysUserConvertor {
 
-    public static SysUser toEntity(SysUserDO entity, String deptName) {
+    public static SysUser toEntity(SysUserDO entity) {
         if (entity == null) {
             return null;
         }
         SysUser sysUser = new SysUser();
         BeanUtils.copyProperties(entity, sysUser);
-        sysUser.setDeptName(deptName);
         return sysUser;
     }
 
@@ -28,7 +27,8 @@ public class SysUserConvertor {
                 .setEmail(entity.getEmail())
                 .setNickname(entity.getNickname())
                 .setRemarks(entity.getRemarks())
-                .setDeptId(entity.getDeptId());
+                .setDeptId(entity.getDeptId())
+                .setCreateTime(System.currentTimeMillis());
     }
 
     public static SysUserDO toUpdateDO(SysUser entity) {
@@ -38,18 +38,21 @@ public class SysUserConvertor {
                 .setEmail(entity.getEmail())
                 .setNickname(entity.getNickname())
                 .setRemarks(entity.getRemarks())
-                .setDeptId(entity.getDeptId());
+                .setDeptId(entity.getDeptId())
+                .setUpdatedTime(System.currentTimeMillis());
     }
 
     public static SysUserDO toUpdatePasswordDO(SysUser entity) {
         return new SysUserDO()
                 .setUid(entity.getUid())
-                .setPassword(BCrypt.hashpw(entity.getPassword(), BCrypt.gensalt()));
+                .setPassword(BCrypt.hashpw(entity.getPassword(), BCrypt.gensalt()))
+                .setUpdatedTime(System.currentTimeMillis());
     }
 
     public static SysUserDO toUpdateLockDO(SysUser entity) {
         return new SysUserDO()
                 .setUid(entity.getUid())
-                .setIsLock(entity.getIsLock());
+                .setIsLock(entity.getIsLock())
+                .setUpdatedTime(System.currentTimeMillis());
     }
 }

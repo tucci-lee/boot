@@ -34,17 +34,6 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public PageResponse<Task> list(TaskQuery query) {
-        Page<TaskDO> page = new Page<>(query.getPageNo(), query.getPageSize());
-        taskMapper.selectPage(page, query);
-        List<Task> taskList = page.getRecords()
-                .stream()
-                .map(TaskConvertor::toEntity)
-                .collect(Collectors.toList());
-        return PageResponse.success(taskList, (int) page.getTotal());
-    }
-
-    @Override
     public List<Task> list() {
         List<TaskDO> taskDOList = taskMapper.selectList();
         return taskDOList.stream()

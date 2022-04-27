@@ -1,12 +1,16 @@
 package com.tuccicode.boot.app.system.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.tuccicode.boot.app.system.assembler.SysRoleAssembler;
 import com.tuccicode.boot.app.system.dto.body.SysRoleCreateBody;
 import com.tuccicode.boot.app.system.dto.body.SysRoleUpdateBody;
 import com.tuccicode.boot.app.system.dto.body.SysRoleResUpdateBody;
 import com.tuccicode.boot.app.system.dto.vo.SysRoleVO;
+import com.tuccicode.boot.domain.system.dataobject.SysRoleDO;
+import com.tuccicode.boot.domain.system.dataobject.SysUserDO;
 import com.tuccicode.boot.domain.system.entity.role.SysRole;
 import com.tuccicode.boot.domain.system.entity.role.SysRoleQuery;
+import com.tuccicode.boot.domain.system.mapper.SysRoleMapper;
 import com.tuccicode.boot.domain.system.service.SysRoleService;
 import com.tuccicode.raccoon.dto.PageResponse;
 import com.tuccicode.raccoon.dto.Response;
@@ -24,9 +28,12 @@ import java.util.stream.Collectors;
 public class SysRoleAppService {
 
     private final SysRoleService sysRoleService;
+    private final SysRoleMapper sysRoleMapper;
 
-    public SysRoleAppService(SysRoleService sysRoleService) {
+    public SysRoleAppService(SysRoleService sysRoleService,
+                             SysRoleMapper sysRoleMapper) {
         this.sysRoleService = sysRoleService;
+        this.sysRoleMapper = sysRoleMapper;
     }
 
     /**
@@ -36,11 +43,12 @@ public class SysRoleAppService {
      * @return 角色列表
      */
     public Response page(SysRoleQuery query) {
-        PageResponse<SysRole> page = sysRoleService.page(query);
-        List<SysRoleVO> sysRoleVOList = page.getData().stream()
+        Page<SysRoleDO> page = new Page<>(query.getPageNo(), query.getPageSize());
+        sysRoleMapper.selectPage(page, query);
+        List<SysRoleVO> sysRoleVOList = page.getRecords().stream()
                 .map(SysRoleAssembler::toVO)
                 .collect(Collectors.toList());
-        return PageResponse.success(sysRoleVOList, page.getTotal());
+        return PageResponse.success(sysRoleVOList, (int) page.getTotal());
     }
 
     /**

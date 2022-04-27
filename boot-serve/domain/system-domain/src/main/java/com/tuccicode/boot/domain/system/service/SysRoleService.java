@@ -12,14 +12,6 @@ import java.util.List;
 public interface SysRoleService {
 
     /**
-     * 分页查询角色列表
-     *
-     * @param query 查询条件
-     * @return Page
-     */
-    PageResponse<SysRole> page(SysRoleQuery query);
-
-    /**
      * 添加角色
      *
      * @param sysRole 角色信息

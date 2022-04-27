@@ -9,19 +9,11 @@ import org.springframework.beans.BeanUtils;
  */
 public class TaskLogConvertor {
 
-    public static TaskLog toEntity(TaskLogDO dataobject){
-        if (dataobject == null) {
-            return null;
-        }
-        TaskLog entity = new TaskLog();
-        BeanUtils.copyProperties(dataobject, entity);
-        return entity;
-    }
-
     public static TaskLogDO toCreateDO(TaskLog entity) {
         return new TaskLogDO()
                 .setTaskId(entity.getTaskId())
-                .setStartTime(entity.getStartTime());
+                .setStartTime(entity.getStartTime())
+                .setCreateTime(System.currentTimeMillis());
     }
 
     public static TaskLogDO toUpdateDO(TaskLog entity) {

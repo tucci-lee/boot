@@ -12,5 +12,4 @@ public interface SysOperateLogService {
 
     void create(SysOperateLog log);
 
-    PageResponse<SysOperateLog> page(SysOperateLogQuery query);
 }

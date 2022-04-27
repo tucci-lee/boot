@@ -93,6 +93,12 @@ public class SysDeptServiceImpl implements SysDeptService {
         }
     }
 
+    @Override
+    public SysDept getById(Long id) {
+        SysDeptDO sysDeptDO = sysDeptMapper.selectById(id);
+        return SysDeptConvertor.toEntity(sysDeptDO);
+    }
+
     /**
      * 校验上级是否存在
      *

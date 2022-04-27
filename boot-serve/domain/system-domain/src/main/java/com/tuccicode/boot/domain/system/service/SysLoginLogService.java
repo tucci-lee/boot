@@ -11,5 +11,4 @@ public interface SysLoginLogService {
 
     void create(SysLoginLog log);
 
-    PageResponse<SysLoginLog> page(SysLoginLogQuery query);
 }

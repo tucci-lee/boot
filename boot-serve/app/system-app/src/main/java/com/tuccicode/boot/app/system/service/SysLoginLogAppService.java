@@ -1,9 +1,13 @@
 package com.tuccicode.boot.app.system.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.tuccicode.boot.app.system.assembler.LogLoginAssembler;
 import com.tuccicode.boot.app.system.dto.vo.SysLoginLogVO;
+import com.tuccicode.boot.domain.system.dataobject.SysLoginLogDO;
+import com.tuccicode.boot.domain.system.dataobject.SysOperateLogDO;
 import com.tuccicode.boot.domain.system.entity.log.SysLoginLog;
 import com.tuccicode.boot.domain.system.entity.log.SysLoginLogQuery;
+import com.tuccicode.boot.domain.system.mapper.SysLoginLogMapper;
 import com.tuccicode.boot.domain.system.service.SysLoginLogService;
 import com.tuccicode.raccoon.dto.PageResponse;
 import com.tuccicode.raccoon.dto.Response;
@@ -20,9 +24,12 @@ import java.util.stream.Collectors;
 public class SysLoginLogAppService {
 
     private final SysLoginLogService sysLoginLogService;
+    private final SysLoginLogMapper sysLoginLogMapper;
 
-    public SysLoginLogAppService(SysLoginLogService sysLoginLogService) {
+    public SysLoginLogAppService(SysLoginLogService sysLoginLogService,
+                                 SysLoginLogMapper sysLoginLogMapper) {
         this.sysLoginLogService = sysLoginLogService;
+        this.sysLoginLogMapper = sysLoginLogMapper;
     }
 
     /**
@@ -50,10 +57,11 @@ public class SysLoginLogAppService {
     }
 
     public Response page(SysLoginLogQuery query) {
-        PageResponse<SysLoginLog> page = sysLoginLogService.page(query);
-        List<SysLoginLogVO> sysLoginLogVOList = page.getData().stream()
+        Page<SysLoginLogDO> page = new Page<>(query.getPageNo(), query.getPageSize());
+        sysLoginLogMapper.selectPage(page, query);
+        List<SysLoginLogVO> sysLoginLogVOList = page.getRecords().stream()
                 .map(LogLoginAssembler::toVO)
                 .collect(Collectors.toList());
-        return PageResponse.success(sysLoginLogVOList, page.getTotal());
+        return PageResponse.success(sysLoginLogVOList, (int) page.getTotal());
     }
 }

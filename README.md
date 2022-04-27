@@ -37,7 +37,7 @@ domain - DDD中的领域层和基础设施层 \
 | Body       | 前端传入的body              |
 | Query      | 前端查询传入的query           |
 | VO         | ViewObject 返回给前端的对象    |
-| Assembler  | 组装器 Entity组装成VO        |
+| Assembler  | 组装器 Entity/DO组装成VO     |
 | Service    | domain层的服务             |
 | AppService | Application层的服务        |
 

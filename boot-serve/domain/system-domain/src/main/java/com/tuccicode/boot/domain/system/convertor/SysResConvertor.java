@@ -25,7 +25,8 @@ public class SysResConvertor {
                 .setUrl(entity.getUrl())
                 .setPid(entity.getPid())
                 .setResChar(entity.getResChar())
-                .setSeq(entity.getSeq());
+                .setSeq(entity.getSeq())
+                .setCreateTime(System.currentTimeMillis());
     }
 
     public static SysResDO toUpdateDO(SysRes entity) {
@@ -35,6 +36,7 @@ public class SysResConvertor {
                 .setUrl(entity.getUrl())
                 .setPid(entity.getPid() == null ? 0L : entity.getPid())
                 .setResChar(entity.getResChar())
-                .setSeq(entity.getSeq());
+                .setSeq(entity.getSeq())
+                .setUpdatedTime(System.currentTimeMillis());
     }
 }

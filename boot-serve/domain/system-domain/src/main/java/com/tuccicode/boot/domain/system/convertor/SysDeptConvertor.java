@@ -24,7 +24,8 @@ public class SysDeptConvertor {
                 .setPid(entity.getPid())
                 .setSeq(entity.getSeq())
                 .setManager(entity.getManager())
-                .setManagerPhone(entity.getManagerPhone());
+                .setManagerPhone(entity.getManagerPhone())
+                .setCreateTime(System.currentTimeMillis());
     }
 
     public static SysDeptDO toUpdateDO(SysDept entity) {
@@ -34,6 +35,7 @@ public class SysDeptConvertor {
                 .setId(entity.getPid() == null ? 0L : entity.getPid())
                 .setSeq(entity.getSeq())
                 .setManager(entity.getManager())
-                .setManagerPhone(entity.getManagerPhone());
+                .setManagerPhone(entity.getManagerPhone())
+                .setUpdatedTime(System.currentTimeMillis());
     }
 }

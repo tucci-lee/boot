@@ -22,7 +22,8 @@ public class SysRoleConvertor {
         return new SysRoleDO()
                 .setName(entity.getName())
                 .setRoleChar(entity.getRoleChar())
-                .setRemarks(entity.getRemarks());
+                .setRemarks(entity.getRemarks())
+                .setCreateTime(System.currentTimeMillis());
     }
 
     public static SysRoleDO toUpdateDO(SysRole entity) {
@@ -30,6 +31,7 @@ public class SysRoleConvertor {
                 .setId(entity.getId())
                 .setName(entity.getName())
                 .setRoleChar(entity.getRoleChar())
-                .setRemarks(entity.getRemarks());
+                .setRemarks(entity.getRemarks())
+                .setUpdatedTime(System.currentTimeMillis());
     }
 }

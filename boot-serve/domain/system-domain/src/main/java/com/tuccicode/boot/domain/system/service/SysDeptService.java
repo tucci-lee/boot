@@ -36,4 +36,12 @@ public interface SysDeptService {
      * @param dept 部门信息
      */
     void update(SysDept dept);
+
+    /**
+     * 根据id查询部门
+     *
+     * @param id id
+     * @return SysDept
+     */
+    SysDept getById(Long id);
 }

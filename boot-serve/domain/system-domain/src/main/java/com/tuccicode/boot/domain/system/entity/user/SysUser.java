@@ -34,9 +34,7 @@ public class SysUser extends DTO {
     private Long createTime;
 
     private Long updatedTime;
-
-    private String deptName;
-
+    
     private List<Long> roleIds;
 
     private Integer loginVersion;

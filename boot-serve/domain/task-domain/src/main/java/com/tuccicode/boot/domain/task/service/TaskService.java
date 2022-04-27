@@ -17,15 +17,6 @@ public interface TaskService {
      * @return Task
      */
     Task getById(Long id);
-
-    /**
-     * 条件分页查询定时任务列表
-     *
-     * @param query 查询条件
-     * @return Task
-     */
-    PageResponse<Task> list(TaskQuery query);
-
     /**
      * 查询所有的定时任务
      * @return Task
