@@ -14,7 +14,7 @@ public interface SysDeptMapper extends BaseMapper<SysDeptDO> {
 
     SysDeptDO selectByName(String name);
 
-    List<SysDeptDO> selectList();
+    List<SysDeptDO> selectAll();
 
     int countByPid(Long pid);
 }

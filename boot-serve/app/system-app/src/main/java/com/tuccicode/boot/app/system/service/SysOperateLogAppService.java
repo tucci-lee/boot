@@ -29,7 +29,7 @@ public class SysOperateLogAppService {
 
     public Response page(SysOperateLogQuery query) {
         Page<SysOperateLogDO> page = new Page<>(query.getPageNo(), query.getPageSize());
-        sysOperateLogMapper.selectPage(page, query);
+        sysOperateLogMapper.selectList(page, query);
         List<SysOperateLogVO> sysOperateLogVOList = page.getRecords().stream()
                 .map(LogOperateAssembler::toVO)
                 .collect(Collectors.toList());

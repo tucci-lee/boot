@@ -15,7 +15,7 @@ public interface SysRoleMapper extends BaseMapper<SysRoleDO> {
 
     SysRoleDO selectByName(String name);
 
-    Page<SysRoleDO> selectPage(Page<?> page, @Param("q") SysRoleQuery query);
+    Page<SysRoleDO> selectAll(Page<?> page, @Param("q") SysRoleQuery query);
 
     List<SysRoleDO> selectByUid(Long uid);
 }

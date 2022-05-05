@@ -46,7 +46,7 @@
         is_deleted = FALSE
         AND `name` = #{name}
     </select>
-    <select id="selectList" resultType="com.tuccicode.boot.domain.system.dataobject.SysResDO">
+    <select id="selectAll" resultType="com.tuccicode.boot.domain.system.dataobject.SysResDO">
         SELECT
         <include refid="ALL"/>
         FROM

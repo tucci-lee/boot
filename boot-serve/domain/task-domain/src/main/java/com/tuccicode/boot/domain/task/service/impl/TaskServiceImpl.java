@@ -35,7 +35,7 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public List<Task> list() {
-        List<TaskDO> taskDOList = taskMapper.selectList();
+        List<TaskDO> taskDOList = taskMapper.selectAll();
         return taskDOList.stream()
                 .map(TaskConvertor::toEntity)
                 .collect(Collectors.toList());

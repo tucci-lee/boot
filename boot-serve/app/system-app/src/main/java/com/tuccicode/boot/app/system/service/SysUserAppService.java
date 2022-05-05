@@ -46,7 +46,7 @@ public class SysUserAppService {
 
     public Response page(SysUserQuery query) {
         Page<SysUserDO> page = new Page<>(query.getPageNo(), query.getPageSize());
-        userMapper.selectPage(page, query);
+        userMapper.selectList(page, query);
 
         List<SysUserVO> sysUserVoList = page.getRecords().stream().map(sysUserDO -> {
             String deptName = null;

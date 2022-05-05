@@ -58,7 +58,7 @@ public class SysLoginLogAppService {
 
     public Response page(SysLoginLogQuery query) {
         Page<SysLoginLogDO> page = new Page<>(query.getPageNo(), query.getPageSize());
-        sysLoginLogMapper.selectPage(page, query);
+        sysLoginLogMapper.selectList(page, query);
         List<SysLoginLogVO> sysLoginLogVOList = page.getRecords().stream()
                 .map(LogLoginAssembler::toVO)
                 .collect(Collectors.toList());

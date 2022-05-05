@@ -30,7 +30,7 @@ public class TaskLogAppService {
 
     public Response list(TaskLogQuery query) {
         Page<TaskLogDO> page = new Page<>(query.getPageNo(), query.getPageSize());
-        taskLogMapper.selectPage(page, query);
+        taskLogMapper.selectList(page, query);
         List<TaskLogVO> taskLogVOList = page.getRecords().stream()
                 .map(TaskLogAssembler::toVO)
                 .collect(Collectors.toList());

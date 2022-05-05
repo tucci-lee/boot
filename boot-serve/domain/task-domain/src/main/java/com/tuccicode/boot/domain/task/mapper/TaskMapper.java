@@ -13,9 +13,9 @@ import java.util.List;
  */
 public interface TaskMapper extends BaseMapper<TaskDO> {
 
-    Page<TaskDO> selectPage(Page<TaskDO> page, @Param("q") TaskQuery query);
+    Page<TaskDO> selectList(Page<TaskDO> page, @Param("q") TaskQuery query);
 
-    List<TaskDO> selectList();
+    List<TaskDO> selectAll();
 
     TaskDO selectByName(String name);
 

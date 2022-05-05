@@ -7,7 +7,7 @@
         , `name`, class_name, cron, status, remarks, create_time, updated_time, is_deleted
     </sql>
 
-    <select id="selectPage" resultType="com.tuccicode.boot.domain.task.dataobject.TaskDO">
+    <select id="selectList" resultType="com.tuccicode.boot.domain.task.dataobject.TaskDO">
         SELECT
             <include refid="ALL"/>
         FROM
@@ -40,7 +40,7 @@
             is_deleted = FALSE
         AND id = #{id}
     </select>
-    <select id="selectList" resultType="com.tuccicode.boot.domain.task.dataobject.TaskDO">
+    <select id="selectAll" resultType="com.tuccicode.boot.domain.task.dataobject.TaskDO">
         SELECT
         <include refid="ALL"/>
         FROM

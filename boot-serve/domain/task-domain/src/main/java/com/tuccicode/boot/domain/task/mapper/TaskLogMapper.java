@@ -11,5 +11,5 @@ import org.apache.ibatis.annotations.Param;
  */
 public interface TaskLogMapper extends BaseMapper<TaskLogDO> {
 
-    Page<TaskLogDO> selectPage(Page<TaskLogDO> page, @Param("q") TaskLogQuery query);
+    Page<TaskLogDO> selectList(Page<TaskLogDO> page, @Param("q") TaskLogQuery query);
 }

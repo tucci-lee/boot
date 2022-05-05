@@ -7,7 +7,7 @@
         , role_char, `name`, remarks, create_time, updated_time, is_deleted
     </sql>
 
-    <select id="selectPage" resultType="com.tuccicode.boot.domain.system.dataobject.SysRoleDO">
+    <select id="selectAll" resultType="com.tuccicode.boot.domain.system.dataobject.SysRoleDO">
         SELECT
         <include refid="ALL"/>
         FROM

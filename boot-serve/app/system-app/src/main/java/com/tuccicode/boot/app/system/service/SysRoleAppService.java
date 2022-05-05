@@ -44,7 +44,7 @@ public class SysRoleAppService {
      */
     public Response page(SysRoleQuery query) {
         Page<SysRoleDO> page = new Page<>(query.getPageNo(), query.getPageSize());
-        sysRoleMapper.selectPage(page, query);
+        sysRoleMapper.selectAll(page, query);
         List<SysRoleVO> sysRoleVOList = page.getRecords().stream()
                 .map(SysRoleAssembler::toVO)
                 .collect(Collectors.toList());

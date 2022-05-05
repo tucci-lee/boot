@@ -7,7 +7,7 @@
         , task_id, status, message, start_time, run_time, create_time
     </sql>
 
-    <select id="selectPage" resultType="com.tuccicode.boot.domain.task.dataobject.TaskLogDO">
+    <select id="selectList" resultType="com.tuccicode.boot.domain.task.dataobject.TaskLogDO">
         SELECT
             <include refid="ALL"/>
         FROM

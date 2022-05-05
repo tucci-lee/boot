@@ -31,7 +31,7 @@ public class SysDeptServiceImpl implements SysDeptService {
 
     @Override
     public List<SysDept> list() {
-        List<SysDeptDO> sysDeptDOList = sysDeptMapper.selectList();
+        List<SysDeptDO> sysDeptDOList = sysDeptMapper.selectAll();
         return sysDeptDOList.stream()
                 .map(SysDeptConvertor::toEntity)
                 .collect(Collectors.toList());

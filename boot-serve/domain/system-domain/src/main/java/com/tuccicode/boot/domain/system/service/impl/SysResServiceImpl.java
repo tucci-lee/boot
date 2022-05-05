@@ -42,7 +42,7 @@ public class SysResServiceImpl implements SysResService {
 
     @Override
     public List<SysRes> list() {
-        List<SysResDO> sysResDOList = sysResMapper.selectList();
+        List<SysResDO> sysResDOList = sysResMapper.selectAll();
         return sysResDOList.stream()
                 .map(SysResConvertor::toEntity)
                 .collect(Collectors.toList());

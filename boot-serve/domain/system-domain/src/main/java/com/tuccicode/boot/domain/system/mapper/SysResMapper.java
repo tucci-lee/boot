@@ -16,7 +16,7 @@ public interface SysResMapper extends BaseMapper<SysResDO> {
 
     List<SysResDO> selectByUid(Long uid);
 
-    List<SysResDO> selectList();
+    List<SysResDO> selectAll();
 
     List<SysResDO> selectByRoleId(Long roleId);
 }
