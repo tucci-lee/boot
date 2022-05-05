@@ -1,14 +1,11 @@
 package com.tuccicode.boot.domain.task.service.impl;
 
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.tuccicode.boot.domain.exception.BootBizCode;
-import com.tuccicode.boot.domain.task.entity.TaskQuery;
 import com.tuccicode.boot.domain.task.convertor.TaskConvertor;
 import com.tuccicode.boot.domain.task.dataobject.TaskDO;
 import com.tuccicode.boot.domain.task.entity.Task;
 import com.tuccicode.boot.domain.task.mapper.TaskMapper;
 import com.tuccicode.boot.domain.task.service.TaskService;
-import com.tuccicode.raccoon.dto.PageResponse;
 import com.tuccicode.raccoon.exception.Assert;
 import org.springframework.stereotype.Service;
 

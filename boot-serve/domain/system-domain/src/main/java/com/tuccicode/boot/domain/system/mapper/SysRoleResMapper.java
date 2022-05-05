@@ -1,5 +1,6 @@
 package com.tuccicode.boot.domain.system.mapper;
 
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -7,6 +8,7 @@ import java.util.List;
 /**
  * @author tucci.lee
  */
+@Mapper
 public interface SysRoleResMapper {
 
     int countByResId(Long resId);

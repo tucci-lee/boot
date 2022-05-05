@@ -1,6 +1,5 @@
 package com.tuccicode.boot.domain.system.service;
 
-
 import com.tuccicode.boot.domain.system.entity.captcha.CaptchaType;
 
 import java.awt.image.BufferedImage;

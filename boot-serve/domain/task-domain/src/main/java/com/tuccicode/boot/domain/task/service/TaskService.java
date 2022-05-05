@@ -1,8 +1,6 @@
 package com.tuccicode.boot.domain.task.service;
 
-import com.tuccicode.boot.domain.task.entity.TaskQuery;
 import com.tuccicode.boot.domain.task.entity.Task;
-import com.tuccicode.raccoon.dto.PageResponse;
 
 import java.util.List;
 

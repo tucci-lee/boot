@@ -4,11 +4,13 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.tuccicode.boot.domain.system.dataobject.SysUserDO;
 import com.tuccicode.boot.domain.system.entity.user.SysUserQuery;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 /**
  * @author tucci.lee
  */
+@Mapper
 public interface SysUserMapper extends BaseMapper<SysUserDO> {
 
     int countByDeptId(Long deptId);
