@@ -13,35 +13,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>domain-code</module>
-        <module>system-domain</module>
-        <module>task-domain</module>
+        <module>boot-domain</module>
     </modules>
 
-    <dependencies>
-        <dependency>
-            <groupId>com.tuccicode</groupId>
-            <artifactId>raccoon-core</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-tx</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.hibernate.validator</groupId>
-            <artifactId>hibernate-validator</artifactId>
-            <scope>provided</scope>
-        </dependency>
-    </dependencies>
 </project>

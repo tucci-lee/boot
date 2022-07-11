@@ -7,7 +7,7 @@ import com.tuccicode.boot.app.task.dto.body.TaskUpdateBody;
 import com.tuccicode.boot.app.task.dto.body.TaskUpdateStatusBody;
 import com.tuccicode.boot.app.task.dto.vo.TaskVO;
 import com.tuccicode.boot.app.task.job.AbstractJob;
-import com.tuccicode.boot.domain.exception.BootBizCode;
+import com.tuccicode.boot.domain.core.exception.BootBizCode;
 import com.tuccicode.boot.domain.task.dataobject.TaskDO;
 import com.tuccicode.boot.domain.task.entity.Task;
 import com.tuccicode.boot.domain.task.entity.TaskQuery;

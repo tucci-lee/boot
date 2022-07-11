@@ -1,6 +1,6 @@
 package com.tuccicode.boot.app.handler;
 
-import com.tuccicode.boot.domain.exception.BootBizCode;
+import com.tuccicode.boot.domain.core.exception.BootBizCode;
 import com.tuccicode.raccoon.dto.Response;
 import com.tuccicode.raccoon.exception.BizException;
 import org.apache.shiro.authz.UnauthorizedException;

@@ -3,39 +3,42 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>app</artifactId>
+        <artifactId>domain</artifactId>
         <groupId>com.tuccicode.boot</groupId>
         <version>1.0.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>app-core</artifactId>
+    <artifactId>boot-domain</artifactId>
+
 
     <dependencies>
         <dependency>
             <groupId>com.tuccicode.boot</groupId>
-            <artifactId>boot-domain</artifactId>
+            <artifactId>domain-code</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <!-- 验证码 -->
         <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
+            <groupId>com.github.penggle</groupId>
+            <artifactId>kaptcha</artifactId>
         </dependency>
-
+        <!-- 密码加密等 -->
         <dependency>
-            <groupId>org.aspectj</groupId>
-            <artifactId>aspectjweaver</artifactId>
-            <scope>provided</scope>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-crypto</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.redisson</groupId>
-            <artifactId>redisson</artifactId>
-            <scope>provided</scope>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-actuator-autoconfigure</artifactId>
-            <scope>provided</scope>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate.validator</groupId>
+            <artifactId>hibernate-validator</artifactId>
         </dependency>
     </dependencies>
 </project>

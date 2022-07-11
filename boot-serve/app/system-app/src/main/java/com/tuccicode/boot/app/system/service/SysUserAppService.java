@@ -9,7 +9,7 @@ import com.tuccicode.boot.app.system.dto.body.SysUserUpdateLockBody;
 import com.tuccicode.boot.app.system.dto.body.SysUserUpdatePasswordBody;
 import com.tuccicode.boot.app.system.dto.body.SysUserRoleUpdateBody;
 import com.tuccicode.boot.app.system.dto.vo.SysUserVO;
-import com.tuccicode.boot.domain.exception.BootBizCode;
+import com.tuccicode.boot.domain.core.exception.BootBizCode;
 import com.tuccicode.boot.domain.system.dataobject.SysUserDO;
 import com.tuccicode.boot.domain.system.entity.dept.SysDept;
 import com.tuccicode.boot.domain.system.entity.user.SysUser;

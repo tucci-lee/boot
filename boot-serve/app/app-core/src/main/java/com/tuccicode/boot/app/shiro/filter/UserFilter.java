@@ -2,7 +2,7 @@ package com.tuccicode.boot.app.shiro.filter;
 
 import com.alibaba.fastjson.JSON;
 import com.tuccicode.boot.app.shiro.PrincipalUtils;
-import com.tuccicode.boot.domain.exception.BootBizCode;
+import com.tuccicode.boot.domain.core.exception.BootBizCode;
 import com.tuccicode.boot.domain.system.entity.user.SysUser;
 import com.tuccicode.boot.domain.system.service.SysLoginVersionService;
 import com.tuccicode.raccoon.dto.Response;

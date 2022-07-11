@@ -11,4 +11,10 @@
 
     <artifactId>domain-code</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.tuccicode</groupId>
+            <artifactId>raccoon-core</artifactId>
+        </dependency>
+    </dependencies>
 </project>

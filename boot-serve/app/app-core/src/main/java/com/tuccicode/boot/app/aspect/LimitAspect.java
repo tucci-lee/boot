@@ -1,7 +1,7 @@
 package com.tuccicode.boot.app.aspect;
 
 import com.tuccicode.boot.app.util.WebUtils;
-import com.tuccicode.boot.domain.exception.BootBizCode;
+import com.tuccicode.boot.domain.core.exception.BootBizCode;
 import com.tuccicode.raccoon.exception.BizException;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;

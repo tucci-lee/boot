@@ -7,7 +7,7 @@ import com.tuccicode.boot.app.system.dto.body.LoginBody;
 import com.tuccicode.boot.app.system.service.SysLoginLogAppService;
 import com.tuccicode.boot.app.system.service.SysUserAppService;
 import com.tuccicode.boot.app.util.WebUtils;
-import com.tuccicode.boot.domain.exception.BootBizCode;
+import com.tuccicode.boot.domain.core.exception.BootBizCode;
 import com.tuccicode.boot.domain.system.entity.captcha.CaptchaType;
 import com.tuccicode.boot.domain.system.service.ImageCaptchaService;
 import com.tuccicode.raccoon.dto.Response;
